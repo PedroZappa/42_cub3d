@@ -24,6 +24,7 @@
 # include "../lib/mlx/mlx.h"
 
 # include "../lib/libft/libft/libft.h"
+# include "../lib/libft/get_next_line/get_next_line.h"
 
 // X11 Defines
 
@@ -106,6 +107,11 @@ void	ft_cub_free(t_cub *cub);
 /** @file 100_map.c */
 t_map	*ft_map_init(void);
 void	ft_map_free(t_map *map);
+t_map	*ft_map_verify(t_map *map);
+
+/** @file 110_point.c */
+t_point	*ft_point_new(double x, double y, double z);
+t_point	*ft_point_copy(t_point *point);
 
 /** @file 200_parser.c */
 int		ft_parse_map(t_cub *cub, char *file);
