@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:27:22 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/09/25 16:23:43 by gfragoso         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:31:02 by gfragoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	ft_mlx_set_hooks(t_cub *cub)
 	if (cub == NULL || cub->mlx == NULL)
 		return (FAILURE);
 	mlx_key_hook(cub->mlx->wdw, ft_hook_kb, cub);
-	mlx_mouse_hide(cub->mlx->ptr, cub->mlx->wdw);
 	mlx_hook(cub->mlx->wdw, X11_EVENT_CLIENT_MSG,
 		X11_EVENT_MASK_CLOSE, ft_hook_quit, cub);
 	return (SUCCESS);

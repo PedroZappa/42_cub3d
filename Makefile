@@ -6,7 +6,7 @@
 #    By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 20:35:29 by passunca          #+#    #+#              #
-#    Updated: 2024/09/25 16:23:43 by gfragoso         ###   ########.fr        #
+#    Updated: 2024/09/25 16:30:16 by gfragoso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,7 @@ AR		= ar rcs
 MKDIR_P	= mkdir -p
 
 ### Valgrind
-VAL_ARGS 	= 
+VAL_ARGS 	= --suppressions=mlx.sup
 VAL_LEAK	= --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes --trace-children=yes
 VGDB_ARGS	= --vgdb-error=0 $(VAL_LEAK) $(VAL_ARGS)
 
