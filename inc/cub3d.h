@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:59:54 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/09/25 16:23:43 by gfragoso         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:26:25 by gfragoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 // Errors
 
 # define ARG_ERR 		"Missing map argument\n\
-Usage: ./cubD <path to map file .cub>"
+Usage: ./cub3D <path to map file .cub>"
 # define EXT_ERR 		"Map file must have '.cub' extension"
 # define FILE_ERR 		"Could not open file '%s'"
 # define MLX_ERR 		"Couldn't initialize mlx"
@@ -49,7 +49,7 @@ Usage: ./cubD <path to map file .cub>"
 
 # define WINDOW_W 		1280
 # define WINDOW_H	 	720
-# define WINDOW_TITLE 	"cubD"
+# define WINDOW_TITLE 	"Cub3D"
 
 typedef enum e_exit
 {
