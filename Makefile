@@ -6,7 +6,7 @@
 #    By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 20:35:29 by passunca          #+#    #+#              #
-#    Updated: 2024/09/24 22:45:25 by gfragoso         ###   ########.fr        #
+#    Updated: 2024/09/25 14:03:02 by gfragoso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,8 +52,10 @@ LIBS_PATH		= lib
 BUILD_PATH		= .build
 TEMP_PATH		= .temp
 
-SRC		= $(wildcard src/*.c)
+SRC		= $(wildcard $(SRC_PATH)/*.c)
 OBJS	= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
+
+HEADERS	= $(wildcard $(INC_PATH)/*.h)
 
 LIBFT_PATH	= $(LIBS_PATH)/libft
 LIBFT_ARC	= $(LIBFT_PATH)/libft.a
@@ -121,7 +123,7 @@ deps:		## Download/Update deps
 
 -include $(BUILD_PATH)/%.d
 
-$(BUILD_PATH)/%.o: $(SRC_PATH)/%.c
+$(BUILD_PATH)/%.o: $(SRC_PATH)/%.c $(HEADERS)
 	@echo -n "$(MAG)█$(D)"
 	$(CC) $(CFLAGS) $(DFLAGS) -MMD -MP -c $< -o $@
 
