@@ -6,7 +6,7 @@
 #    By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 20:35:29 by passunca          #+#    #+#              #
-#    Updated: 2024/09/25 14:43:51 by gfragoso         ###   ########.fr        #
+#    Updated: 2024/09/25 16:05:10 by gfragoso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ LIBFT_PATH	= $(LIBS_PATH)/libft
 LIBFT_ARC	= $(LIBFT_PATH)/libft.a
 
 MLX_PATH	= $(LIBS_PATH)/mlx
-MLX_ARC		= $(MLX_PATH)/libmlx.a
+MLX_ARC		= $(MLX_PATH)/libmlx_Linux.a
 
 #==============================================================================#
 #                              COMPILER & FLAGS                                #
@@ -87,7 +87,7 @@ AR		= ar rcs
 MKDIR_P	= mkdir -p
 
 ### Valgrind
-VAL_ARGS 	= --suppressions=readline.supp
+VAL_ARGS 	= 
 VAL_LEAK	= --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes --trace-children=yes
 VGDB_ARGS	= --vgdb-error=0 $(VAL_LEAK) $(VAL_ARGS)
 
@@ -106,7 +106,7 @@ $(NAME): $(BUILD_PATH) $(LIBFT_ARC) $(MLX_ARC) $(OBJS)			## Compile
 	make norm
 
 cube: all
-	@./$(NAME)
+	@./$(NAME) $(ARG)
 
 asan: CFLAGS += $(ASAN_FLAGS)
 asan: $(BUILD_PATH) $(LIBFT_ARC) $(MLX_ARC) $(OBJS)   ## Compile with Address Sanitizer

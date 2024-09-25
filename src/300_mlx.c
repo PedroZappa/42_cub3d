@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:27:22 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/09/25 14:32:17 by gfragoso         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:03:06 by gfragoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,20 @@ void	ft_mlx_free(t_mlx *mlx)
 	if (mlx->wdw != NULL)
 		mlx_destroy_window(mlx->ptr, mlx->wdw);
 	mlx->wdw = NULL;
+	mlx_destroy_display(mlx->ptr);
 	ft_vfree(mlx->ptr);
 	mlx->ptr = NULL;
+	free(mlx);
+}
+
+int	ft_mlx_set_hooks(t_cube *cube)
+{
+	if (cube == NULL || cube->mlx == NULL)
+		return (FAILURE);
+	mlx_key_hook(cube->mlx->wdw, ft_hook_kb, cube);
+	mlx_hook(cube->mlx->wdw, X11_EVENT_CLIENT_MSG,
+		X11_EVENT_MASK_CLOSE, ft_hook_quit, cube);
+	return (SUCCESS);
 }
 
 t_mlx	*ft_mlx_init(int w, int h, char *title)

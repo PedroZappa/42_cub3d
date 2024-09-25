@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:24:35 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/09/25 14:36:57 by gfragoso         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:03:14 by gfragoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ void	ft_map_free(t_map *map)
 	ft_free_arr(map->paths);
 	ft_vfree_arr(map->imgs);
 	ft_vfree(map->start_pos);
+	free(map);
 }

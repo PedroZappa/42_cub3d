@@ -6,32 +6,49 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:59:54 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/09/25 14:41:56 by gfragoso         ###   ########.fr       */
+/*   Updated: 2024/09/25 15:59:00 by gfragoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <stdlib.h> // exit, free, malloc
+# include <math.h>
 # include <stdio.h> // printf, perror
 # include <fcntl.h> // read
 # include <unistd.h> // write
+# include <stdlib.h> // exit, free, malloc
 # include <string.h> // strerror
 # include <sys/time.h> // gettimeofday
-# include <math.h>
+
+# include "../lib/mlx/mlx.h"
 
 # include "../lib/libft/libft/libft.h"
-# include "../lib/mlx/mlx.h"
+
+// X11 Defines
+
+# define X11_EVENT_CLIENT_MSG	33
+# define X11_EVENT_MASK_CLOSE 	131072L // == (1L << 17)
+
+# define X11_ESC				0xff1b
+# define X11_UP					0xff52
+# define X11_DOWN				0xff54
+# define X11_LEFT				0xff51
+# define X11_RIGHT				0xff53
+
+// Errors
 
 # define ARG_ERR 		"Missing map argument\n\
 Usage: ./cube3D <path to map file .cub>"
 # define EXT_ERR 		"Map file must have '.cub' extension"
 # define FILE_ERR 		"Could not open file '%s'"
 # define MLX_ERR 		"Couldn't initialize mlx"
+# define MLX_HOOK_ERR 	"Couldn't set mlx's hooks"
 
-# define WINDOW_W 		1920
-# define WINDOW_H	 	1080
+// Window settings
+
+# define WINDOW_W 		1280
+# define WINDOW_H	 	720
 # define WINDOW_TITLE 	"Cube3D"
 
 typedef enum e_exit
@@ -82,6 +99,9 @@ typedef struct s_cube
 	t_point	*current_pos;
 }	t_cube;
 
+/** @file 000_main.c */
+void	ft_cube_free(t_cube *cube);
+
 /** @file 100_map.c */
 t_map	*ft_map_init(void);
 void	ft_map_free(t_map *map);
@@ -92,6 +112,11 @@ int		ft_parse_map(t_cube *cube, char *file);
 /** @file 300_mlx.c */
 t_mlx	*ft_mlx_init(int w, int h, char *title);
 void	ft_mlx_free(t_mlx *mlx);
+int		ft_mlx_set_hooks(t_cube *cube);
+
+/** @file 310_mlx_hooks.c */
+int		ft_hook_quit(t_cube *cube);
+int		ft_hook_kb(int keycode, t_cube *cube);
 
 /** @file 800_errors.c */
 int		ft_err(char	*msg);
