@@ -140,6 +140,7 @@ $(LIBFT_ARC):
 
 get_libft:
 	@echo "* $(CYA)Getting Libft submodule$(D)"
+	@$(MKDIR_P) $(LIBS_PATH)
 	@if test ! -d "$(LIBFT_PATH)"; then \
 		git clone $(LIBFT_URL) $(LIBFT_PATH); \
 		echo "* $(GRN)Libft submodule download$(D): $(_SUCCESS)"; \
@@ -153,6 +154,7 @@ $(MLX_ARC):
 
 get_mlx:
 	@echo "* $(CYA)Getting MLX submodule$(D)"
+	@$(MKDIR_P) $(LIBS_PATH)
 	@if test ! -d "$(MLX_PATH)"; then \
 		curl -L $(MLX_URL) | tar zxvf -; \
 		mv minilibx-linux ./lib/mlx; \
