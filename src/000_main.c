@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:35:08 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/09/25 14:36:20 by gfragoso         ###   ########.fr       */
+/*   Updated: 2024/09/25 14:40:29 by gfragoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ int	main(int argc, char **argv)
 	cube = (t_cube){NULL, NULL, NULL};
 	if (ft_parse_map(&cube, argv[1]))
 		return (FAILURE);
+	cube.mlx = ft_mlx_init(WINDOW_W, WINDOW_H, WINDOW_TITLE);
+	if (cube.mlx == NULL)
+		return (ft_free_cube(&cube), ft_err(MLX_ERR));
+	mlx_loop(cube.mlx);
 	ft_free_cube(&cube);
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:59:54 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/09/25 14:37:02 by gfragoso         ###   ########.fr       */
+/*   Updated: 2024/09/25 14:41:56 by gfragoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,15 @@
 # include "../lib/libft/libft/libft.h"
 # include "../lib/mlx/mlx.h"
 
-# define ARG_ERR "Missing map argument\n\
+# define ARG_ERR 		"Missing map argument\n\
 Usage: ./cube3D <path to map file .cub>"
-# define EXT_ERR "Map file must have '.cub' extension"
-# define FILE_ERR "Could not open file '%s'"
+# define EXT_ERR 		"Map file must have '.cub' extension"
+# define FILE_ERR 		"Could not open file '%s'"
+# define MLX_ERR 		"Couldn't initialize mlx"
+
+# define WINDOW_W 		1920
+# define WINDOW_H	 	1080
+# define WINDOW_TITLE 	"Cube3D"
 
 typedef enum e_exit
 {

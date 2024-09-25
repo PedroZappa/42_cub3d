@@ -6,7 +6,7 @@
 #    By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 20:35:29 by passunca          #+#    #+#              #
-#    Updated: 2024/09/25 14:03:02 by gfragoso         ###   ########.fr        #
+#    Updated: 2024/09/25 14:43:51 by gfragoso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,7 +111,7 @@ cube: all
 asan: CFLAGS += $(ASAN_FLAGS)
 asan: $(BUILD_PATH) $(LIBFT_ARC) $(MLX_ARC) $(OBJS)   ## Compile with Address Sanitizer
 	@echo "$(YEL)Compiling $(MAG)$(NAME)$(YEL) with Address Sanitizer$(D)"
-	$(CC) $(CFLAGS) $(OBJS) $(INC) $(LIBFT_ARC) $(RFLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(INC) $(LIBFT_ARC) $(MLX_ARC) $(RFLAGS) -o $(NAME)
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) with Address Sanitizer $(YEL)🖔$(D)]"
 
 deps:		## Download/Update deps
