@@ -6,7 +6,7 @@
 #    By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 20:35:29 by passunca          #+#    #+#              #
-#    Updated: 2024/09/25 16:05:10 by gfragoso         ###   ########.fr        #
+#    Updated: 2024/09/25 16:23:43 by gfragoso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,7 +105,7 @@ $(NAME): $(BUILD_PATH) $(LIBFT_ARC) $(MLX_ARC) $(OBJS)			## Compile
 	@echo "[$(_SUCCESS) compiling $(MAG)$(NAME)$(D) $(YEL)🖔$(D)]"
 	make norm
 
-cube: all
+cub: all
 	@./$(NAME) $(ARG)
 
 asan: CFLAGS += $(ASAN_FLAGS)

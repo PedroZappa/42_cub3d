@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:59:54 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/09/25 15:59:00 by gfragoso         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:23:43 by gfragoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 // Errors
 
 # define ARG_ERR 		"Missing map argument\n\
-Usage: ./cube3D <path to map file .cub>"
+Usage: ./cubD <path to map file .cub>"
 # define EXT_ERR 		"Map file must have '.cub' extension"
 # define FILE_ERR 		"Could not open file '%s'"
 # define MLX_ERR 		"Couldn't initialize mlx"
@@ -49,7 +49,7 @@ Usage: ./cube3D <path to map file .cub>"
 
 # define WINDOW_W 		1280
 # define WINDOW_H	 	720
-# define WINDOW_TITLE 	"Cube3D"
+# define WINDOW_TITLE 	"cubD"
 
 typedef enum e_exit
 {
@@ -61,6 +61,7 @@ typedef struct s_point
 {
 	double	x;
 	double	y;
+	double	z;
 }	t_point;
 
 typedef struct s_mlx
@@ -91,32 +92,32 @@ typedef struct s_map
 	int		start_direction;
 }	t_map;
 
-typedef struct s_cube
+typedef struct s_cub
 {
 	t_mlx	*mlx;
 
 	t_map	*map;
 	t_point	*current_pos;
-}	t_cube;
+}	t_cub;
 
 /** @file 000_main.c */
-void	ft_cube_free(t_cube *cube);
+void	ft_cub_free(t_cub *cub);
 
 /** @file 100_map.c */
 t_map	*ft_map_init(void);
 void	ft_map_free(t_map *map);
 
 /** @file 200_parser.c */
-int		ft_parse_map(t_cube *cube, char *file);
+int		ft_parse_map(t_cub *cub, char *file);
 
 /** @file 300_mlx.c */
 t_mlx	*ft_mlx_init(int w, int h, char *title);
 void	ft_mlx_free(t_mlx *mlx);
-int		ft_mlx_set_hooks(t_cube *cube);
+int		ft_mlx_set_hooks(t_cub *cub);
 
 /** @file 310_mlx_hooks.c */
-int		ft_hook_quit(t_cube *cube);
-int		ft_hook_kb(int keycode, t_cube *cube);
+int		ft_hook_quit(t_cub *cub);
+int		ft_hook_kb(int keycode, t_cub *cub);
 
 /** @file 800_errors.c */
 int		ft_err(char	*msg);

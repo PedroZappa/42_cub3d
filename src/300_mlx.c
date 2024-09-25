@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:27:22 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/09/25 16:03:06 by gfragoso         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:23:43 by gfragoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ void	ft_mlx_free(t_mlx *mlx)
 	free(mlx);
 }
 
-int	ft_mlx_set_hooks(t_cube *cube)
+int	ft_mlx_set_hooks(t_cub *cub)
 {
-	if (cube == NULL || cube->mlx == NULL)
+	if (cub == NULL || cub->mlx == NULL)
 		return (FAILURE);
-	mlx_key_hook(cube->mlx->wdw, ft_hook_kb, cube);
-	mlx_hook(cube->mlx->wdw, X11_EVENT_CLIENT_MSG,
-		X11_EVENT_MASK_CLOSE, ft_hook_quit, cube);
+	mlx_key_hook(cub->mlx->wdw, ft_hook_kb, cub);
+	mlx_mouse_hide(cub->mlx->ptr, cub->mlx->wdw);
+	mlx_hook(cub->mlx->wdw, X11_EVENT_CLIENT_MSG,
+		X11_EVENT_MASK_CLOSE, ft_hook_quit, cub);
 	return (SUCCESS);
 }
 

@@ -6,22 +6,22 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:35:08 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/09/25 15:49:43 by gfragoso         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:23:43 by gfragoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void	ft_cube_free(t_cube *cube)
+void	ft_cub_free(t_cub *cub)
 {
-	if (cube == NULL)
+	if (cub == NULL)
 		return ;
-	ft_vfree(cube->current_pos);
-	cube->current_pos = NULL;
-	ft_map_free(cube->map);
-	cube->map = NULL;
-	ft_mlx_free(cube->mlx);
-	cube->mlx = NULL;
+	ft_vfree(cub->current_pos);
+	cub->current_pos = NULL;
+	ft_map_free(cub->map);
+	cub->map = NULL;
+	ft_mlx_free(cub->mlx);
+	cub->mlx = NULL;
 }
 
 /**
@@ -31,19 +31,19 @@ void	ft_cube_free(t_cube *cube)
 */
 int	main(int argc, char **argv)
 {
-	t_cube	cube;
+	t_cub	cub;
 
 	if (argc != 2)
 		return (ft_err(ARG_ERR));
-	cube = (t_cube){NULL, NULL, NULL};
-	if (ft_parse_map(&cube, argv[1]))
+	cub = (t_cub){NULL, NULL, NULL};
+	if (ft_parse_map(&cub, argv[1]))
 		return (FAILURE);
-	cube.mlx = ft_mlx_init(WINDOW_W, WINDOW_H, WINDOW_TITLE);
-	if (cube.mlx == NULL)
-		return (ft_cube_free(&cube), ft_err(MLX_ERR));
-	if (ft_mlx_set_hooks(&cube))
-		return (ft_cube_free(&cube), ft_err(MLX_ERR));
-	mlx_loop(cube.mlx->ptr);
-	ft_cube_free(&cube);
+	cub.mlx = ft_mlx_init(WINDOW_W, WINDOW_H, WINDOW_TITLE);
+	if (cub.mlx == NULL)
+		return (ft_cub_free(&cub), ft_err(MLX_ERR));
+	if (ft_mlx_set_hooks(&cub))
+		return (ft_cub_free(&cub), ft_err(MLX_ERR));
+	mlx_loop(cub.mlx->ptr);
+	ft_cub_free(&cub);
 	return (SUCCESS);
 }
