@@ -35,6 +35,7 @@ int	ft_verify_paths(t_map *map)
 		fd = open(map->paths[i], O_RDONLY);
 		if (fd < 0)
 			return (FAILURE);
+		close(fd);
 		++i;
 	}
 	return (SUCCESS);
