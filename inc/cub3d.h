@@ -46,6 +46,11 @@ Usage: ./cub3D <path to map file .cub>"
 # define MLX_ERR 		"Couldn't initialize mlx"
 # define MLX_HOOK_ERR 	"Couldn't set mlx's hooks"
 
+# define PARSE_COLORS	"Invalid colors for ceiling and/or floor"
+# define PARSE_DIR		"Invalid starting point and direction"
+# define PARSE_PATH		"Could not open 1 or more texture files"
+# define PARSE_BORD		"Not fully closed"
+
 // Window settings
 
 # define WINDOW_W 		1280
@@ -128,6 +133,7 @@ int		ft_hook_kb(int keycode, t_cub *cub);
 /** @file 800_errors.c */
 int		ft_err(char	*msg);
 int		ft_file_err(char *file);
+int		ft_parse_err(char *msg);
 
 /** @file 900_free.c */
 void	ft_vfree(void *ptr);
