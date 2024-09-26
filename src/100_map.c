@@ -33,6 +33,14 @@ t_map	*ft_map_init(void)
 	return (ret);
 }
 
+t_map	*ft_map_verify(t_map *map)
+{
+	if (map == NULL)
+		return (NULL);
+	// missing actual verification
+	return (map);
+}
+
 void	ft_map_free(t_map *map)
 {
 	if (map == NULL)
@@ -42,12 +50,4 @@ void	ft_map_free(t_map *map)
 	ft_vfree_arr(map->imgs);
 	ft_vfree(map->start_pos);
 	free(map);
-}
-
-t_map	*ft_map_verify(t_map *map)
-{
-	if (map == NULL)
-		return (NULL);
-	// missing actual verification
-	return (map);
 }
