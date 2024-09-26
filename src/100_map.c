@@ -55,6 +55,24 @@ char	ft_map_at(t_map *map, t_point *point)
 	return (ft_map_at_i(map, x, y));
 }
 
+void	ft_map_destroy_imgs(t_map *map, t_mlx *mlx)
+{
+	int	i;
+
+	if (map == NULL || mlx == NULL || mlx->ptr == NULL)
+		return ;
+	i = NORTH;
+	while (i < EAST)
+	{
+		if (map->imgs[i])
+		{
+			mlx_destroy_image(mlx->ptr, map->imgs[i]);
+			map->imgs[i] = NULL;
+		}
+		++i;
+	}
+}
+
 void	ft_map_free(t_map *map)
 {
 	if (map == NULL)

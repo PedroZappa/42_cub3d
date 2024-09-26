@@ -114,9 +114,12 @@ void	ft_cub_free(t_cub *cub);
 /** @file 100_map.c */
 t_map	*ft_map_init(void);
 void	ft_map_free(t_map *map);
-t_map	*ft_map_verify(t_map *map);
 char	ft_map_at_i(t_map *map, int x, int y);
 char	ft_map_at(t_map *map, t_point *p);
+void	ft_map_destroy_imgs(t_map *map, t_mlx *mlx);
+
+/** @file 105_map_verify.c */
+t_map	*ft_map_verify(t_map *map);
 
 /** @file 110_point.c */
 t_point	*ft_point_new(double x, double y, double z);
