@@ -12,29 +12,6 @@
 
 #include "../inc/cub3d.h"
 
-void	ft_mlx_free(t_mlx *mlx)
-{
-	if (mlx == NULL)
-		return ;
-	if (mlx->wdw != NULL)
-		mlx_destroy_window(mlx->ptr, mlx->wdw);
-	mlx->wdw = NULL;
-	mlx_destroy_display(mlx->ptr);
-	ft_vfree(mlx->ptr);
-	mlx->ptr = NULL;
-	free(mlx);
-}
-
-int	ft_mlx_set_hooks(t_cub *cub)
-{
-	if (cub == NULL || cub->mlx == NULL)
-		return (FAILURE);
-	mlx_key_hook(cub->mlx->wdw, ft_hook_kb, cub);
-	mlx_hook(cub->mlx->wdw, X11_EVENT_CLIENT_MSG,
-		X11_EVENT_MASK_CLOSE, ft_hook_quit, cub);
-	return (SUCCESS);
-}
-
 t_mlx	*ft_mlx_init(int w, int h, char *title)
 {
 	t_mlx	*ret;
@@ -51,4 +28,27 @@ t_mlx	*ft_mlx_init(int w, int h, char *title)
 	if (ret->wdw == NULL)
 		return (ft_vfree(ret->ptr), ft_vfree(ret), NULL);
 	return (ret);
+}
+
+int	ft_mlx_set_hooks(t_cub *cub)
+{
+	if (cub == NULL || cub->mlx == NULL)
+		return (FAILURE);
+	mlx_key_hook(cub->mlx->wdw, ft_hook_kb, cub);
+	mlx_hook(cub->mlx->wdw, X11_EVENT_CLIENT_MSG,
+		X11_EVENT_MASK_CLOSE, ft_hook_quit, cub);
+	return (SUCCESS);
+}
+
+void	ft_mlx_free(t_mlx *mlx)
+{
+	if (mlx == NULL)
+		return ;
+	if (mlx->wdw != NULL)
+		mlx_destroy_window(mlx->ptr, mlx->wdw);
+	mlx->wdw = NULL;
+	mlx_destroy_display(mlx->ptr);
+	ft_vfree(mlx->ptr);
+	mlx->ptr = NULL;
+	free(mlx);
 }

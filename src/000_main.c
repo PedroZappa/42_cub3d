@@ -12,17 +12,7 @@
 
 #include "../inc/cub3d.h"
 
-void	ft_cub_free(t_cub *cub)
-{
-	if (cub == NULL)
-		return ;
-	ft_vfree(cub->current_pos);
-	cub->current_pos = NULL;
-	ft_map_free(cub->map);
-	cub->map = NULL;
-	ft_mlx_free(cub->mlx);
-	cub->mlx = NULL;
-}
+void	ft_cub_free(t_cub *cub);
 
 /**
  * 1. parse map
@@ -46,4 +36,16 @@ int	main(int argc, char **argv)
 	mlx_loop(cub.mlx->ptr);
 	ft_cub_free(&cub);
 	return (SUCCESS);
+}
+
+void	ft_cub_free(t_cub *cub)
+{
+	if (cub == NULL)
+		return ;
+	ft_vfree(cub->current_pos);
+	cub->current_pos = NULL;
+	ft_map_free(cub->map);
+	cub->map = NULL;
+	ft_mlx_free(cub->mlx);
+	cub->mlx = NULL;
 }

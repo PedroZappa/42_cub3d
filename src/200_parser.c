@@ -12,6 +12,26 @@
 
 #include "../inc/cub3d.h"
 
+int		ft_check_ext(char *file);
+t_map	*ft_parse_loop(int fd);
+
+int	ft_parse_map(t_cub *cub, char *file)
+{
+	int	fd;
+
+	if (ft_check_ext(file))
+		return (ft_err(EXT_ERR));
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (ft_file_err(file));
+	cub->map = ft_parse_loop(fd);
+	if (cub->map != NULL)
+		cub->map = ft_map_verify(cub->map);
+	if (cub->map != NULL)
+		cub->current_pos = ft_point_copy(cub->map->start_pos);
+	return (close(fd), cub->map == NULL);
+}
+
 int	ft_check_ext(char *file)
 {
 	char	*pos;
@@ -41,21 +61,4 @@ t_map	*ft_parse_loop(int fd)
 		str = get_next_line(fd);
 	}
 	return (ft_free(str), ret);
-}
-
-int	ft_parse_map(t_cub *cub, char *file)
-{
-	int	fd;
-
-	if (ft_check_ext(file))
-		return (ft_err(EXT_ERR));
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		return (ft_file_err(file));
-	cub->map = ft_parse_loop(fd);
-	if (cub->map != NULL)
-		cub->map = ft_map_verify(cub->map);
-	if (cub->map != NULL)
-		cub->current_pos = ft_point_copy(cub->map->start_pos);
-	return (close(fd), cub->map == NULL);
 }
