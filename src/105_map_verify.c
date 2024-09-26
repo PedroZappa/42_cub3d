@@ -13,7 +13,7 @@
 #include "../inc/cub3d.h"
 #include <fcntl.h>
 
-int	ft_flood_fill(t_map *map, char **aux_arr, t_point p)
+int	ft_flood_fill(t_map *map, char **aux_arr, t_2dpoint p)
 {
 	(void)map;
 	(void)aux_arr;
@@ -40,7 +40,7 @@ int	ft_verify_borders(t_map *map)
 		++i;
 	}
 	i = ft_flood_fill(map, aux_arr,
-			(t_point){map->start_pos->x, map->start_pos->y, 0});
+			(t_2dpoint){map->start_pos->x, map->start_pos->y});
 	return (ft_free_arr(aux_arr), i);
 }
 

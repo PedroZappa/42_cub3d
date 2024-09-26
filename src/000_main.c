@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (ft_err(ARG_ERR));
-	cub = (t_cub){NULL, NULL, NULL};
+	cub = (t_cub){NULL, NULL, NULL, NULL};
 	if (ft_parse_map(&cub, argv[1]))
 		return (FAILURE);
 	cub.mlx = ft_mlx_init(WINDOW_W, WINDOW_H, WINDOW_TITLE);

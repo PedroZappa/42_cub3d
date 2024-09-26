@@ -70,6 +70,12 @@ typedef struct s_point
 	double	z;
 }	t_point;
 
+typedef struct s_2dpoint
+{
+	int	x;
+	int	y;
+}	t_2dpoint;
+
 typedef struct s_mlx
 {
 	void	*ptr;
@@ -87,17 +93,17 @@ typedef enum e_dir
 
 typedef struct s_map
 {
-	int		floor_color;
-	int		ceiling_color;
+	int			floor_color;
+	int			ceiling_color;
 
-	char	**paths;
-	void	**imgs;
+	char		**paths;
+	void		**imgs;
 
-	char	**map;
-	t_point	*start_pos;
-	int		start_direction;
-	int		width;
-	int		height;
+	char		**map;
+	t_2dpoint	*start_pos;
+	int			start_direction;
+	int			width;
+	int			height;
 }	t_map;
 
 typedef struct s_cub
@@ -106,45 +112,49 @@ typedef struct s_cub
 
 	t_map	*map;
 	t_point	*current_pos;
+	t_point	*orientation;
 }	t_cub;
 
 /** @file 000_main.c */
-void	ft_cub_free(t_cub *cub);
+void		ft_cub_free(t_cub *cub);
 
 /** @file 100_map.c */
-t_map	*ft_map_init(void);
-void	ft_map_free(t_map *map);
-char	ft_map_at_i(t_map *map, int x, int y);
-char	ft_map_at(t_map *map, t_point *p);
-void	ft_map_destroy_imgs(t_map *map, t_mlx *mlx);
+t_map		*ft_map_init(void);
+void		ft_map_free(t_map *map);
+char		ft_map_at_i(t_map *map, int x, int y);
+char		ft_map_at(t_map *map, t_2dpoint *p);
+void		ft_map_destroy_imgs(t_map *map, t_mlx *mlx);
 
 /** @file 105_map_verify.c */
-t_map	*ft_map_verify(t_map *map);
+t_map		*ft_map_verify(t_map *map);
 
 /** @file 110_point.c */
-t_point	*ft_point_new(double x, double y, double z);
-t_point	*ft_point_copy(t_point *point);
+t_point		*ft_point_new(double x, double y, double z);
+t_point		*ft_point_copy(t_point *point);
+t_2dpoint	*ft_2dpoint_new(int x, int y);
+t_2dpoint	*ft_2dpoint_copy(t_2dpoint *point);
+t_point		*ft_point_dir(t_dir dir);
 
 /** @file 200_parser.c */
-int		ft_parse_map(t_cub *cub, char *file);
+int			ft_parse_map(t_cub *cub, char *file);
 
 /** @file 300_mlx.c */
-t_mlx	*ft_mlx_init(int w, int h, char *title);
-void	ft_mlx_free(t_mlx *mlx);
-int		ft_mlx_set_hooks(t_cub *cub);
+t_mlx		*ft_mlx_init(int w, int h, char *title);
+void		ft_mlx_free(t_mlx *mlx);
+int			ft_mlx_set_hooks(t_cub *cub);
 
 /** @file 310_mlx_hooks.c */
-int		ft_hook_quit(t_cub *cub);
-int		ft_hook_kb(int keycode, t_cub *cub);
+int			ft_hook_quit(t_cub *cub);
+int			ft_hook_kb(int keycode, t_cub *cub);
 
 /** @file 800_errors.c */
-int		ft_err(char	*msg);
-int		ft_file_err(char *file);
-int		ft_parse_err(char *msg);
+int			ft_err(char	*msg);
+int			ft_file_err(char *file);
+int			ft_parse_err(char *msg);
 
 /** @file 900_free.c */
-void	ft_vfree(void *ptr);
-void	ft_free_arr(char **arr);
-void	ft_vfree_arr(void **arr);
+void		ft_vfree(void *ptr);
+void		ft_free_arr(char **arr);
+void		ft_vfree_arr(void **arr);
 
 #endif

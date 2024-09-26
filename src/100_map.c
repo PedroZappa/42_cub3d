@@ -43,16 +43,11 @@ char	ft_map_at_i(t_map *map, int x, int y)
 	return (map->map[y][x]);
 }
 
-char	ft_map_at(t_map *map, t_point *point)
+char	ft_map_at(t_map *map, t_2dpoint *point)
 {
-	int	x;
-	int	y;
-
 	if (point == NULL)
 		return (-1);
-	x = (int) point->x;
-	y = (int) point->y;
-	return (ft_map_at_i(map, x, y));
+	return (ft_map_at_i(map, point->x, point->y));
 }
 
 void	ft_map_destroy_imgs(t_map *map, t_mlx *mlx)
