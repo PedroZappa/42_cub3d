@@ -30,7 +30,29 @@ t_map	*ft_map_init(void)
 	ret->map = NULL;
 	ret->start_pos = NULL;
 	ret->start_direction = INVALID;
+	ret->height = 0;
+	ret->width = 0;
 	return (ret);
+}
+
+char	ft_map_at_i(t_map *map, int x, int y)
+{
+	if (map == NULL || x >= map->width
+		|| y >= map->height || x < 0 || y < 0)
+		return (-1);
+	return (map->map[y][x]);
+}
+
+char	ft_map_at(t_map *map, t_point *point)
+{
+	int	x;
+	int	y;
+
+	if (point == NULL)
+		return (-1);
+	x = (int) point->x;
+	y = (int) point->y;
+	return (ft_map_at_i(map, x, y));
 }
 
 void	ft_map_free(t_map *map)

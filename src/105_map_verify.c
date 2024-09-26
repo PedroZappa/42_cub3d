@@ -13,11 +13,35 @@
 #include "../inc/cub3d.h"
 #include <fcntl.h>
 
+int	ft_flood_fill(t_map *map, char **aux_arr, t_point p)
+{
+	(void)map;
+	(void)aux_arr;
+	(void)p;
+	return (SUCCESS);
+}
+
 int	ft_verify_borders(t_map *map)
 {
+	char	**aux_arr;
+	int		i;
+
 	if (map == NULL)
 		return (FAILURE);
-	return (SUCCESS);
+	aux_arr = ft_calloc(map->height + 1, sizeof(char *));
+	if (aux_arr == NULL)
+		return (FAILURE);
+	i = 0;
+	while (i < map->height)
+	{
+		aux_arr[i] = ft_calloc(map->width + 1, sizeof(char));
+		if (aux_arr[i] == NULL)
+			return (ft_free_arr(aux_arr), FAILURE);
+		++i;
+	}
+	i = ft_flood_fill(map, aux_arr,
+			(t_point){map->start_pos->x, map->start_pos->y, 0});
+	return (ft_free_arr(aux_arr), i);
 }
 
 int	ft_verify_paths(t_map *map)
