@@ -1,32 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   110_point.c                                        :+:      :+:    :+:   */
+/*   120_vec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 23:23:16 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/09/25 23:26:14 by gfragoso         ###   ########.fr       */
+/*   Created: 2024/09/26 21:12:29 by gfragoso          #+#    #+#             */
+/*   Updated: 2024/09/26 21:12:29 by gfragoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-t_point	*ft_point_new(int x, int y)
+t_vec	*ft_vec_new(double x, double y, double z)
 {
-	t_point	*ret;
+	t_vec	*ret;
 
-	ret = malloc(sizeof(t_point));
+	ret = malloc(sizeof(t_vec));
 	if (ret == NULL)
 		return (NULL);
 	ret->x = x;
 	ret->y = y;
+	ret->z = z;
 	return (ret);
 }
 
-t_point	*ft_point_copy(t_point *point)
+t_vec	*ft_vec_copy(t_vec *point)
 {
 	if (point == NULL)
 		return (NULL);
-	return (ft_point_new(point->x, point->y));
+	return (ft_vec_new(point->x, point->y, point->z));
+}
+
+t_vec	*ft_vec_dir(t_dir dir)
+{
+	if (dir == NORTH)
+		return (ft_vec_new(0, -1, 0));
+	if (dir == SOUTH)
+		return (ft_vec_new(0, 1, 0));
+	if (dir == WEST)
+		return (ft_vec_new(-1, 0, 0));
+	if (dir == EAST)
+		return (ft_vec_new(1, 0, 0));
+	return (NULL);
 }

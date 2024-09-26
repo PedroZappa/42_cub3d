@@ -43,7 +43,7 @@ char	ft_map_at_i(t_map *map, int x, int y)
 	return (map->map[y][x]);
 }
 
-char	ft_map_at(t_map *map, t_2dpoint *point)
+char	ft_map_at(t_map *map, t_point *point)
 {
 	if (point == NULL)
 		return (-1);
