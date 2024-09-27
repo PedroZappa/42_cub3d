@@ -114,6 +114,8 @@ typedef struct s_cub
 	t_map	*map;
 	t_vec	*current_pos;
 	t_vec	*orientation;
+
+	long	last_frame;
 }	t_cub;
 
 /** @file 000_main.c */
@@ -147,6 +149,10 @@ int		ft_mlx_set_hooks(t_cub *cub);
 /** @file 310_mlx_hooks.c */
 int		ft_hook_quit(t_cub *cub);
 int		ft_hook_kb(int keycode, t_cub *cub);
+int		ft_hook_loop(t_cub *cub);
+
+/** @file 600_time.c */
+long	ft_timestamp(void);
 
 /** @file 700_point.c */
 t_point	*ft_point_new(int x, int y);

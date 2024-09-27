@@ -29,7 +29,7 @@ int	ft_parse_map(t_cub *cub, char *file)
 	cub->map = ft_parse_loop(fd);
 	if (cub->map != NULL)
 		cub->map = ft_map_verify(cub->map);
-	if (cub->map != NULL)
+	if (cub->map != NULL && 0) // skip verification for now
 	{
 		cub->current_pos = ft_vec_new(cub->map->start_pos->x,
 				cub->map->start_pos->y, WINDOW_H / 2);
