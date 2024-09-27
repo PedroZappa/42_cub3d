@@ -27,6 +27,6 @@ int	ft_file_err(char *file)
 
 int	ft_parse_err(char *msg)
 {
-	printf("Error\nThere was a problem while parsing the map:%s\n", msg);
+	printf("Error\nThere was a problem while parsing the map: %s\n", msg);
 	return (FAILURE);
 }
