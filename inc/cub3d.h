@@ -50,6 +50,7 @@ Usage: ./cub3D <path to map file .cub>"
 # define PARSE_DIR		"Invalid starting point and direction"
 # define PARSE_PATH		"Could not open 1 or more texture files"
 # define PARSE_BORD		"Not fully closed"
+# define PARSE_SIZE		"Map array doesn't match its size"
 
 // Window settings
 
@@ -101,9 +102,9 @@ typedef struct s_map
 
 	char	**map;
 	t_point	*start_pos;
-	int		start_direction;
-	int		width;
-	int		height;
+	t_dir	start_direction;
+	size_t	width;
+	size_t	height;
 }	t_map;
 
 typedef struct s_cub
@@ -129,17 +130,11 @@ char	ft_map_at(t_map *map, t_point *p);
 char	*ft_map_at_i_ref(t_map *map, int x, int y);
 char	*ft_map_at_ref(t_map *map, t_point *p);
 
-/** @file 105_map_verify.c */
+/** @file 110_map_verify.c */
 t_map	*ft_map_verify(t_map *map);
 
-/** @file 110_point.c */
-t_point	*ft_point_new(int x, int y);
-t_point	*ft_point_copy(t_point *point);
-
-/** @file 120_vec.c */
-t_vec	*ft_vec_new(double x, double y, double z);
-t_vec	*ft_vec_copy(t_vec *point);
-t_vec	*ft_vec_dir(t_dir dir);
+/** @file 111_map_verify.c */
+int		ft_verify_borders(t_map *map);
 
 /** @file 200_parser.c */
 int		ft_parse_map(t_cub *cub, char *file);
@@ -152,6 +147,15 @@ int		ft_mlx_set_hooks(t_cub *cub);
 /** @file 310_mlx_hooks.c */
 int		ft_hook_quit(t_cub *cub);
 int		ft_hook_kb(int keycode, t_cub *cub);
+
+/** @file 700_point.c */
+t_point	*ft_point_new(int x, int y);
+t_point	*ft_point_copy(t_point *point);
+
+/** @file 710_vec.c */
+t_vec	*ft_vec_new(double x, double y, double z);
+t_vec	*ft_vec_copy(t_vec *point);
+t_vec	*ft_vec_dir(t_dir dir);
 
 /** @file 800_errors.c */
 int		ft_err(char	*msg);

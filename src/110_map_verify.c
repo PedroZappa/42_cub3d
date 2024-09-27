@@ -13,9 +13,8 @@
 #include "../inc/cub3d.h"
 #include <fcntl.h>
 
-int	ft_verify_borders(t_map *map);
-int	ft_verify_paths(t_map *map);
-int	ft_flood_fill(t_map *map, t_map *aux_map, int x, int y);
+static int	ft_verify_paths(t_map *map);
+static int	ft_verify_size(t_map *map);
 
 t_map	*ft_map_verify(t_map *map)
 {
@@ -25,6 +24,8 @@ t_map	*ft_map_verify(t_map *map)
 		return (ft_parse_err(PARSE_COLORS), ft_map_free(map), NULL);
 	if (map->start_direction == INVALID || map->start_pos == NULL)
 		return (ft_parse_err(PARSE_DIR), ft_map_free(map), NULL);
+	if (ft_verify_size(map))
+		return (ft_parse_err(PARSE_SIZE), ft_map_free(map), NULL);
 	if (ft_verify_paths(map))
 		return (ft_parse_err(PARSE_PATH), ft_map_free(map), NULL);
 	if (ft_verify_borders(map))
@@ -32,7 +33,7 @@ t_map	*ft_map_verify(t_map *map)
 	return (map);
 }
 
-int	ft_verify_paths(t_map *map)
+static int	ft_verify_paths(t_map *map)
 {
 	int	i;
 	int	fd;
@@ -53,46 +54,20 @@ int	ft_verify_paths(t_map *map)
 	return (SUCCESS);
 }
 
-int	ft_verify_borders(t_map *map)
+static int	ft_verify_size(t_map *map)
 {
-	t_map	aux_map;
-	int		i;
+	size_t	i;
 
 	if (map == NULL)
 		return (FAILURE);
-	aux_map.map = ft_calloc(map->height + 1, sizeof(char *));
-	if (aux_map.map == NULL)
-		return (FAILURE);
 	i = 0;
-	while (i < map->height)
+	while (map->map[i])
 	{
-		aux_map.map[i] = ft_calloc(map->width + 1, sizeof(char));
-		if (aux_map.map[i] == NULL)
-			return (ft_free_arr(aux_map.map), FAILURE);
-		++i;
+		if (map->map[i] == NULL)
+			return (FAILURE);
+		if (ft_strlen(map->map[i]) != map->width)
+			return (FAILURE);
+		i++;
 	}
-	i = ft_flood_fill(map, &aux_map,
-			map->start_pos->x, map->start_pos->y);
-	return (ft_free_arr(aux_map.map), i);
-}
-
-int	ft_flood_fill(t_map *map, t_map *aux_map, int x, int y)
-{
-	char	*c;
-
-	if (map == NULL || aux_map == NULL)
-		return (FAILURE);
-	c = ft_map_at_i_ref(aux_map, x, y);
-	if (c == NULL)
-		return (FAILURE);
-	if (*c == 0)
-		return (SUCCESS);
-	// missing verify if '0' is not on border or near to space
-	if (ft_flood_fill(map, aux_map, x - 1, y))
-		return (FAILURE);
-	if (ft_flood_fill(map, aux_map, x + 1, y))
-		return (FAILURE);
-	if (ft_flood_fill(map, aux_map, x, y - 1))
-		return (FAILURE);
-	return (ft_flood_fill(map, aux_map, x, y + 1));
+	return (i != map->height);
 }

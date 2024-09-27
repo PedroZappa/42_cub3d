@@ -14,8 +14,8 @@
 
 char	ft_map_at_i(t_map *map, int x, int y)
 {
-	if (map == NULL || x >= map->width
-		|| y >= map->height || x < 0 || y < 0)
+	if (map == NULL || x >= (int)map->width
+		|| y >= (int)map->height || x < 0 || y < 0)
 		return (-1);
 	return (map->map[y][x]);
 }
@@ -29,8 +29,8 @@ char	ft_map_at(t_map *map, t_point *point)
 
 char	*ft_map_at_i_ref(t_map *map, int x, int y)
 {
-	if (map == NULL || x >= map->width
-		|| y >= map->height || x < 0 || y < 0)
+	if (map == NULL || x >= (int)map->width
+		|| y >= (int)map->height || x < 0 || y < 0)
 		return (NULL);
 	return (map->map[y] + x);
 }
