@@ -14,11 +14,6 @@
 
 void	ft_cub_free(t_cub *cub);
 
-/**
- * 1. parse map
- * 2. start mlx
- * 3. game loop
-*/
 int	main(int argc, char **argv)
 {
 	t_cub	cub;
