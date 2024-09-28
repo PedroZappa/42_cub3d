@@ -87,7 +87,7 @@ static void	ft_parse_header(char *line, t_map *map)
 	}
 }
 
-static int	ft_parsing_map(char *line, t_map *map)
+static int	ft_parsing_colors(char *line, t_map *map)
 {
 	if (map == NULL || line == NULL)
 		return (ft_err(FILE_ERR), FAILURE);
@@ -97,6 +97,16 @@ static int	ft_parsing_map(char *line, t_map *map)
 		ft_parse_rgb(line, &map->floor_color);
 	else if (ft_strncmp(line, "C", 1) == 0)
 		ft_parse_rgb(line, &map->ceiling_color);
+	return (SUCCESS);
+}
+
+static int	ft_parsing_map(char *line, t_map *map)
+{
+	if (map == NULL || line == NULL)
+		return (ft_err(FILE_ERR), FAILURE);
+	while (ft_isspace(*line))
+		++line;
+	// TODO : Parse F and C
 	return (SUCCESS);
 }
 
