@@ -28,6 +28,8 @@ end
 define parse_map
   display cub
   display cub->map
+  display cub->map->paths@4
+  display cub->map->imgs@4
   display cub->current_pos
   display cub->start_pos->x
   display cub->start_pos->y
@@ -66,7 +68,7 @@ end
 ### Go GDB Go! I Choose YOU! 
 
 # main
-break main
+break ft_parse_map
 run ./maps/minimalist.cub
 fs cmd
 rfr
