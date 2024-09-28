@@ -19,8 +19,8 @@ t_map	*ft_map_init(void)
 	ret = malloc(sizeof(t_map));
 	if (ret == NULL)
 		return (NULL);
-	ret->ceiling_color = -1;
-	ret->floor_color = -1;
+	ret->ceiling_color = (t_rgb){-1, -1, -1};
+	ret->floor_color = (t_rgb){-1, -1, -1};
 	ret->paths = ft_calloc(5, sizeof(char *));
 	if (ret->paths == NULL)
 		return (ft_vfree(ret), NULL);

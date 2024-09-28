@@ -12,10 +12,10 @@
 
 #include "../inc/cub3d.h"
 
-int		ft_check_ext(char *file);
-t_map	*ft_parse_loop(int fd);
-int		ft_parsing_map(char *line, t_map *map);
-void	ft_parse_header(char *line, t_map *map);
+static int		ft_check_ext(char *file);
+static t_map	*ft_parse_loop(int fd);
+static int		ft_parsing_map(char *line, t_map *map);
+static void		ft_parse_header(char *line, t_map *map);
 
 int	ft_parse_map(t_cub *cub, char *file)
 {
@@ -38,7 +38,7 @@ int	ft_parse_map(t_cub *cub, char *file)
 	return (close(fd), cub->map == NULL);
 }
 
-t_map	*ft_parse_loop(int fd)
+static t_map	*ft_parse_loop(int fd)
 {
 	t_map	*map;
 	char	*line;
@@ -63,14 +63,14 @@ t_map	*ft_parse_loop(int fd)
 	return (ft_free(line), map);
 }
 
-void	ft_parse_header(char *line, t_map *map)
+static void	ft_parse_header(char *line, t_map *map)
 {
 	static const char	*dir_str[] = {"NO", "SO", "WE", "EA"};
 	t_dir				dir;
 
-	dir == NORTH;
 	if (map == NULL || line == NULL)
 		return ;
+	dir = NORTH;
 	while (ft_isspace(*line))
 		++line;
 	while (dir <= EAST)
@@ -87,15 +87,20 @@ void	ft_parse_header(char *line, t_map *map)
 	}
 }
 
-int	ft_parsing_map(char *line, t_map *map)
+static int	ft_parsing_map(char *line, t_map *map)
 {
 	if (map == NULL || line == NULL)
-		return (ft_err(FILE_ERR));
-	// Parse the actual map
+		return (ft_err(FILE_ERR), FAILURE);
+	while (ft_isspace(*line))
+		++line;
+	if (ft_strncmp(line, "F", 1) == 0)
+		ft_parse_rgb(line, &map->floor_color);
+	else if (ft_strncmp(line, "C", 1) == 0)
+		ft_parse_rgb(line, &map->ceiling_color);
 	return (SUCCESS);
 }
 
-int	ft_check_ext(char *file)
+static int	ft_check_ext(char *file)
 {
 	char	*pos;
 

@@ -83,12 +83,12 @@ typedef struct s_point
 	int	y;
 }	t_point;
 
-typedef struct s_color
+typedef struct s_rgb
 {
 	int	r;
 	int	g;
 	int	b;
-}	t_color;
+}	t_rgb;
 
 typedef struct s_mlx
 {
@@ -108,11 +108,11 @@ typedef enum e_dir
 // paths/imgs : NO, SO, WE, EA
 typedef struct s_map
 {
-	int		floor_color;
-	int		ceiling_color;
-
 	char	**paths;
 	void	**imgs;
+
+	t_rgb	floor_color;
+	t_rgb	ceiling_color;
 
 	char	**map;
 	t_point	*start_pos;
@@ -176,6 +176,9 @@ t_point	*ft_point_copy(t_point *point);
 t_vec	*ft_vec_new(double x, double y, double z);
 t_vec	*ft_vec_copy(t_vec *point);
 t_vec	*ft_vec_dir(t_dir dir);
+
+/** @file 720_rgb.c */
+int		ft_parse_rgb(char *line, t_rgb *rgb);
 
 /** @file 800_errors.c */
 int		ft_err(char	*msg);
