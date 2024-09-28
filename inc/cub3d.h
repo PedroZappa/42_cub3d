@@ -83,6 +83,13 @@ typedef struct s_point
 	int	y;
 }	t_point;
 
+typedef struct s_color
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_color;
+
 typedef struct s_mlx
 {
 	void	*ptr;
@@ -98,6 +105,7 @@ typedef enum e_dir
 	EAST
 }	t_dir;
 
+// paths/imgs : NO, SO, WE, EA
 typedef struct s_map
 {
 	int		floor_color;

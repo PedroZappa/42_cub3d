@@ -51,7 +51,7 @@ t_map	*ft_parse_loop(int fd)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (line[0] == '1')
+		if ((ft_strchr(line, '1') != NULL) && (ft_strncmp(line, "1", 1) == 0))
 			parsing_map = 1;
 		if (parsing_map && ft_parsing_map(line, map))
 			return (ft_err(FILE_ERR), NULL);
@@ -65,9 +65,26 @@ t_map	*ft_parse_loop(int fd)
 
 void	ft_parse_header(char *line, t_map *map)
 {
+	static const char	*dir_str[] = {"NO", "SO", "WE", "EA"};
+	t_dir				dir;
+
+	dir == NORTH;
 	if (map == NULL || line == NULL)
 		return ;
-	// Parse the header
+	while (ft_isspace(*line))
+		++line;
+	while (dir <= EAST)
+	{
+		if (ft_strncmp(line, dir_str[dir], 2) == 0)
+		{
+			line += 2;
+			while (ft_isspace(*line))
+				++line;
+			map->paths[dir] = ft_strdup(line);
+			return ;
+		}
+		++dir;
+	}
 }
 
 int	ft_parsing_map(char *line, t_map *map)
