@@ -6,16 +6,16 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 13:46:14 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/09/25 23:42:06 by gfragoso         ###   ########.fr       */
+/*   Updated: 2024/09/28 18:52:57 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static int		ft_check_ext(char *file);
 static t_map	*ft_parse_loop(int fd);
 static int		ft_parsing_map(char *line, t_map *map);
 static void		ft_parse_header(char *line, t_map *map);
+static int		ft_parsing_colors(char *line, t_map *map);
 
 int	ft_parse_map(t_cub *cub, char *file)
 {
@@ -85,6 +85,8 @@ static void	ft_parse_header(char *line, t_map *map)
 		}
 		++dir;
 	}
+	if (ft_strncmp(line, "F", 1) == 0 || ft_strncmp(line, "C", 1) == 0)
+		ft_parsing_colors(line, map);
 }
 
 static int	ft_parsing_colors(char *line, t_map *map)
@@ -108,14 +110,4 @@ static int	ft_parsing_map(char *line, t_map *map)
 		++line;
 	// TODO : Parse Map
 	return (SUCCESS);
-}
-
-static int	ft_check_ext(char *file)
-{
-	char	*pos;
-
-	pos = ft_strrchr(file, '.');
-	if (pos == NULL)
-		return (FAILURE);
-	return (ft_strncmp(pos, ".cub", 5));
 }
