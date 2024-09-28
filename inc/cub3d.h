@@ -58,6 +58,12 @@ Usage: ./cub3D <path to map file .cub>"
 # define WINDOW_H	 	720
 # define WINDOW_TITLE 	"Cub3D"
 
+// Debug flags
+
+# ifndef SKIP_VERIFY
+#  define SKIP_VERIFY 0
+# endif
+
 typedef enum e_exit
 {
 	SUCCESS,

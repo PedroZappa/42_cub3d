@@ -20,7 +20,8 @@ t_map	*ft_map_verify(t_map *map)
 {
 	if (map == NULL)
 		return (NULL);
-	return (map); // skip verification for now
+	if (SKIP_VERIFY)
+		return (map);
 	if (map->ceiling_color == -1 || map->floor_color == -1)
 		return (ft_parse_err(PARSE_COLORS), ft_map_free(map), NULL);
 	if (map->start_direction == INVALID || map->start_pos == NULL)

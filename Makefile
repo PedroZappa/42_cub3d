@@ -121,6 +121,9 @@ deps:		## Download/Update deps
 		else echo "$(YEL)[mlx]$(D) folder found 🖔"; fi
 	@echo " $(RED)$(D) [$(GRN)Nothing to be done!$(D)]"
 
+skip_verify: DFLAGS += -D SKIP_VERIFY=1
+skip_verify: re
+
 -include $(BUILD_PATH)/%.d
 
 $(BUILD_PATH)/%.o: $(SRC_PATH)/%.c $(HEADERS)
