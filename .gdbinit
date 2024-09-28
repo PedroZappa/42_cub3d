@@ -50,15 +50,24 @@ define parse_header
   display dir_str[dir]
 end
 
-define parse_map
+define parsing_colors
+  display line
+  display map
+  display map->floor_color
+  display map->ceiling_color
+end
 
+define parsing_map
+  display line
+  display map
+  
 end
 
 ### Go GDB Go! I Choose YOU! 
 
 # main
-break ft_export
-run
+break main
+run ./maps/minimalist.cub
 fs cmd
 rfr
 
