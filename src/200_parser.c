@@ -106,7 +106,7 @@ static int	ft_parsing_map(char *line, t_map *map)
 		return (ft_err(FILE_ERR), FAILURE);
 	while (ft_isspace(*line))
 		++line;
-	// TODO : Parse F and C
+	// TODO : Parse Map
 	return (SUCCESS);
 }
 
