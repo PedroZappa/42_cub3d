@@ -30,6 +30,8 @@ define parse_map
   display cub->map
   display *cub->map->paths@4
   display *cub->map->imgs@4
+  display cub->map->floor_color
+  display cub->map->ceiling_color
   display cub->current_pos
   display cub->start_pos->x
   display cub->start_pos->y

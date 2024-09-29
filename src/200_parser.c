@@ -66,24 +66,27 @@ static t_map	*ft_parse_loop(int fd)
 static void	ft_parse_header(char *line, t_map *map)
 {
 	static const char	*dir_str[] = {"NO", "SO", "WE", "EA"};
+	char				*nl;
 	t_dir				dir;
 
 	if (map == NULL || line == NULL)
 		return ;
-	dir = NORTH;
+	dir = INVALID;
 	while (ft_isspace(*line))
 		++line;
-	while (dir <= EAST)
+	while (++dir <= EAST)
 	{
 		if (ft_strncmp(line, dir_str[dir], 2) == 0)
 		{
 			line += 2;
 			while (ft_isspace(*line))
 				++line;
+			nl = ft_strchr(line, '\n');
+			if (nl != NULL)
+				*nl = '\0';
 			map->paths[dir] = ft_strdup(line);
 			return ;
 		}
-		++dir;
 	}
 	if (ft_strncmp(line, "F", 1) == 0 || ft_strncmp(line, "C", 1) == 0)
 		ft_parsing_colors(line, map);

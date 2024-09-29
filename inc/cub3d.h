@@ -64,11 +64,24 @@ Usage: ./cub3D <path to map file .cub>"
 #  define SKIP_VERIFY 0
 # endif
 
+// Enums
+
 typedef enum e_exit
 {
 	SUCCESS,
 	FAILURE
 }	t_exit;
+
+typedef enum e_dir
+{
+	INVALID = -1,
+	NORTH,
+	SOUTH,
+	WEST,
+	EAST
+}	t_dir;
+
+// Structs
 
 typedef struct s_vec
 {
@@ -95,15 +108,6 @@ typedef struct s_mlx
 	void	*ptr;
 	void	*wdw;
 }	t_mlx;
-
-typedef enum e_dir
-{
-	INVALID = -1,
-	NORTH,
-	SOUTH,
-	WEST,
-	EAST
-}	t_dir;
 
 // paths/imgs : NO, SO, WE, EA
 typedef struct s_map
