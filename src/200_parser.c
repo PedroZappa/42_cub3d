@@ -15,7 +15,7 @@
 static t_map	*ft_measure_map(int fd, t_map *map);
 static t_map	*ft_parse_loop(int fd, t_map *map);
 static int		ft_check_dir(char *line);
-static void		ft_parse_dirs(char *line, t_map *map);
+static void		ft_parse_headers(char *line, t_map *map);
 
 const char	*g_dirs[] = {"NO", "SO", "WE", "EA"};
 
@@ -74,7 +74,7 @@ static t_map	*ft_parse_loop(int fd, t_map *map)
 	while (line)
 	{
 		if (ft_check_dir(line))
-			ft_parse_dirs(line, map);
+			ft_parse_headers(line, map);
 		else if (ft_check_rgb(line))
 			ft_parsing_rgb(line, map);
 		else if (ft_strchr(line, '1') != NULL)
@@ -96,7 +96,7 @@ static int	ft_check_dir(char *line)
 		return (ft_err(FILE_ERR), !FAILURE);
 }
 
-static void	ft_parse_dirs(char *line, t_map *map)
+static void	ft_parse_headers(char *line, t_map *map)
 {
 	char	*nl;
 	t_dir	dir;
