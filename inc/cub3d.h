@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:59:54 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/09/28 18:54:29 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/01 11:40:06 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,11 @@ typedef struct s_cub
 	long	last_frame;
 }	t_cub;
 
+// Globals
+extern const char	*g_dirs[];
+
+// Functions
+
 /** @file 000_main.c */
 void	ft_cub_free(t_cub *cub);
 
@@ -161,6 +166,13 @@ int		ft_parse_map(t_cub *cub, char *file);
 
 /** @file 210_check_ext.c */
 int		ft_check_ext(char *file);
+
+/** @file 220_parse_rgb.c */
+int		ft_check_rgb(char *line);
+int		ft_parsing_rgb(char *line, t_map *map);
+
+/** @file 233_parse_map.c */
+int		ft_parsing_map(char *line, t_map *map);
 
 /** @file 300_mlx.c */
 t_mlx	*ft_mlx_init(int w, int h, char *title);
