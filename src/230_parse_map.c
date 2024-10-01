@@ -36,12 +36,11 @@ int	ft_parsing_map(char *line, t_map *map)
 
 static void	ft_parse_player(char *line, t_map *map)
 {
-	static int	curr_line;
+	static int	curr_line = 0;
 	size_t		col;
 	t_dir		dir;
 
 	col = 0;
-	curr_line = 0;
 	dir = INVALID;
 	while (col < map->width)
 	{

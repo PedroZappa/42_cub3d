@@ -94,6 +94,8 @@ define parse_player
   display line
   display line[col]
   display map
+  display map->start_pos->x
+  display map->start_pos->y
   display curr_line
   display col
   display dir
@@ -102,7 +104,7 @@ end
 ### Go GDB Go! I Choose YOU! 
 
 # main
-break ft_parse_player
+break ft_parse_map
 run ./maps/subject.cub
 fs cmd
 rfr

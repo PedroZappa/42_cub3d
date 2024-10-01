@@ -57,6 +57,9 @@ static t_map	*ft_parse_loop(int fd, t_map *map)
 	if (map->map == NULL)
 		return (ft_map_free(map), NULL);
 	map->map[map->height] = NULL;
+	map->start_pos = malloc(sizeof(t_point));
+	if (map->start_pos == NULL)
+		return (ft_map_free(map), NULL);
 	line = get_next_line(fd);
 	while (line)
 	{
