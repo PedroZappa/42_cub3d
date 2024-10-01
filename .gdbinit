@@ -22,6 +22,15 @@ define main
 	display argc
 	display *argv@argc
 	display cub
+  display *cub->map->paths@4
+  display *cub->map->imgs@4
+  display cub->map->floor_color
+  display cub->map->ceiling_color
+  display *cub->map->map@cub->map->height
+  display cub->map->start_pos
+  display cub->map->start_direction
+  display cub->map->width
+  display cub->map->height
 end
 
 ### 200_parser.c

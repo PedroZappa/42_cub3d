@@ -1,4 +1,4 @@
-break main
+break ft_parse_map
 fs cmd
 info thread
 info break
