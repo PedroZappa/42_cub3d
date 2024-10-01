@@ -25,6 +25,8 @@
 
 # include "../lib/libft/libft/libft.h"
 # include "../lib/libft/get_next_line/get_next_line.h"
+# include "../lib/libft/ft_fprintf/ft_fprintf.h"
+# include "../lib/libft/ft_printf/ft_printf.h"
 
 // X11 Defines
 
@@ -45,6 +47,7 @@ Usage: ./cub3D <path to map file .cub>"
 # define FILE_ERR 		"Could not open file '%s'"
 # define MLX_ERR 		"Couldn't initialize mlx"
 # define MLX_HOOK_ERR 	"Couldn't set mlx's hooks"
+# define MEM_ERR		"Couldn't allocate memory"
 
 # define PARSE_COLORS	"Invalid colors for ceiling and/or floor"
 # define PARSE_DIR		"Invalid starting point and direction"

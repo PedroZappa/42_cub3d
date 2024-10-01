@@ -30,6 +30,7 @@ define parse_map
   display cub->map
   display *cub->map->paths@4
   display *cub->map->imgs@4
+  display *cub->map->map@cub->map->height
   display cub->map->floor_color
   display cub->map->ceiling_color
   display cub->map->start_pos
@@ -45,8 +46,16 @@ end
 
 define parse_loop
   display map
+  display *map->paths@4
+  display *map->imgs@4
+  display map->floor_color
+  display map->ceiling_color
+  display *map->map@map->height
+  display map->start_pos
+  display map->start_direction
+  display map->width
+  display map->height
   display line
-  display parsing_map
 end
 
 define parse_header
@@ -66,10 +75,9 @@ define parsing_colors
 end
 
 define parsing_map
-  display cub
-  display file
-  display map
-  display fd
+  display map->map[line_count-1]
+  display map->map[line_count]
+  display map->map[line_count+1]
   
 end
 
@@ -77,7 +85,7 @@ end
 
 # main
 break ft_parse_map
-run ./maps/minimalist.cub
+run ./maps/subject.cub
 fs cmd
 rfr
 

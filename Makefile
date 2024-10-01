@@ -14,6 +14,7 @@
 #                                  MAKE CONFIG                                 #
 #==============================================================================#
 
+SHELL	:= bash --rcfile ~/.bashrc
 MAKE	= make -C
 
 # Default test values
@@ -224,7 +225,7 @@ vgdb: all $(NAME) $(TEMP_PATH)			## Debug w/ valgrind (memcheck) & gdb
 	make get_log
 
 valgrind: all $(NAME) $(TEMP_PATH)			## Debug w/ valgrind (memcheck)
-	tmux set-option remain-on-exit on
+	# tmux set-option remain-on-exit on
 	tmux split-window -h "valgrind $(VAL_ARGS) $(VAL_LEAK) ./$(NAME) $(ARG)"
 
 massif: all $(TEMP_PATH)		## Run Valgrind w/ Massif (gather profiling information)

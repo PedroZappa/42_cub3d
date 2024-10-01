@@ -48,6 +48,29 @@ int	ft_parse_map(t_cub *cub, char *file)
 	return (close(fd));
 }
 
+static t_map	*ft_parse_loop(int fd, t_map *map)
+{
+	char	*line;
+
+	map->map = malloc(sizeof(char *) * (map->height + 1));
+	if (map->map == NULL)
+		return (ft_map_free(map), NULL);
+	map->map[map->height] = NULL;
+	line = get_next_line(fd);
+	while (line)
+	{
+		if (ft_check_dir(line))
+			ft_parse_headers(line, map);
+		else if (ft_check_rgb(line))
+			ft_parsing_rgb(line, map);
+		else if (ft_strchr(line, '1') != NULL)
+			ft_parsing_map(line, map);
+		ft_free(line);
+		line = get_next_line(fd);
+	}
+	return (ft_free(line), map);
+}
+
 static t_map	*ft_measure_map(int fd, t_map *map)
 {
 	char	*line;
@@ -64,25 +87,6 @@ static t_map	*ft_measure_map(int fd, t_map *map)
 		line = get_next_line(fd);
 	}
 	return (close(fd), map);
-}
-
-static t_map	*ft_parse_loop(int fd, t_map *map)
-{
-	char	*line;
-
-	line = get_next_line(fd);
-	while (line)
-	{
-		if (ft_check_dir(line))
-			ft_parse_headers(line, map);
-		else if (ft_check_rgb(line))
-			ft_parsing_rgb(line, map);
-		else if (ft_strchr(line, '1') != NULL)
-			ft_parsing_map(line, map);
-		ft_free(line);
-		line = get_next_line(fd);
-	}
-	return (ft_free(line), map);
 }
 
 static int	ft_check_dir(char *line)

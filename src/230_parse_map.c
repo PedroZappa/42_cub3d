@@ -14,10 +14,14 @@
 
 int	ft_parsing_map(char *line, t_map *map)
 {
+	static int	line_count = 0;
+
 	if (map == NULL || line == NULL)
-		return (ft_err(FILE_ERR), FAILURE);
-	while (ft_isspace(*line))
-		++line;
-	// TODO : Parse Map
+		return (ft_err(FILE_ERR));
+	if (ft_isalpha(line[0]))
+		return (FAILURE);
+	map->map[line_count++] = ft_strdup(line);
+	if (map->map == NULL)
+		return (ft_err(MEM_ERR));
 	return (SUCCESS);
 }
