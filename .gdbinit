@@ -32,6 +32,10 @@ define parse_map
   display *cub->map->imgs@4
   display cub->map->floor_color
   display cub->map->ceiling_color
+  display cub->map->start_pos
+  display cub->map->start_direction
+  display cub->map->width
+  display cub->map->height
   display cub->current_pos
   display cub->start_pos->x
   display cub->start_pos->y
@@ -62,8 +66,10 @@ define parsing_colors
 end
 
 define parsing_map
-  display line
+  display cub
+  display file
   display map
+  display fd
   
 end
 

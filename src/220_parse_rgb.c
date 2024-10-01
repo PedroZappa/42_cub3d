@@ -33,3 +33,21 @@ int	ft_parsing_rgb(char *line, t_map *map)
 		ft_parse_rgb(line, &map->ceiling_color);
 	return (SUCCESS);
 }
+
+int	ft_parse_rgb(char *line, t_rgb *rgb)
+{
+	while (!ft_isdigit(*line))
+		++line;
+	rgb->r = ft_atoi(line);
+	while (ft_isdigit(*line))
+		++line;
+	while (!ft_isdigit(*line))
+		++line;
+	rgb->g = ft_atoi(line);
+	while (ft_isdigit(*line))
+		++line;
+	while (!ft_isdigit(*line))
+		++line;
+	rgb->b = ft_atoi(line);
+	return (SUCCESS);
+}

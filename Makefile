@@ -18,7 +18,12 @@ MAKE	= make -C
 
 # Default test values
 IN_PATH		?= $(SRC_PATH)
-ARG			=
+ARG			= "./maps/subject.cub"
+# ARG			= "./maps/map-path-rgb.cub"
+# ARG			= "./maps/map-rgb-path.cub"
+# ARG			= "./maps/path-map-rgb.cub"
+# ARG			= "./maps/rgb-map-path.cub"
+# ARG			= "./maps/rgb-path-map.cub"
 
 #==============================================================================#
 #                                RESOURCES URLS                                #
@@ -214,7 +219,7 @@ vgdb: all $(NAME) $(TEMP_PATH)			## Debug w/ valgrind (memcheck) & gdb
 	tmux split-window -h "valgrind $(VGDB_ARGS) --log-file=gdb.txt ./$(NAME) $(ARG)"
 	make vgdb_cmd
 	tmux split-window -v "gdb --tui -x $(TEMP_PATH)/gdb_commands.txt $(NAME)"
-	tmux resize-pane -U 18
+	# tmux resize-pane -U 18
 	# tmux split-window -v "btop"
 	make get_log
 
