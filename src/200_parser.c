@@ -50,7 +50,6 @@ int	ft_parse_map(t_cub *cub, char *file)
 
 static t_map	*ft_measure_map(int fd, t_map *map)
 {
-	int		map_height;
 	char	*line;
 
 	line = get_next_line(fd);
@@ -59,10 +58,10 @@ static t_map	*ft_measure_map(int fd, t_map *map)
 		if (ft_strchr(line, '1') != NULL)
 		{
 			if (line[0] != '\0')
-				++map_height;
-			ft_free(line);
-			line = get_next_line(fd);
+				++map->height;
 		}
+		ft_free(line);
+		line = get_next_line(fd);
 	}
 	return (close(fd), map);
 }

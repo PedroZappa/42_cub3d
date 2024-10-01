@@ -1,0 +1,4 @@
+settings set target.max-children-count 100
+settings set target.max-string-summary-length 1024
+type format add -f array "int []"
+type summary add -s "${var%#}" "int []"
