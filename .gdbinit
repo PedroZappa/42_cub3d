@@ -39,10 +39,11 @@ define parse_map
   display cub->map
   display *cub->map->paths@4
   display *cub->map->imgs@4
-  display *cub->map->map@cub->map->height
   display cub->map->floor_color
   display cub->map->ceiling_color
-  display cub->map->start_pos
+  display *cub->map->map@cub->map->height
+  display cub->map->start_pos->x
+  display cub->map->start_pos->y
   display cub->map->start_direction
   display cub->map->width
   display cub->map->height
@@ -87,13 +88,21 @@ define parsing_map
   display map->map[line_count-1]
   display map->map[line_count]
   display map->map[line_count+1]
-  
+end
+
+define parse_player
+  display line
+  display line[col]
+  display map
+  display curr_line
+  display col
+  display dir
 end
 
 ### Go GDB Go! I Choose YOU! 
 
 # main
-break ft_parse_map
+break ft_parse_player
 run ./maps/subject.cub
 fs cmd
 rfr
