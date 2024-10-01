@@ -12,7 +12,8 @@
 
 #include "../inc/cub3d.h"
 
-static t_map	*ft_parse_loop(int fd);
+static int		ft_measure_map(int fd);
+static t_map	*ft_parse_loop(int fd, int map_height);
 static int		ft_parsing_map(char *line, t_map *map);
 static void		ft_parse_header(char *line, t_map *map);
 static int		ft_parsing_colors(char *line, t_map *map);
@@ -26,7 +27,11 @@ int	ft_parse_map(t_cub *cub, char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (ft_file_err(file));
-	cub->map = ft_parse_loop(fd);
+	cub->map->height = ft_measure_map(fd);
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (ft_file_err(file));
+	cub->map = ft_parse_loop(fd, cub->map->height);
 	if (cub->map != NULL)
 		cub->map = ft_map_verify(cub->map);
 	if (cub->map != NULL && !SKIP_VERIFY)
@@ -38,7 +43,26 @@ int	ft_parse_map(t_cub *cub, char *file)
 	return (close(fd), cub->map == NULL);
 }
 
-static t_map	*ft_parse_loop(int fd)
+static int	ft_measure_map(int fd)
+{
+	int		map_height;
+	char	*line;
+
+	line = get_next_line(fd);
+	while (line)
+	{
+		if (ft_strchr(line, '1') != NULL)
+		{
+			if (line[0] != '\0')
+				++map_height;
+			ft_free(line);
+			line = get_next_line(fd);
+		}
+	}
+	return (close(fd), map_height);
+}
+
+static t_map	*ft_parse_loop(int fd, int map_height)
 {
 	t_map	*map;
 	char	*line;
