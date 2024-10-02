@@ -20,7 +20,7 @@ int	ft_parsing_map(char *line, t_map *map)
 	size_t		line_width;
 
 	if (map == NULL || line == NULL)
-		return (ft_err(FILE_ERR));
+		return (ft_err(PARSE_ERR));
 	if (ft_isalpha(line[0]))
 		return (FAILURE);
 	map->map[line_count] = ft_strdup(line);

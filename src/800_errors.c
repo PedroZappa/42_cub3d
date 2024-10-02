@@ -21,7 +21,8 @@ int	ft_err(char	*msg)
 int	ft_file_err(char *file)
 {
 	printf("Error\n");
-	printf(FILE_ERR"\n", file);
+	printf(FILE_ERR);
+	printf("\'%s\'\n", file);
 	return (FAILURE);
 }
 

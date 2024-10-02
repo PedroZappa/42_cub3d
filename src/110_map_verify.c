@@ -15,6 +15,7 @@
 
 static int	ft_verify_paths(t_map *map);
 static int	ft_verify_size(t_map *map);
+static int	ft_verify_color(t_rgb rgb);
 
 t_map	*ft_map_verify(t_map *map)
 {
@@ -22,7 +23,8 @@ t_map	*ft_map_verify(t_map *map)
 		return (NULL);
 	if (SKIP_VERIFY)
 		return (map);
-	if (map->ceiling_color.b == -1 || map->floor_color.b == -1)
+	if (ft_verify_color(map->ceiling_color)
+		|| ft_verify_color(map->floor_color))
 		return (ft_parse_err(PARSE_COLORS), ft_map_free(map), NULL);
 	if (map->start_direction == INVALID || map->start_pos == NULL)
 		return (ft_parse_err(PARSE_DIR), ft_map_free(map), NULL);
@@ -33,6 +35,13 @@ t_map	*ft_map_verify(t_map *map)
 	if (ft_verify_borders(map))
 		return (ft_parse_err(PARSE_BORD), ft_map_free(map), NULL);
 	return (map);
+}
+
+static int	ft_verify_color(t_rgb rgb)
+{
+	return (rgb.b < 0 || rgb.b > 255
+		|| rgb.g < 0 || rgb.g > 255
+		|| rgb.r < 0 || rgb.r > 255);
 }
 
 static int	ft_verify_paths(t_map *map)

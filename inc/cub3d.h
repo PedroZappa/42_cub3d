@@ -44,7 +44,7 @@
 # define ARG_ERR 		"Missing map argument\n\
 Usage: ./cub3D <path to map file .cub>"
 # define EXT_ERR 		"Map file must have '.cub' extension"
-# define FILE_ERR 		"Could not open file '%s'"
+# define FILE_ERR 		"Could not open file"
 # define MLX_ERR 		"Couldn't initialize mlx"
 # define MLX_HOOK_ERR 	"Couldn't set mlx's hooks"
 # define MEM_ERR		"Couldn't allocate memory"
@@ -54,6 +54,7 @@ Usage: ./cub3D <path to map file .cub>"
 # define PARSE_PATH		"Could not open 1 or more texture files"
 # define PARSE_BORD		"Not fully closed"
 # define PARSE_SIZE		"Map array doesn't match its size"
+# define PARSE_ERR		"Map parsing wasn't successful"
 
 // Window settings
 

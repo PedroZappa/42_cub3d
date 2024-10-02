@@ -14,17 +14,14 @@
 
 int	ft_check_rgb(char *line)
 {
-	if (ft_strnstr(line, "F", ft_strlen("F"))
-		|| ft_strnstr(line, "C", ft_strlen("C")))
-		return (!SUCCESS);
-	else
-		return (ft_err(FILE_ERR), !FAILURE);
+	return (ft_strnstr(line, "F", ft_strlen("F"))
+		|| ft_strnstr(line, "C", ft_strlen("C")));
 }
 
 int	ft_parsing_rgb(char *line, t_map *map)
 {
 	if (map == NULL || line == NULL)
-		return (ft_err(FILE_ERR), FAILURE);
+		return (ft_err(PARSE_ERR), FAILURE);
 	while (ft_isspace(*line))
 		++line;
 	if (ft_strncmp(line, "F", 1) == 0)

@@ -46,7 +46,7 @@ int	ft_parse_map(t_cub *cub, char *file)
 				cub->map->start_pos->x, cub->map->start_pos->y, WINDOW_H / 2);
 		cub->orientation = ft_vec_dir(cub->map->start_direction);
 	}
-	return (close(fd));
+	return (close(fd), cub->map == NULL && !SKIP_VERIFY);
 }
 
 static t_map	*ft_parse_loop(int fd, t_map *map)
@@ -95,13 +95,10 @@ static t_map	*ft_measure_map(int fd, t_map *map)
 
 static int	ft_check_dir(char *line)
 {
-	if (ft_strnstr(line, g_dirs[NORTH], ft_strlen(g_dirs[NORTH]))
+	return (ft_strnstr(line, g_dirs[NORTH], ft_strlen(g_dirs[NORTH]))
 		|| ft_strnstr(line, g_dirs[SOUTH], ft_strlen(g_dirs[SOUTH]))
 		|| ft_strnstr(line, g_dirs[WEST], ft_strlen(g_dirs[WEST]))
-		|| ft_strnstr(line, g_dirs[EAST], ft_strlen(g_dirs[EAST])))
-		return (!SUCCESS);
-	else
-		return (ft_err(FILE_ERR), !FAILURE);
+		|| ft_strnstr(line, g_dirs[EAST], ft_strlen(g_dirs[EAST])));
 }
 
 static void	ft_parse_headers(char *line, t_map *map)
