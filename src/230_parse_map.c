@@ -14,6 +14,27 @@
 
 static void	ft_parse_player(char *line, t_map *map);
 
+/*void	ft_fillw(char **line, size_t size, char c)
+{
+	char	*ret;
+	size_t	i;
+	size_t	j;
+
+	j = ft_strlen(*line);
+	ret = ft_calloc(j + size + 1, sizeof(char));
+	if (ret == NULL)
+	 return ;
+	i = -1;
+	while (line[0][++i])
+		ret[i] = line[0][i];
+	while (++i < j + size)
+		ret[i] = c;
+	ret[++i] = '\0';
+	ft_free(*line);
+	*line = ret;
+	printf("%s %lu\n", *line, size);
+}*/
+
 int	ft_parsing_map(char *line, t_map *map)
 {
 	static int	line_count = 0;
@@ -27,8 +48,6 @@ int	ft_parsing_map(char *line, t_map *map)
 	if (map->map[line_count] == NULL)
 		return (ft_err(MEM_ERR));
 	line_width = ft_strlen(line);
-	if (map->width < line_width)
-		map->width = line_width;
 	ft_parse_player(line, map);
 	++line_count;
 	return (SUCCESS);

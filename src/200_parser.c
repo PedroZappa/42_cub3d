@@ -67,7 +67,7 @@ static t_map	*ft_parse_loop(int fd, t_map *map)
 			ft_parse_headers(line, map);
 		else if (ft_check_rgb(line))
 			ft_parsing_rgb(line, map);
-		else if (ft_strchr(line, '1') != NULL)
+		else if (ft_is_map_line(line))
 			ft_parsing_map(line, map);
 		ft_free(line);
 		line = get_next_line(fd);
@@ -83,7 +83,11 @@ static t_map	*ft_measure_map(int fd, t_map *map)
 	while (line)
 	{
 		if (ft_is_map_line(line))
+		{
+			map->width
+				= ft_max(map->width, ft_strlen(line));
 			++map->height;
+		}
 		ft_free(line);
 		line = get_next_line(fd);
 	}
