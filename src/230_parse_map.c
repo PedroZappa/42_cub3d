@@ -46,8 +46,9 @@ static void	ft_parse_player(char *line, t_map *map)
 	{
 		while (++dir <= EAST)
 		{
-			if (ft_strncmp(&line[col], g_dirs[dir], 1) == 0)
+			if (ft_strncmp(line + col, g_dirs[dir], 1) == 0)
 			{
+				line[col] = '0';
 				map->start_direction = dir;
 				map->start_pos->x = (int)col;
 				map->start_pos->y = curr_line;
