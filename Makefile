@@ -165,7 +165,7 @@ get_mlx:
 	@echo "* $(CYA)Getting MLX submodule$(D)"
 	@$(MKDIR_P) $(LIBS_PATH)
 	@if test ! -d "$(MLX_PATH)"; then \
-		curl -L $(MLX_URL) | tar zxvf -; \
+		curl -kL $(MLX_URL) | tar zxvf -; \
 		mv minilibx-linux ./lib/mlx; \
 		echo "* $(GRN)MLX submodule download$(D): $(_SUCCESS)"; \
 	else \
