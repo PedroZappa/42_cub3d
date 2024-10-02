@@ -29,7 +29,7 @@ t_map	*ft_map_verify(t_map *map)
 	if (map->start_direction == INVALID || map->start_pos == NULL)
 		return (ft_parse_err(PARSE_DIR), ft_map_free(map), NULL);
 	if (ft_verify_size(map))
-		return (ft_parse_err(PARSE_SIZE), ft_map_free(map), NULL);
+		return (ft_map_free(map), NULL);
 	if (ft_verify_paths(map))
 		return (ft_parse_err(PARSE_PATH), ft_map_free(map), NULL);
 	if (ft_verify_borders(map))
@@ -68,6 +68,7 @@ static int	ft_verify_paths(t_map *map)
 static int	ft_verify_size(t_map *map)
 {
 	size_t	i;
+	size_t	len;
 
 	if (map == NULL)
 		return (FAILURE);
@@ -76,9 +77,12 @@ static int	ft_verify_size(t_map *map)
 	{
 		if (map->map[i] == NULL)
 			return (FAILURE);
-		if (ft_strlen(map->map[i]) != map->width)
-			return (FAILURE);
+		len = ft_strlen(map->map[i]);
+		if (len != map->width)
+			return (ft_parse_size_err(TRUE, map->width, len));
 		i++;
 	}
-	return (i != map->height);
+	if (i != map->height)
+		return (ft_parse_size_err(FALSE, map->height, i));
+	return (SUCCESS);
 }

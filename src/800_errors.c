@@ -31,3 +31,15 @@ int	ft_parse_err(char *msg)
 	printf("Error\nThere was a problem while parsing the map: %s\n", msg);
 	return (FAILURE);
 }
+
+int	ft_parse_size_err(t_bool width, size_t expected, size_t got)
+{
+	printf("Error\nThere was a problem while parsing the map: %s\n",
+		PARSE_SIZE);
+	if (width)
+		printf("width");
+	else
+		printf("height");
+	printf(" | expected %lu -> has %lu\n", expected, got);
+	return (FAILURE);
+}

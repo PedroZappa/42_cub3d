@@ -59,3 +59,15 @@ static void	ft_parse_player(char *line, t_map *map)
 	}
 	++curr_line;
 }
+
+t_bool	ft_is_map_line(char *line)
+{
+	int	i;
+
+	if (line == NULL || line[0] == '\0')
+		return (FALSE);
+	i = 0;
+	while (ft_isspace(line[i]))
+		i++;
+	return (line[i] == '1');
+}

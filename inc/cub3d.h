@@ -76,6 +76,12 @@ typedef enum e_exit
 	FAILURE
 }	t_exit;
 
+typedef enum e_bool
+{
+	FALSE,
+	TRUE
+}	t_bool;
+
 typedef enum e_dir
 {
 	INVALID = -1,
@@ -175,8 +181,9 @@ int		ft_check_ext(char *file);
 int		ft_check_rgb(char *line);
 int		ft_parsing_rgb(char *line, t_map *map);
 
-/** @file 233_parse_map.c */
+/** @file 230_parse_map.c */
 int		ft_parsing_map(char *line, t_map *map);
+t_bool	ft_is_map_line(char *line);
 
 /** @file 300_mlx.c */
 t_mlx	*ft_mlx_init(int w, int h, char *title);
@@ -207,6 +214,7 @@ int		ft_parse_rgb(char *line, t_rgb *rgb);
 int		ft_err(char	*msg);
 int		ft_file_err(char *file);
 int		ft_parse_err(char *msg);
+int		ft_parse_size_err(t_bool width, size_t expected, size_t got);
 
 /** @file 900_free.c */
 void	ft_vfree(void *ptr);
