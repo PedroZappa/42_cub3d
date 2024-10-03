@@ -84,6 +84,14 @@ define parsing_colors
   display map->ceiling_color
 end
 
+define measure_map
+	display *map
+	display map->width
+	display map->height
+	display fd
+	display line
+end
+
 define parsing_map
   display map->map[line_count-1]
   display map->map[line_count]
@@ -101,10 +109,20 @@ define parse_player
   display dir
 end
 
+# 105_map_verify.c
+define map_verify
+	display *map
+	display *map->paths@4
+	display *map->imgs@4
+	display map->map[i]
+	display i
+	display len
+end
+
 ### Go GDB Go! I Choose YOU! 
 
 # main
-break ft_parse_map
+break ft_measure_map
 run ./maps/subject.cub
 fs cmd
 rfr

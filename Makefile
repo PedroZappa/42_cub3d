@@ -211,7 +211,7 @@ check_ext_func: all		## Check for external functions
 ##@ Debug Rules 
 
 gdb: all $(NAME) $(TEMP_PATH)			## Debug w/ gdb
-	tmux split-window -h "gdb --tui --args ./$(NAME)"
+	tmux split-window -h "gdb --tui ./$(NAME)"
 	# tmux resize-pane -L 5
 	# tmux split-window -v "btop"
 	make get_log

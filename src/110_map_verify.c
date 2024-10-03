@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-#include <fcntl.h>
 
 static int	ft_verify_paths(t_map *map);
 static int	ft_verify_size(t_map *map);
