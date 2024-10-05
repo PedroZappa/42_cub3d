@@ -38,16 +38,30 @@ static void	ft_parse_player(char *line, t_map *map);
 int	ft_parsing_map(char *line, t_map *map)
 {
 	static int	line_count = 0;
-	// size_t		line_width;
+	size_t		line_width;
+	char		*padded_line;
 
 	if (map == NULL || line == NULL)
 		return (ft_err(PARSE_ERR));
 	if (ft_isalpha(line[0]))
 		return (FAILURE);
-	map->map[line_count] = ft_strdup(line);
+	padded_line = NULL;
+	line_width = ft_strlen(line);
+	if (ft_strchr(line, '\n') != NULL)
+		line_width--;
+	if (line_width < map->width)
+    {
+        padded_line = ft_calloc(map->width + 1, sizeof(char));
+        if (padded_line == NULL)
+            return (ft_err(MEM_ERR));
+        ft_strlcpy(padded_line, line, line_width + 1);
+        ft_memset(padded_line + line_width, ' ', (map->width - line_width));
+        map->map[line_count] = padded_line;
+    }
+	else if (padded_line == NULL && line_width == map->width)
+        map->map[line_count] = ft_strdup(line);
 	if (map->map[line_count] == NULL)
 		return (ft_err(MEM_ERR));
-	// line_width = ft_strlen(line);
 	ft_parse_player(line, map);
 	++line_count;
 	return (SUCCESS);
