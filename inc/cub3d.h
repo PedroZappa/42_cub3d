@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:59:54 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/10/01 11:40:06 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/05 15:27:21 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ Usage: ./cub3D <path to map file .cub>"
 # define PARSE_BORD		"Not fully closed"
 # define PARSE_SIZE		"Map array doesn't match its size"
 # define PARSE_ERR		"Map parsing wasn't successful"
+# define PARSE_INIT_ERR	"Map parsing init wasn't successful"
 
 // Window settings
 
@@ -184,6 +185,9 @@ int		ft_parsing_rgb(char *line, t_map *map);
 /** @file 230_parse_map.c */
 int		ft_parsing_map(char *line, t_map *map);
 t_bool	ft_is_map_line(char *line);
+
+/** @file 240_parse_headers.c */
+void	ft_parse_headers(char *line, t_map *map);
 
 /** @file 300_mlx.c */
 t_mlx	*ft_mlx_init(int w, int h, char *title);

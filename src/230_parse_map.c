@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:45:32 by passunca          #+#    #+#             */
-/*   Updated: 2024/10/01 11:47:23 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/05 15:17:40 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,6 @@
 
 static void	ft_norm_line(t_map *map, char *line, int line_n);
 static void	ft_parse_player(char *line, t_map *map);
-
-/*void	ft_fillw(char **line, size_t size, char c)
-{
-	char	*ret;
-	size_t	i;
-	size_t	j;
-
-	j = ft_strlen(*line);
-	ret = ft_calloc(j + size + 1, sizeof(char));
-	if (ret == NULL)
-	 return ;
-	i = -1;
-	while (line[0][++i])
-		ret[i] = line[0][i];
-	while (++i < j + size)
-		ret[i] = c;
-	ret[++i] = '\0';
-	ft_free(*line);
-	*line = ret;
-	printf("%s %lu\n", *line, size);
-}*/
 
 int	ft_parsing_map(char *line, t_map *map)
 {

@@ -6,16 +6,16 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 13:46:14 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/10/01 11:47:08 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/05 15:31:59 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
+static t_map	*ft_parse_init(int *fd, char *file);
 static t_map	*ft_measure_map(int fd, t_map *map);
 static t_map	*ft_parse_loop(int fd, t_map *map);
 static int		ft_check_dir(char *line);
-static void		ft_parse_headers(char *line, t_map *map);
 
 const char	*g_dirs[] = {"NO", "SO", "WE", "EA"};
 
@@ -26,16 +26,9 @@ int	ft_parse_map(t_cub *cub, char *file)
 
 	if (ft_check_ext(file))
 		return (ft_err(EXT_ERR));
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		return (ft_file_err(file));
-	map = ft_map_init();
+	map = ft_parse_init(&fd, file);
 	if (map == NULL)
-		return (FAILURE);
-	map = ft_measure_map(fd, map);
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		return (ft_file_err(file));
+		return (ft_err(PARSE_INIT_ERR));
 	map = ft_parse_loop(fd, map);
 	cub->map = map;
 	if (cub->map != NULL)
@@ -47,6 +40,24 @@ int	ft_parse_map(t_cub *cub, char *file)
 		cub->orientation = ft_vec_dir(cub->map->start_direction);
 	}
 	return (close(fd), cub->map == NULL && !SKIP_VERIFY);
+}
+
+static t_map	*ft_parse_init(int *fd, char *file)
+{
+	t_map	*map;
+
+	*fd = open(file, O_RDONLY);
+	if (*fd < 0)
+		return (NULL);
+	map = ft_map_init();
+	if (map == NULL)
+		return (NULL);
+	map = ft_measure_map(*fd, map);
+	close(*fd);
+	*fd = open(file, O_RDONLY);
+	if (*fd < 0)
+		return (NULL);
+	return (map);
 }
 
 static t_map	*ft_parse_loop(int fd, t_map *map)
@@ -100,32 +111,4 @@ static int	ft_check_dir(char *line)
 		|| ft_strnstr(line, g_dirs[SOUTH], ft_strlen(g_dirs[SOUTH]))
 		|| ft_strnstr(line, g_dirs[WEST], ft_strlen(g_dirs[WEST]))
 		|| ft_strnstr(line, g_dirs[EAST], ft_strlen(g_dirs[EAST])));
-}
-
-static void	ft_parse_headers(char *line, t_map *map)
-{
-	char	*nl;
-	t_dir	dir;
-
-	if (map == NULL || line == NULL)
-		return ;
-	dir = INVALID;
-	while (ft_isspace(*line))
-		++line;
-	while (++dir <= EAST)
-	{
-		if (ft_strncmp(line, g_dirs[dir], 2) == 0)
-		{
-			line += 2;
-			while (ft_isspace(*line))
-				++line;
-			nl = ft_strchr(line, '\n');
-			if (nl != NULL)
-				*nl = '\0';
-			map->paths[dir] = ft_strdup(line);
-			return ;
-		}
-	}
-	if (ft_strncmp(line, "F", 1) == 0 || ft_strncmp(line, "C", 1) == 0)
-		ft_parsing_rgb(line, map);
 }
