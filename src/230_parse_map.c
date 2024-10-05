@@ -12,6 +12,7 @@
 
 #include "../inc/cub3d.h"
 
+static void	ft_norm_line(t_map *map, char *line, int line_n);
 static void	ft_parse_player(char *line, t_map *map);
 
 /*void	ft_fillw(char **line, size_t size, char c)
@@ -37,34 +38,42 @@ static void	ft_parse_player(char *line, t_map *map);
 
 int	ft_parsing_map(char *line, t_map *map)
 {
-	static int	line_count = 0;
-	size_t		line_width;
-	char		*padded_line;
+	static int	line_n = 0;
 
 	if (map == NULL || line == NULL)
 		return (ft_err(PARSE_ERR));
 	if (ft_isalpha(line[0]))
 		return (FAILURE);
+	ft_norm_line(map, line, line_n);
+	ft_parse_player(line, map);
+	++line_n;
+	return (SUCCESS);
+}
+
+static void	ft_norm_line(t_map *map, char *line, int line_n)
+{
+	char		*padded_line;
+	size_t		line_width;
+
+	if (map == NULL || line == NULL)
+		return ;
 	padded_line = NULL;
 	line_width = ft_strlen(line);
 	if (ft_strchr(line, '\n') != NULL)
-		line_width--;
+		--line_width;
 	if (line_width < map->width)
-    {
-        padded_line = ft_calloc(map->width + 1, sizeof(char));
-        if (padded_line == NULL)
-            return (ft_err(MEM_ERR));
-        ft_strlcpy(padded_line, line, line_width + 1);
-        ft_memset(padded_line + line_width, ' ', (map->width - line_width));
-        map->map[line_count] = padded_line;
-    }
+	{
+		padded_line = ft_calloc(map->width + 1, sizeof(char));
+		if (padded_line == NULL)
+			return ;
+		ft_strlcpy(padded_line, line, line_width + 1);
+		ft_memset(padded_line + line_width, ' ', (map->width - line_width));
+		map->map[line_n] = padded_line;
+	}
 	else if (padded_line == NULL && line_width == map->width)
-        map->map[line_count] = ft_strdup(line);
-	if (map->map[line_count] == NULL)
-		return (ft_err(MEM_ERR));
-	ft_parse_player(line, map);
-	++line_count;
-	return (SUCCESS);
+		map->map[line_n] = ft_strdup(line);
+	if (map->map[line_n] == NULL)
+		return ;
 }
 
 static void	ft_parse_player(char *line, t_map *map)
