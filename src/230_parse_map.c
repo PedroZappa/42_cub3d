@@ -38,7 +38,7 @@ static void	ft_parse_player(char *line, t_map *map);
 int	ft_parsing_map(char *line, t_map *map)
 {
 	static int	line_count = 0;
-	size_t		line_width;
+	// size_t		line_width;
 
 	if (map == NULL || line == NULL)
 		return (ft_err(PARSE_ERR));
@@ -47,7 +47,7 @@ int	ft_parsing_map(char *line, t_map *map)
 	map->map[line_count] = ft_strdup(line);
 	if (map->map[line_count] == NULL)
 		return (ft_err(MEM_ERR));
-	line_width = ft_strlen(line);
+	// line_width = ft_strlen(line);
 	ft_parse_player(line, map);
 	++line_count;
 	return (SUCCESS);
