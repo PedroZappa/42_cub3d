@@ -32,6 +32,8 @@ int	ft_verify_borders(t_map *map)
 			return (ft_free_arr(aux_map.map), FAILURE);
 		++i;
 	}
+	aux_map.width = map->width;
+	aux_map.height = map->height;
 	i = ft_flood_fill(map, &aux_map,
 			map->start_pos->x, map->start_pos->y);
 	return (ft_free_arr(aux_map.map), i);
@@ -39,16 +41,21 @@ int	ft_verify_borders(t_map *map)
 
 static int	ft_flood_fill(t_map *map, t_map *aux_map, int x, int y)
 {
-	char	*c;
+	char	*c1;
+	char	*c2;
 
 	if (map == NULL || aux_map == NULL)
 		return (FAILURE);
-	c = ft_map_at_i_ref(aux_map, x, y);
-	if (c == NULL)
+	c1 = ft_map_at_i_ref(map, x, y);
+	c2 = ft_map_at_i_ref(aux_map, x, y);
+	if (c1 == NULL || c2 == NULL)
 		return (FAILURE);
-	if (*c == '1')
+	if (*c2 == 1)
 		return (SUCCESS);
-	if (*c != '0')
+	*c2 = 1;
+	if (*c1 == '1')
+		return (SUCCESS);
+	if (*c1 != '0')
 		return (FAILURE);
 	if (ft_flood_fill(map, aux_map, x - 1, y))
 		return (FAILURE);
