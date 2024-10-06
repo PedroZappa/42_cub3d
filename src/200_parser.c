@@ -41,7 +41,7 @@ int	ft_parse_map(t_cub *cub, char *file)
 				cub->map->start_pos->x, cub->map->start_pos->y, WINDOW_H / 2);
 		cub->orientation = ft_vec_dir(cub->map->start_direction);
 	}
-	return (close(fd), SUCCESS);
+	return (close(fd), cub->map == NULL && !SKIP_VERIFY);
 }
 
 static t_map	*ft_parse_init(int *fd, char *file)
