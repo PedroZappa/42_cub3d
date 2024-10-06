@@ -26,6 +26,8 @@ ARG			= "./maps/subject.cub"
 # ARG			= "./maps/rgb-map-path.cub"
 # ARG			= "./maps/rgb-path-map.cub"
 
+COUNTER		:= 1
+
 #==============================================================================#
 #                                RESOURCES URLS                                #
 #==============================================================================#
@@ -55,19 +57,22 @@ _SEP 			= =====================
 SRC_PATH		= src
 INC_PATH		= inc
 LIBS_PATH		= lib
+MAPS_PATH		= maps
 BUILD_PATH		= .build
 TEMP_PATH		= .temp
 
-SRC		= $(wildcard $(SRC_PATH)/*.c)
-OBJS	= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
+SRC				= $(wildcard $(SRC_PATH)/*.c)
+OBJS			= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
 
-HEADERS	= $(wildcard $(INC_PATH)/*.h)
+HEADERS			= $(wildcard $(INC_PATH)/*.h)
 
-LIBFT_PATH	= $(LIBS_PATH)/libft
-LIBFT_ARC	= $(LIBFT_PATH)/libft.a
+LIBFT_PATH		= $(LIBS_PATH)/libft
+LIBFT_ARC		= $(LIBFT_PATH)/libft.a
 
-MLX_PATH	= $(LIBS_PATH)/mlx
-MLX_ARC		= $(MLX_PATH)/libmlx_Linux.a
+MLX_PATH		= $(LIBS_PATH)/mlx
+MLX_ARC			= $(MLX_PATH)/libmlx_Linux.a
+
+INVALID_MAPS	= $(shell ls -al $(MAPS_PATH)/invalid/*.cub | awk '{print $$9}')
 
 #==============================================================================#
 #                              COMPILER & FLAGS                                #
@@ -93,9 +98,10 @@ AR		= ar rcs
 MKDIR_P	= mkdir -p
 
 ### Valgrind
-VAL_ARGS 	= --suppressions=mlx.sup
-VAL_LEAK	= --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes --trace-children=yes
-VGDB_ARGS	= --vgdb-error=0 $(VAL_LEAK) $(VAL_ARGS)
+VAL_SUP 	= --suppressions=mlx.sup
+VAL_LEAK	= --leak-check=full --show-leak-kinds=all --trace-children=yes
+VAL_FD		= --track-fds=yes --track-origins=yes
+VGDB_ARGS	= --vgdb-error=0 $(VAL_LEAK) $(VAL_SUP) $(VAL_FD)
 
 #==============================================================================#
 #                                  RULES                                       #
@@ -208,6 +214,35 @@ check_ext_func: all		## Check for external functions
 	nm ./$(NAME) | grep "U" | grep -v "__" | tee $(TEMP_PATH)/ext_func.txt
 	@echo "$(YEL)$(_SEP)$(D)"
 
+##@ Test Rules 🧪
+
+test_err: all		## Test invalid map input
+	@TIMESTAMP=$(shell date +%Y%m%d%H%M%S); \
+	if [ -f $(TEMP_PATH)/out.txt ]; then \
+		mv -f $(TEMP_PATH)/out.txt $(TEMP_PATH)/out.$$TIMESTAMP.txt; \
+	fi
+	@echo "$(YEL)$(_SEP)$(D)"
+	@echo "[$(RED)Testing invalid input$(D)]"
+	@echo "$(YEL)$(_SEP)$(D)"
+	@echo "Test $(MAG)1$(D) : $(CYA)Running $(D): $(MAG)$(NAME)$(D) w/out input map"
+	-./$(NAME)
+	@echo "$(YEL)$(_SEP)$(D)"
+	@echo "Test $(MAG)2$(D) : $(CYA)Running $(D): $(MAG)$(NAME)$(D) w/ unexistent input map" | tee -a $(TEMP_PATH)/out.txt
+	-./$(NAME) $(MAPS_PATH)/unexistent_map.txt
+	@echo "$(YEL)$(_SEP)$(D)"
+	@echo "$(CYA)Running $(D): $(MAG)$(NAME)$(D) w/ invalid input maps"
+	@COUNTER=$$((COUNTER + 3)); \
+	for map in $(INVALID_MAPS); do \
+		echo "Test $(MAG)$$COUNTER$(D) : Executing $(CYA)$$map$(D)" | tee -a $(TEMP_PATH)/out.txt; \
+		valgrind $(VAL_LEAK) $(VAL_SUP) $(VAL_FD) --log-file=$(TEMP_PATH)/temp.txt ./$(NAME) "$(MAPS_PATH)/$$map"; \
+		sed -n '10p' $(TEMP_PATH)/temp.txt >> $(TEMP_PATH)/out.txt; \
+		COUNTER=$$((COUNTER + 1)); \
+		echo $$COUNTER > $(TEMP_PATH)/passed_count.txt; \
+		echo "$(YEL)$(_SEP)$(D)"; \
+	done
+	@echo "[$(GRN)Finished$(D)]"
+	@echo "$(YEL)$(_SEP)$(D)"
+
 ##@ Debug Rules 
 
 gdb: all $(NAME) $(TEMP_PATH)			## Debug w/ gdb
@@ -226,7 +261,7 @@ vgdb: all $(NAME) $(TEMP_PATH)			## Debug w/ valgrind (memcheck) & gdb
 
 valgrind: all $(NAME) $(TEMP_PATH)			## Debug w/ valgrind (memcheck)
 	# tmux set-option remain-on-exit on
-	tmux split-window -h "valgrind $(VAL_ARGS) $(VAL_LEAK) ./$(NAME) $(ARG)"
+	tmux split-window -h "valgrind $(VAL_ARGS) $(VAL_LEAK) $(VAL_FD) ./$(NAME) $(ARG)"
 
 massif: all $(TEMP_PATH)		## Run Valgrind w/ Massif (gather profiling information)
 	@TIMESTAMP=$(shell date +%Y%m%d%H%M%S); \
