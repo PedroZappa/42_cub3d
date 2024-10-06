@@ -224,24 +224,57 @@ test_err: all		## Test invalid map input
 	@echo "$(YEL)$(_SEP)$(D)"
 	@echo "[$(RED)Testing invalid input$(D)]"
 	@echo "$(YEL)$(_SEP)$(D)"
-	@echo "Test $(MAG)1$(D) : $(CYA)Running $(D): $(MAG)$(NAME)$(D) w/out input map"
-	-./$(NAME)
+	@echo "Test $(MAG)1$(D) : $(CYA)Running $(D): $(MAG)$(NAME)$(D) w/out input map" | tee -a $(TEMP_PATH)/out.txt 
+	-valgrind $(VAL_LEAK) $(VAL_SUP) --log-file=$(TEMP_PATH)/temp.txt ./$(NAME)
+	@sed -n '10p' $(TEMP_PATH)/temp.txt >> $(TEMP_PATH)/out.txt
 	@echo "$(YEL)$(_SEP)$(D)"
 	@echo "Test $(MAG)2$(D) : $(CYA)Running $(D): $(MAG)$(NAME)$(D) w/ unexistent input map" | tee -a $(TEMP_PATH)/out.txt
-	-./$(NAME) $(MAPS_PATH)/unexistent_map.txt
+	-valgrind $(VAL_LEAK) $(VAL_SUP) --log-file=$(TEMP_PATH)/temp.txt ./$(NAME) $(MAPS_PATH)/unexistent_map.cub
+	@sed -n '10p' $(TEMP_PATH)/temp.txt >> $(TEMP_PATH)/out.txt
 	@echo "$(YEL)$(_SEP)$(D)"
 	@echo "$(CYA)Running $(D): $(MAG)$(NAME)$(D) w/ invalid input maps"
 	@COUNTER=$$((COUNTER + 3)); \
 	for map in $(INVALID_MAPS); do \
 		echo "Test $(MAG)$$COUNTER$(D) : Executing $(CYA)$$map$(D)" | tee -a $(TEMP_PATH)/out.txt; \
-		valgrind $(VAL_LEAK) $(VAL_SUP) $(VAL_FD) --log-file=$(TEMP_PATH)/temp.txt ./$(NAME) "$(MAPS_PATH)/$$map"; \
+		VALGRIND_CMD="valgrind $(VAL_LEAK) $(VAL_SUP) --log-file=$(TEMP_PATH)/temp.txt ./$(NAME) '$$map'"; \
+		echo "$$VALGRIND_CMD" | tee -a $(TEMP_PATH)/out.txt; \
+		eval $$VALGRIND_CMD; \
 		sed -n '10p' $(TEMP_PATH)/temp.txt >> $(TEMP_PATH)/out.txt; \
 		COUNTER=$$((COUNTER + 1)); \
 		echo $$COUNTER > $(TEMP_PATH)/passed_count.txt; \
 		echo "$(YEL)$(_SEP)$(D)"; \
 	done
+	@make --no-print-directory test_results
 	@echo "[$(GRN)Finished$(D)]"
 	@echo "$(YEL)$(_SEP)$(D)"
+
+test_results: $(TEMP_PATH)
+	make --no-print-directory remove_ansi_noise
+	@if command -v tmux; then \
+		if command -v lnav; then \
+			tmux split-window -h "lnav $(TEMP_PATH)/out.txt"; \
+		else \
+			tmux split-window -h "cat $(TEMP_PATH)/out.txt"; \
+		fi; \
+	else \
+		cat $(TEMP_PATH)/out.txt | sed 's/\x1b\[[0-9;]*m//g'; \
+	fi
+	@echo "$(YEL)$(_SEP)$(D)"
+	@echo "$(BCYA)Tests Summary$(D)"
+	@TOTAL=$(shell cat $(TEMP_PATH)/passed_count.txt)
+	@echo -ne "$(MAG)Total\t:  $(YEL)"
+	@awk '{print $$1}' $(TEMP_PATH)/passed_count.txt
+	@echo -ne "$(D)"
+	@cat $(TEMP_PATH)/out.txt | grep heap | awk '{ print $$5, $$7 }' > $(TEMP_PATH)/count.txt
+	@awk -v count=0 '{if ($$1 == $$2) count++} END \
+		{ print "$(GRN)Passed$(D)\t: ", count}' $(TEMP_PATH)/count.txt
+	@awk -v count=0 '{if ($$1 != $$2) \
+		{ print $$1 > "$(TEMP_PATH)/failing_test_number.txt"; count++ }} END \
+		{ print "$(RED)Failed$(D)\t: ", count}' $(TEMP_PATH)/count.txt
+	@echo "$(YEL)$(_SEP)$(D)"
+
+remove_ansi_noise:
+	@sed -i 's/\//g' $(TEMP_PATH)/out.txt
 
 ##@ Debug Rules 
 
