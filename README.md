@@ -4,6 +4,10 @@
 
 ## TODO:
 
-- ...
-
+- Map Validations:
+    - Check Map Boundaries;
+    - Check Player Position;
+- Open Images;
+- WASD key hooks;
+- FPS counter;
 
