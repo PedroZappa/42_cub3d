@@ -28,10 +28,10 @@ int	ft_hook_loop(t_cub *cub)
 
 	mlx_clear_window(cub->mlx->ptr, cub->mlx->wdw);
 	mlx_string_put(cub->mlx->ptr, cub->mlx->wdw,
-		WINDOW_W / 2 - 60, WINDOW_H / 2, 0x38FA45, "Cub3D");
+		WINDOW_W / 2 - 60, WINDOW_H / 2, HEX_GREEN, "Cub3D");
 	timestamp = ft_itoa((int)ft_timestamp());
 	mlx_string_put(cub->mlx->ptr, cub->mlx->wdw,
-		WINDOW_W / 2 + 10, WINDOW_H / 2, 0xffffff, timestamp);
+		WINDOW_W / 2 + 10, WINDOW_H / 2, HEX_WHITE, timestamp);
 	ft_free(timestamp);
 	return (SUCCESS);
 }
