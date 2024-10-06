@@ -56,6 +56,7 @@ Usage: ./cub3D <path to map file .cub>"
 # define PARSE_SIZE		"Map array doesn't match its size"
 # define PARSE_ERR		"Map parsing wasn't successful"
 # define PARSE_INIT_ERR	"Map parsing init wasn't successful"
+# define PARSE_LOOP_ERR	"Map parsing loop failed"
 
 // Window settings
 
