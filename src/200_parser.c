@@ -17,8 +17,6 @@ static t_map	*ft_measure_map(int fd, t_map *map);
 static t_map	*ft_parse_loop(int fd, t_map *map);
 static int		ft_parse_line(char *line, t_map *map, int *mode);
 
-const char	*g_dirs[] = {"NO", "SO", "WE", "EA"};
-
 int	ft_parse_map(t_cub *cub, char *file)
 {
 	t_map	*map;

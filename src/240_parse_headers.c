@@ -16,7 +16,8 @@ static int	ft_try_parse_texture(char **line, t_map *map, t_dir dir);
 
 int	ft_parse_headers(char *line, t_map *map)
 {
-	t_dir	dir;
+	const char	*g_dirs[] = {"NO", "SO", "WE", "EA"};
+	t_dir		dir;
 
 	if (map == NULL || line == NULL)
 		return (FAILURE);
@@ -37,7 +38,8 @@ int	ft_parse_headers(char *line, t_map *map)
 
 static int	ft_try_parse_texture(char **line, t_map *map, t_dir dir)
 {
-	char	*nl;
+	const char	*g_dirs[] = {"NO", "SO", "WE", "EA"};
+	char		*nl;
 
 	if (line == NULL || *line == NULL
 		|| map == NULL || dir == INVALID)

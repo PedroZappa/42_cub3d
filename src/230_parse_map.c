@@ -57,6 +57,7 @@ static void	ft_norm_line(t_map *map, char *line, int line_n)
 
 static void	ft_parse_player(t_map *map, int line_n)
 {
+	const char	*g_dirs[] = {"NO", "SO", "WE", "EA"};
 	size_t		col;
 	t_dir		dir;
 

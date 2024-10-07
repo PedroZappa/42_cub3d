@@ -150,9 +150,6 @@ typedef struct s_cub
 	long	last_frame;
 }	t_cub;
 
-// Globals
-extern const char	*g_dirs[];
-
 // Functions
 
 /** @file 000_main.c */
