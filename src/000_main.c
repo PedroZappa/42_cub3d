@@ -39,6 +39,8 @@ void	ft_cub_free(t_cub *cub)
 		return ;
 	ft_vfree(cub->current_pos);
 	cub->current_pos = NULL;
+	ft_vfree(cub->orientation);
+	cub->orientation = NULL;
 	ft_map_free(cub->map);
 	cub->map = NULL;
 	ft_mlx_free(cub->mlx);

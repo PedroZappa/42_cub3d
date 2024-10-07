@@ -12,30 +12,44 @@
 
 #include "../inc/cub3d.h"
 
-void	ft_parse_headers(char *line, t_map *map)
+static int	ft_try_parse_texture(char **line, t_map *map, t_dir dir);
+
+int	ft_parse_headers(char *line, t_map *map)
 {
-	char	*nl;
 	t_dir	dir;
 
 	if (map == NULL || line == NULL)
-		return ;
+		return (FAILURE);
 	dir = INVALID;
 	while (ft_isspace(*line))
 		++line;
 	while (++dir <= EAST)
 	{
 		if (ft_strncmp(line, g_dirs[dir], 2) == 0)
-		{
-			line += 2;
-			while (ft_isspace(*line))
-				++line;
-			nl = ft_strchr(line, '\n');
-			if (nl != NULL)
-				*nl = '\0';
-			map->paths[dir] = ft_strdup(line);
-			return ;
-		}
+			return (ft_try_parse_texture(&line, map, dir));
 	}
 	if (ft_strncmp(line, "F", 1) == 0 || ft_strncmp(line, "C", 1) == 0)
-		ft_parsing_rgb(line, map);
+		return (ft_parsing_rgb(line, map));
+	if (*line != '\0')
+		return (ft_parse_err(PARSE_INV_LINE), FAILURE);
+	return (SUCCESS);
+}
+
+static int	ft_try_parse_texture(char **line, t_map *map, t_dir dir)
+{
+	char	*nl;
+
+	if (line == NULL || *line == NULL
+		|| map == NULL || dir == INVALID)
+		return (FAILURE);
+	*line += 2;
+	while (ft_isspace(**line))
+		++(*line);
+	nl = ft_strchr(*line, '\n');
+	if (nl != NULL)
+		*nl = '\0';
+	if (map->paths[dir] != NULL)
+		return (ft_texture_dupl_err(g_dirs[dir]), FAILURE);
+	map->paths[dir] = ft_strdup(*line);
+	return (SUCCESS);
 }

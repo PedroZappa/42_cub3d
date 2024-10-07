@@ -44,7 +44,7 @@
 # define ARG_ERR 		"Missing map argument\n\
 Usage: ./cub3D <path to map file .cub>"
 # define EXT_ERR 		"Map file must have '.cub' extension"
-# define FILE_ERR 		"Could not open file"
+# define FILE_ERR 		"Could not open file '%s'"
 # define MLX_ERR 		"Couldn't initialize mlx"
 # define MLX_HOOK_ERR 	"Couldn't set mlx's hooks"
 # define MEM_ERR		"Couldn't allocate memory"
@@ -57,6 +57,8 @@ Usage: ./cub3D <path to map file .cub>"
 # define PARSE_ERR		"Map parsing wasn't successful"
 # define PARSE_INIT_ERR	"Map parsing init wasn't successful"
 # define PARSE_LOOP_ERR	"Map parsing loop failed"
+# define PARSE_INV_LINE "Invalid line"
+# define PARSE_WRG_ORDR	"Map is not at the bottom."
 
 // Window settings
 
@@ -178,19 +180,16 @@ int		ft_parse_map(t_cub *cub, char *file);
 
 /** @file 210_parser_checks.c */
 int		ft_check_ext(char *file);
-int		ft_check_header(t_map *map);
 
 /** @file 220_parse_rgb.c */
-int		ft_check_rgb(char *line);
 int		ft_parsing_rgb(char *line, t_map *map);
 
 /** @file 230_parse_map.c */
 int		ft_parsing_map(char *line, t_map *map);
 t_bool	ft_is_map_line(char *line);
-int		ft_check_dir(char *line);
 
 /** @file 240_parse_headers.c */
-void	ft_parse_headers(char *line, t_map *map);
+int		ft_parse_headers(char *line, t_map *map);
 
 /** @file 300_mlx.c */
 t_mlx	*ft_mlx_init(int w, int h, char *title);
@@ -223,9 +222,14 @@ int		ft_file_err(char *file);
 int		ft_parse_err(char *msg);
 int		ft_parse_size_err(t_bool width, size_t expected, size_t got);
 
+/** @file 801_errors2.c */
+int		ft_color_err(char *type);
+int		ft_texture_dupl_err(const char *dir);
+
 /** @file 900_free.c */
 void	ft_vfree(void *ptr);
 void	ft_free_arr(char **arr);
 void	ft_vfree_arr(void **arr);
+void	ft_free_gnl(char *line, int fd);
 
 #endif

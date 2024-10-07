@@ -82,7 +82,7 @@ CC			= cc
 
 CFLAGS		= -Wall -Wextra -Werror
 DFLAGS		= -ggdb3
-DFLAGS		+= -fno-limit-debug-info
+#DFLAGS		+= -fno-limit-debug-info
 
 RFLAGS		= -lm -lX11 -lXext
 INC			= -I $(INC_PATH)
@@ -295,7 +295,7 @@ vgdb: all $(NAME) $(TEMP_PATH)			## Debug w/ valgrind (memcheck) & gdb
 	make get_log
 
 valgrind: all $(NAME) $(TEMP_PATH)			## Debug w/ valgrind (memcheck)
-	# tmux set-option remain-on-exit on
+	tmux set-option remain-on-exit on
 	tmux split-window -h "valgrind $(VAL_ARGS) $(VAL_LEAK) $(VAL_FD) ./$(NAME) $(ARG)"
 
 massif: all $(TEMP_PATH)		## Run Valgrind w/ Massif (gather profiling information)

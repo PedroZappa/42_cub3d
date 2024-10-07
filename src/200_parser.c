@@ -15,7 +15,7 @@
 static t_map	*ft_parse_init(int *fd, char *file);
 static t_map	*ft_measure_map(int fd, t_map *map);
 static t_map	*ft_parse_loop(int fd, t_map *map);
-static int		ft_parse_line(char *line, t_map *map);
+static int		ft_parse_line(char *line, t_map *map, int *mode);
 
 const char	*g_dirs[] = {"NO", "SO", "WE", "EA"};
 
@@ -28,10 +28,10 @@ int	ft_parse_map(t_cub *cub, char *file)
 		return (ft_err(EXT_ERR));
 	map = ft_parse_init(&fd, file);
 	if (map == NULL)
-		return (ft_err(PARSE_INIT_ERR));
+		return (FAILURE);
 	map = ft_parse_loop(fd, map);
 	if (map == NULL)
-		return (ft_err(PARSE_LOOP_ERR));
+		return (close(fd), FAILURE);
 	cub->map = map;
 	if (cub->map != NULL)
 		cub->map = ft_map_verify(cub->map);
@@ -50,10 +50,10 @@ static t_map	*ft_parse_init(int *fd, char *file)
 
 	*fd = open(file, O_RDONLY);
 	if (*fd < 0)
-		return (NULL);
+		return (ft_file_err(file), NULL);
 	map = ft_map_init();
 	if (map == NULL)
-		return (NULL);
+		return (close(*fd), ft_err(PARSE_INIT_ERR), NULL);
 	map = ft_measure_map(*fd, map);
 	close(*fd);
 	*fd = open(file, O_RDONLY);
@@ -65,38 +65,39 @@ static t_map	*ft_parse_init(int *fd, char *file)
 static t_map	*ft_parse_loop(int fd, t_map *map)
 {
 	char		*line;
+	int			mode;
 
-	map->map = malloc(sizeof(char *) * (map->height + 1));
+	map->map = ft_calloc(map->height + 1, sizeof(char *));
 	if (map->map == NULL)
 		return (ft_map_free(map), NULL);
-	map->map[map->height] = NULL;
-	map->start_pos = malloc(sizeof(t_point));
+	map->start_pos = ft_calloc(1, sizeof(t_point));
 	if (map->start_pos == NULL)
 		return (ft_map_free(map), NULL);
 	line = get_next_line(fd);
+	mode = 0;
 	while (line)
 	{
-		ft_parse_line(line, map);
+		if (ft_parse_line(line, map, &mode))
+			return (ft_free_gnl(line, fd), ft_map_free(map), NULL);
 		ft_free(line);
 		line = get_next_line(fd);
 	}
 	return (ft_free(line), map);
 }
 
-static int	ft_parse_line(char *line, t_map *map)
+static int	ft_parse_line(char *line, t_map *map, int *mode)
 {
-	if (ft_check_dir(line))
-		ft_parse_headers(line, map);
-	else if (ft_check_rgb(line))
-		ft_parsing_rgb(line, map);
-	else if (ft_is_map_line(line))
+	if (mode == NULL)
+		return (FAILURE);
+	if (ft_is_map_line(line))
 	{
-		if (ft_check_header(map))
-			ft_parsing_map(line, map);
-		else
-			return (ft_map_free(map), FAILURE);
+		if (*mode == 0)
+			*mode = 1;
+		return (ft_parsing_map(line, map));
 	}
-	return (SUCCESS);
+	if (*mode == 1)
+		return (ft_parse_err(PARSE_WRG_ORDR), FAILURE);
+	return (ft_parse_headers(line, map));
 }
 
 static t_map	*ft_measure_map(int fd, t_map *map)

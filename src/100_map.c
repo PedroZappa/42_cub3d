@@ -59,8 +59,12 @@ void	ft_map_free(t_map *map)
 	if (map == NULL)
 		return ;
 	ft_free_arr(map->map);
+	map->map = NULL;
 	ft_free_arr(map->paths);
+	map->paths = NULL;
 	ft_vfree_arr(map->imgs);
+	map->imgs = NULL;
 	ft_vfree(map->start_pos);
+	map->start_pos = NULL;
 	free(map);
 }

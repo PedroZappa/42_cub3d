@@ -12,11 +12,7 @@
 
 #include "../inc/cub3d.h"
 
-int	ft_check_rgb(char *line)
-{
-	return (ft_strnstr(line, "F", ft_strlen("F"))
-		|| ft_strnstr(line, "C", ft_strlen("C")));
-}
+static int	ft_check_rgb(char *line, t_rgb *rgb, char *field);
 
 int	ft_parsing_rgb(char *line, t_map *map)
 {
@@ -25,9 +21,9 @@ int	ft_parsing_rgb(char *line, t_map *map)
 	while (ft_isspace(*line))
 		++line;
 	if (ft_strncmp(line, "F", 1) == 0)
-		ft_parse_rgb(line, &map->floor_color);
-	else if (ft_strncmp(line, "C", 1) == 0)
-		ft_parse_rgb(line, &map->ceiling_color);
+		return (ft_check_rgb(line, &map->floor_color, "floor"));
+	if (ft_strncmp(line, "C", 1) == 0)
+		return (ft_check_rgb(line, &map->ceiling_color, "ceiling"));
 	return (SUCCESS);
 }
 
@@ -47,4 +43,13 @@ int	ft_parse_rgb(char *line, t_rgb *rgb)
 		++line;
 	rgb->b = ft_atoi(line);
 	return (SUCCESS);
+}
+
+static int	ft_check_rgb(char *line, t_rgb *rgb, char *field)
+{
+	if (rgb == NULL)
+		return (FAILURE);
+	if (rgb->b == -1 && rgb->g == -1 && rgb->r == -1)
+		return (ft_parse_rgb(line, rgb));
+	return (ft_color_err(field));
 }
