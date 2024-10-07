@@ -246,37 +246,8 @@ test_err: all		## Test invalid map input
 		echo $$COUNTER > $(TEMP_PATH)/passed_count.txt; \
 		echo "$(YEL)$(_SEP)$(D)"; \
 	done
-	@make --no-print-directory test_results
 	@echo "[$(GRN)Finished$(D)]"
 	@echo "$(YEL)$(_SEP)$(D)"
-
-test_results: $(TEMP_PATH)
-	make --no-print-directory remove_ansi_noise
-	@if command -v tmux; then \
-		if command -v lnav; then \
-			tmux split-window -h "lnav $(TEMP_PATH)/out.txt"; \
-		else \
-			tmux split-window -h "cat $(TEMP_PATH)/out.txt"; \
-		fi; \
-	else \
-		cat $(TEMP_PATH)/out.txt | sed 's/\x1b\[[0-9;]*m//g'; \
-	fi
-	@echo "$(YEL)$(_SEP)$(D)"
-	@echo "$(BCYA)Tests Summary$(D)"
-	@TOTAL=$(shell cat $(TEMP_PATH)/passed_count.txt)
-	@echo -ne "$(MAG)Total\t:  $(YEL)"
-	@awk '{print $$1}' $(TEMP_PATH)/passed_count.txt
-	@echo -ne "$(D)"
-	@cat $(TEMP_PATH)/out.txt | grep heap | awk '{ print $$5, $$7 }' > $(TEMP_PATH)/count.txt
-	@awk -v count=0 '{if ($$1 == $$2) count++} END \
-		{ print "$(GRN)Passed$(D)\t: ", count}' $(TEMP_PATH)/count.txt
-	@awk -v count=0 '{if ($$1 != $$2) \
-		{ print $$1 > "$(TEMP_PATH)/failing_test_number.txt"; count++ }} END \
-		{ print "$(RED)Failed$(D)\t: ", count}' $(TEMP_PATH)/count.txt
-	@echo "$(YEL)$(_SEP)$(D)"
-
-remove_ansi_noise:
-	@sed -i 's/\//g' $(TEMP_PATH)/out.txt
 
 ##@ Debug Rules 
 
