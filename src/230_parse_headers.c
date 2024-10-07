@@ -16,7 +16,7 @@ static int	ft_try_parse_texture(char **line, t_map *map, t_dir dir);
 
 int	ft_parse_headers(char *line, t_map *map)
 {
-	const char	*g_dirs[] = {"NO", "SO", "WE", "EA"};
+	const char	*g_dirs[] = {"NO ", "SO ", "WE ", "EA "};
 	t_dir		dir;
 
 	if (map == NULL || line == NULL)
@@ -26,7 +26,7 @@ int	ft_parse_headers(char *line, t_map *map)
 		return (SUCCESS);
 	while (++dir <= EAST)
 	{
-		if (ft_strncmp(line, g_dirs[dir], 2) == 0)
+		if (ft_strncmp(line, g_dirs[dir], 3) == 0)
 			return (ft_try_parse_texture(&line, map, dir));
 	}
 	if (ft_strncmp(line, "F", 1) == 0 || ft_strncmp(line, "C", 1) == 0)
