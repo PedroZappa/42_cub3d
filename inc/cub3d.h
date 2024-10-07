@@ -176,17 +176,14 @@ int		ft_verify_borders(t_map *map);
 /** @file 200_parser.c */
 int		ft_parse_map(t_cub *cub, char *file);
 
-/** @file 210_parser_checks.c */
-int		ft_check_ext(char *file);
-
-/** @file 220_parse_rgb.c */
+/** @file 210_parse_rgb.c */
 int		ft_parsing_rgb(char *line, t_map *map);
 
-/** @file 230_parse_map.c */
+/** @file 220_parse_map.c */
 int		ft_parsing_map(char *line, t_map *map);
 t_bool	ft_is_map_line(char *line);
 
-/** @file 240_parse_headers.c */
+/** @file 230_parse_headers.c */
 int		ft_parse_headers(char *line, t_map *map);
 
 /** @file 300_mlx.c */
@@ -199,14 +196,16 @@ int		ft_hook_quit(t_cub *cub);
 int		ft_hook_kb(int keycode, t_cub *cub);
 int		ft_hook_loop(t_cub *cub);
 
-/** @file 600_time.c */
+/** @file 700_misc.c */
 long	ft_timestamp(void);
+int		ft_check_ext(char *file);
+int		ft_rgb_to_int(t_rgb rgb);
 
-/** @file 700_point.c */
+/** @file 710_point.c */
 t_point	*ft_point_new(int x, int y);
 t_point	*ft_point_copy(t_point *point);
 
-/** @file 710_vec.c */
+/** @file 720_vec.c */
 t_vec	*ft_vec_new(double x, double y, double z);
 t_vec	*ft_vec_copy(t_vec *point);
 t_vec	*ft_vec_dir(t_dir dir);
