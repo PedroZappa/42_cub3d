@@ -24,6 +24,7 @@ t_map	*ft_map_init(void)
 	ret->paths = ft_calloc(5, sizeof(char *));
 	if (ret->paths == NULL)
 		return (ft_vfree(ret), NULL);
+	ret->paths[0] = NULL;
 	ret->imgs = ft_calloc(5, sizeof(void *));
 	if (ret->imgs == NULL)
 		return (ft_vfree(ret->paths), ft_vfree(ret), NULL);

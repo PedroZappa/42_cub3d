@@ -33,6 +33,16 @@ define main
   display cub->map->height
 end
 
+# 105_map_verify.c
+define map_verify
+	display *map
+	display *map->paths@4
+	display *map->imgs@4
+	display map->map[i]
+	display i
+	display len
+end
+
 ### 200_parser.c
 define parse_map
   display cub
@@ -68,6 +78,11 @@ define parse_loop
   display line
 end
 
+define parse_line
+  display map
+  display line
+end
+
 define parse_header
   display line
   display map
@@ -75,13 +90,6 @@ define parse_header
   display map->paths[dir]
   display dir
   display dir_str[dir]
-end
-
-define parsing_colors
-  display line
-  display map
-  display map->floor_color
-  display map->ceiling_color
 end
 
 define measure_map
@@ -109,21 +117,27 @@ define parse_player
   display dir
 end
 
-# 105_map_verify.c
-define map_verify
-	display *map
-	display *map->paths@4
-	display *map->imgs@4
-	display map->map[i]
-	display i
-	display len
+# 210_parser_checks.c
+define parser_checks
+	display map
+	display map->paths
+	display map->paths[0]
+	display map->floor_color
+	display map->ceiling_color
+end
+
+define check_header
+	display map->paths@4
+	display map->paths[0]
+	display map->floor_color
+	display map->ceiling_color
 end
 
 ### Go GDB Go! I Choose YOU! 
 
 # main
-break ft_measure_map
-run ./maps/subject.cub
+break ft_check_header
+run ./maps/invalid/path-map-rgb.cub
 fs cmd
 rfr
 

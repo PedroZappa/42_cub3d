@@ -176,8 +176,9 @@ int		ft_verify_borders(t_map *map);
 /** @file 200_parser.c */
 int		ft_parse_map(t_cub *cub, char *file);
 
-/** @file 210_check_ext.c */
+/** @file 210_parser_checks.c */
 int		ft_check_ext(char *file);
+int		ft_check_header(t_map *map);
 
 /** @file 220_parse_rgb.c */
 int		ft_check_rgb(char *line);
@@ -186,6 +187,7 @@ int		ft_parsing_rgb(char *line, t_map *map);
 /** @file 230_parse_map.c */
 int		ft_parsing_map(char *line, t_map *map);
 t_bool	ft_is_map_line(char *line);
+int		ft_check_dir(char *line);
 
 /** @file 240_parse_headers.c */
 void	ft_parse_headers(char *line, t_map *map);

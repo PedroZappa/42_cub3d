@@ -15,7 +15,7 @@
 static t_map	*ft_parse_init(int *fd, char *file);
 static t_map	*ft_measure_map(int fd, t_map *map);
 static t_map	*ft_parse_loop(int fd, t_map *map);
-static int		ft_check_dir(char *line);
+static int		ft_parse_line(char *line, t_map *map);
 
 const char	*g_dirs[] = {"NO", "SO", "WE", "EA"};
 
@@ -62,13 +62,6 @@ static t_map	*ft_parse_init(int *fd, char *file)
 	return (map);
 }
 
-static int	ft_check_header(t_map *map)
-{
-	if (map->paths[0] && map->floor_color.b >= 0 && map->ceiling_color.b >= 0)
-		return (!SUCCESS);
-	return (!FAILURE);
-}
-
 static t_map	*ft_parse_loop(int fd, t_map *map)
 {
 	char		*line;
@@ -83,21 +76,27 @@ static t_map	*ft_parse_loop(int fd, t_map *map)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (ft_check_dir(line))
-			ft_parse_headers(line, map);
-		else if (ft_check_rgb(line))
-			ft_parsing_rgb(line, map);
-		else if (ft_is_map_line(line))
-		{
-			if (ft_check_header(map))
-				ft_parsing_map(line, map);
-			else
-				return (ft_map_free(map), NULL);
-		}
+		ft_parse_line(line, map);
 		ft_free(line);
 		line = get_next_line(fd);
 	}
 	return (ft_free(line), map);
+}
+
+static int	ft_parse_line(char *line, t_map *map)
+{
+	if (ft_check_dir(line))
+		ft_parse_headers(line, map);
+	else if (ft_check_rgb(line))
+		ft_parsing_rgb(line, map);
+	else if (ft_is_map_line(line))
+	{
+		if (ft_check_header(map))
+			ft_parsing_map(line, map);
+		else
+			return (ft_map_free(map), FAILURE);
+	}
+	return (SUCCESS);
 }
 
 static t_map	*ft_measure_map(int fd, t_map *map)
@@ -117,12 +116,4 @@ static t_map	*ft_measure_map(int fd, t_map *map)
 		line = get_next_line(fd);
 	}
 	return (close(fd), map);
-}
-
-static int	ft_check_dir(char *line)
-{
-	return (ft_strnstr(line, g_dirs[NORTH], ft_strlen(g_dirs[NORTH]))
-		|| ft_strnstr(line, g_dirs[SOUTH], ft_strlen(g_dirs[SOUTH]))
-		|| ft_strnstr(line, g_dirs[WEST], ft_strlen(g_dirs[WEST]))
-		|| ft_strnstr(line, g_dirs[EAST], ft_strlen(g_dirs[EAST])));
 }

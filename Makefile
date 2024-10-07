@@ -81,7 +81,9 @@ INVALID_MAPS	= $(shell ls -al $(MAPS_PATH)/invalid/*.cub | awk '{print $$9}')
 CC			= cc
 
 CFLAGS		= -Wall -Wextra -Werror
-DFLAGS		= -g
+DFLAGS		= -ggdb3
+DFLAGS		+= -fno-limit-debug-info
+
 RFLAGS		= -lm -lX11 -lXext
 INC			= -I $(INC_PATH)
 
