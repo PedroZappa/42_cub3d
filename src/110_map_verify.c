@@ -51,7 +51,7 @@ static int	ft_verify_paths(t_map *map)
 	if (map == NULL)
 		return (FAILURE);
 	i = NORTH;
-	while (i < EAST)
+	while (i <= EAST)
 	{
 		if (map->paths[i] == NULL)
 			return (FAILURE);

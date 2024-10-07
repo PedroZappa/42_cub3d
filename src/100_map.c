@@ -43,7 +43,7 @@ void	ft_map_destroy_imgs(t_map *map, t_mlx *mlx)
 	if (map == NULL || mlx == NULL || mlx->ptr == NULL)
 		return ;
 	i = NORTH;
-	while (i < EAST)
+	while (i <= EAST)
 	{
 		if (map->imgs[i])
 		{

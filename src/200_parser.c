@@ -33,13 +33,12 @@ int	ft_parse_map(t_cub *cub, char *file)
 	cub->map = map;
 	if (cub->map != NULL)
 		cub->map = ft_map_verify(cub->map);
-	if (cub->map != NULL && !SKIP_VERIFY)
-	{
-		cub->current_pos = ft_vec_new(
-				cub->map->start_pos->x, cub->map->start_pos->y, WINDOW_H / 2);
-		cub->orientation = ft_vec_dir(cub->map->start_direction);
-	}
-	return (close(fd), cub->map == NULL && !SKIP_VERIFY);
+	if (cub->map == NULL)
+		return (close(fd), FAILURE);
+	cub->current_pos = ft_vec_new(
+		cub->map->start_pos->x, cub->map->start_pos->y, WINDOW_H / 2);
+	cub->orientation = ft_vec_dir(cub->map->start_direction);
+	return (close(fd), SUCCESS);
 }
 
 static t_map	*ft_parse_init(int *fd, char *file)
