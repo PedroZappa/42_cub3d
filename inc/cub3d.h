@@ -60,6 +60,7 @@ Usage: ./cub3D <path to map file .cub>"
 # define PARSE_INV_LINE "Invalid line"
 # define PARSE_WRG_ORDR	"Map is not at the bottom and/or \
 has separated sections"
+# define PARSE_CLR_FMT	"Color is not formatted correctly"
 
 // Window settings
 

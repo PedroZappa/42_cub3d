@@ -22,8 +22,8 @@ int	ft_parse_headers(char *line, t_map *map)
 	if (map == NULL || line == NULL)
 		return (FAILURE);
 	dir = INVALID;
-	while (ft_isspace(*line))
-		++line;
+	if (ft_strcmp(line, "\n") == 0)
+		return (SUCCESS);
 	while (++dir <= EAST)
 	{
 		if (ft_strncmp(line, g_dirs[dir], 2) == 0)

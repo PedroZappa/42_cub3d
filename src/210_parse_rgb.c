@@ -34,15 +34,19 @@ int	ft_parse_rgb(char *line, t_rgb *rgb)
 	rgb->r = ft_atoi(line);
 	while (ft_isdigit(*line))
 		++line;
-	while (!ft_isdigit(*line))
-		++line;
+	if (*line != ',')
+		return (FAILURE);
+	++line;
 	rgb->g = ft_atoi(line);
 	while (ft_isdigit(*line))
 		++line;
-	while (!ft_isdigit(*line))
-		++line;
+	if (*line != ',')
+		return (FAILURE);
+	++line;
 	rgb->b = ft_atoi(line);
-	return (SUCCESS);
+	while (ft_isdigit(*line))
+		++line;
+	return (*line != '\n');
 }
 
 static int	ft_check_rgb(char *line, t_rgb *rgb, char *field)
@@ -50,6 +54,10 @@ static int	ft_check_rgb(char *line, t_rgb *rgb, char *field)
 	if (rgb == NULL)
 		return (FAILURE);
 	if (rgb->b == -1 && rgb->g == -1 && rgb->r == -1)
-		return (ft_parse_rgb(line, rgb));
+	{
+		if (ft_parse_rgb(line, rgb))
+			return (ft_parse_err(PARSE_CLR_FMT));
+		return (SUCCESS);
+	}
 	return (ft_color_err(field));
 }
