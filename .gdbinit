@@ -136,8 +136,8 @@ end
 ### Go GDB Go! I Choose YOU! 
 
 # main
-break ft_check_header
-run ./maps/invalid/path-map-rgb.cub
+break ft_parse_map
+run ./maps/invalid/path-missing.cub
 fs cmd
 rfr
 
