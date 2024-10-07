@@ -62,9 +62,16 @@ static t_map	*ft_parse_init(int *fd, char *file)
 	return (map);
 }
 
+static int	ft_check_header(t_map *map)
+{
+	if (map->paths[0] && map->floor_color.b >= 0 && map->ceiling_color.b >= 0)
+		return (!SUCCESS);
+	return (!FAILURE);
+}
+
 static t_map	*ft_parse_loop(int fd, t_map *map)
 {
-	char	*line;
+	char		*line;
 
 	map->map = malloc(sizeof(char *) * (map->height + 1));
 	if (map->map == NULL)
@@ -81,7 +88,12 @@ static t_map	*ft_parse_loop(int fd, t_map *map)
 		else if (ft_check_rgb(line))
 			ft_parsing_rgb(line, map);
 		else if (ft_is_map_line(line))
-			ft_parsing_map(line, map);
+		{
+			if (ft_check_header(map))
+				ft_parsing_map(line, map);
+			else
+				return (ft_map_free(map), NULL);
+		}
 		ft_free(line);
 		line = get_next_line(fd);
 	}
