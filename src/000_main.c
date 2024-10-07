@@ -28,9 +28,20 @@ int	main(int argc, char **argv)
 		return (ft_cub_free(&cub), ft_err(MLX_ERR));
 	if (ft_mlx_set_hooks(&cub))
 		return (ft_cub_free(&cub), ft_err(MLX_ERR));
+	ft_render(&cub);
 	mlx_loop(cub.mlx->ptr);
 	ft_cub_free(&cub);
 	return (SUCCESS);
+}
+
+void	ft_render(t_cub *cub)
+{
+	if (cub == NULL || cub->mlx == NULL)
+		return ;
+	// ft_draw_map(cub);
+	// ft_place_player(cub);
+	// mlx_put_image_to_window(cub->mlx->ptr, cub->mlx->wdw,
+	// 	cub->mlx->img, 0, 0);
 }
 
 void	ft_cub_free(t_cub *cub)

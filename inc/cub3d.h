@@ -155,6 +155,7 @@ typedef struct s_cub
 // Functions
 
 /** @file 000_main.c */
+void	ft_render(t_cub *cub);
 void	ft_cub_free(t_cub *cub);
 
 /** @file 100_map.c */
