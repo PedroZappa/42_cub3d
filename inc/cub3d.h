@@ -58,7 +58,8 @@ Usage: ./cub3D <path to map file .cub>"
 # define PARSE_INIT_ERR	"Map parsing init wasn't successful"
 # define PARSE_LOOP_ERR	"Map parsing loop failed"
 # define PARSE_INV_LINE "Invalid line"
-# define PARSE_WRG_ORDR	"Map is not at the bottom."
+# define PARSE_WRG_ORDR	"Map is not at the bottom and/or \
+has separated sections"
 
 // Window settings
 
