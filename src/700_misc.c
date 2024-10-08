@@ -33,7 +33,7 @@ int	ft_check_ext(char *file)
 
 int	ft_rgb_to_int(t_rgb rgb)
 {
-	return ((rgb.r & 0xFF) << 16
-		| (rgb.g & 0xFF) << 8
-		| rgb.b & 0xFF);
+	return (((rgb.r & 0xFF) << 16)
+		| ((rgb.g & 0xFF) << 8)
+		| (rgb.b & 0xFF));
 }
