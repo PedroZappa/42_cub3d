@@ -26,7 +26,8 @@ int	ft_check_ext(char *file)
 	char	*pos;
 
 	pos = ft_strrchr(file, '.');
-	if (pos == NULL)
+	if (pos == NULL || file == pos
+		|| *(pos - 1) == '/')
 		return (FAILURE);
 	return (ft_strncmp(pos, ".cub", 5));
 }
