@@ -37,7 +37,7 @@ int	ft_mlx_set_hooks(t_cub *cub)
 	mlx_key_hook(cub->mlx->wdw, ft_hook_kb, cub);
 	mlx_hook(cub->mlx->wdw, X11_EVENT_CLIENT_MSG,
 		X11_EVENT_MASK_CLOSE, ft_hook_quit, cub);
-	cub->last_frame = ft_timestamp();
+	cub->start_time = ft_timestamp();
 	mlx_loop_hook(cub->mlx->ptr, ft_hook_loop, cub);
 	return (SUCCESS);
 }

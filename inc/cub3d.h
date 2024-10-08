@@ -69,12 +69,6 @@ has separated sections"
 # define WINDOW_H	 	720
 # define WINDOW_TITLE 	"Cub3D"
 
-// Debug flags
-
-# ifndef SKIP_VERIFY
-#  define SKIP_VERIFY 0
-# endif
-
 // Enums
 
 typedef enum e_exit
@@ -150,13 +144,12 @@ typedef struct s_cub
 	t_vec	*current_pos;
 	t_vec	*orientation;
 
-	long	last_frame;
+	long	start_time;
 }	t_cub;
 
 // Functions
 
 /** @file 000_main.c */
-void	ft_render(t_cub *cub);
 void	ft_cub_free(t_cub *cub);
 
 /** @file 100_map.c */
@@ -198,6 +191,9 @@ int		ft_mlx_set_hooks(t_cub *cub);
 int		ft_hook_quit(t_cub *cub);
 int		ft_hook_kb(int keycode, t_cub *cub);
 int		ft_hook_loop(t_cub *cub);
+
+/** @file 400_renderer.c */
+void	ft_render(t_cub *cub);
 
 /** @file 700_misc.c */
 long	ft_timestamp(void);

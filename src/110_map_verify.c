@@ -21,8 +21,6 @@ t_map	*ft_map_verify(t_map *map)
 {
 	if (map == NULL)
 		return (NULL);
-	if (SKIP_VERIFY)
-		return (map);
 	if (ft_verify_color(map->ceiling_color)
 		|| ft_verify_color(map->floor_color))
 		return (ft_parse_err(PARSE_COLORS), ft_map_free(map), NULL);
