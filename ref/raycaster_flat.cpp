@@ -93,7 +93,8 @@ int main(int /*argc*/, char * /*argv*/[]) {
 	// Ray position in camera space
       double rayDirX = dirX + planeX * cameraX;
       double rayDirY = dirY + planeY * cameraX;
-      // DDA Algorithm (Digital Differential Analysis)
+
+      // Preparing for DDA Algorithm (Digital Differential Analysis)
       // Current map square the ray is in
       int mapX = int(posX);
       int mapY = int(posY);
