@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:59:54 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/10/11 20:38:17 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/11 21:15:32 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@
 # define X11_DOWN				0xff54
 # define X11_LEFT				0xff51
 # define X11_RIGHT				0xff53
+
+// Keys for minilibx
+# define KEY_ESC			65307
+# define KEY_W				119
+# define KEY_A				97
+# define KEY_S				115
+# define KEY_D				100
+# define KEY_LEFT_ARROW		65361
+# define KEY_RIGHT_ARROW	65363
+# define ESCAPE				65307
 
 // Errors
 
