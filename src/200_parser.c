@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 13:46:14 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/10/05 15:31:59 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/11 19:27:19 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_parse_map(t_cub *cub, char *file)
 	if (cub->map == NULL)
 		return (close(fd), FAILURE);
 	cub->current_pos = ft_vec_new(cub->map->start_pos->x,
-			cub->map->start_pos->y, WINDOW_H / 2);
+			cub->map->start_pos->y);
 	cub->orientation = ft_vec_dir(cub->map->start_direction);
 	return (close(fd), SUCCESS);
 }

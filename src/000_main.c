@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:35:08 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/09/25 16:23:43 by gfragoso         ###   ########.fr       */
+/*   Updated: 2024/10/11 19:26:42 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (ft_err(ARG_ERR));
-	cub = (t_cub){NULL, NULL, NULL, NULL, 0};
+	cub = (t_cub){NULL, NULL, NULL, NULL, NULL, 0};
 	if (ft_parse_map(&cub, argv[1]))
 		return (FAILURE);
+	if (ft_raycast_init(&cub))
+		return (ft_cub_free(&cub), ft_err(RAYCAST_ERR));
 	cub.mlx = ft_mlx_init(WINDOW_W, WINDOW_H, WINDOW_TITLE);
 	if (cub.mlx == NULL)
 		return (ft_cub_free(&cub), ft_err(MLX_ERR));
