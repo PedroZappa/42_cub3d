@@ -6,22 +6,34 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:29:38 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/10/08 17:17:00 by gfragoso         ###   ########.fr       */
+/*   Updated: 2024/10/11 21:23:43 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void	ft_render_fps(t_cub *cub);
+static int	ft_render_image(t_cub *cub);
+static void	ft_render_fps(t_cub *cub);
 
 void	ft_render(t_cub *cub)
 {
 	if (cub == NULL || cub->mlx == NULL)
 		return ;
+	ft_render_image(cub);
 	ft_render_fps(cub);
 }
 
-void	ft_render_fps(t_cub *cub)
+static int	ft_render_image(t_cub *cub)
+{
+	if (cub == NULL || cub->mlx == NULL)
+		return (FAILURE);
+	// TODO: Execute movement
+	// TODO: Draw image
+	mlx_put_image_to_window(cub->mlx->ptr, cub->mlx->wdw, cub->mlx->img, 0, 0);
+	return (SUCCESS);
+}
+
+static void	ft_render_fps(t_cub *cub)
 {
 	long			curr_time;
 	static long		last_fps_update;
