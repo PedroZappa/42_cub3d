@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:59:54 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/10/11 21:21:43 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/11 21:32:15 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,16 +136,20 @@ typedef struct s_rgb
 	int		b;
 }	t_rgb;
 
+typedef struct s_img
+{
+	void	*img;
+	char	*pix;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}				t_img;
+
 typedef struct s_mlx
 {
 	void	*ptr;
 	void	*wdw;
-
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	t_img	*img;
 }	t_mlx;
 
 typedef struct s_raycast
