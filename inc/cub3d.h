@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:59:54 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/10/11 20:34:17 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:36:09 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ has separated sections"
 // Camera Settings
 
 # define FOV			60.0
-# define ASPECT_RATIO	(WINDOW_W / (double)WINDOW_H)
 
 // Enums
 
@@ -173,7 +172,7 @@ typedef struct s_cub
 void		ft_cub_free(t_cub *cub);
 
 /** @file 010_init.c */
-int		ft_raycast_init(t_cub *cub);
+int			ft_raycast_init(t_cub *cub);
 
 /** @file 100_map.c */
 t_map		*ft_map_init(void);
