@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:59:54 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/10/11 20:36:09 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:38:17 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,14 @@ typedef enum e_dir
 	WEST,
 	EAST
 }	t_dir;
+
+typedef enum e_move
+{
+	FOWARD,
+	LEFT,
+	BACKWARDS,
+	RIGHT,
+}	t_move;
 
 // Structs
 
