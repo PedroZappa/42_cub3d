@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 14:24:53 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/10/11 19:24:22 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/11 21:05:42 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ void	ft_norm_vector(t_vec *vec)
 	double	len;
 
 	len = sqrt((vec->x * vec->x) + (vec->y * vec->y));
-	vec->x /= len;
-	vec->y /= len;
+	if (len != 0)
+	{
+		vec->x /= len;
+		vec->y /= len;
+	}
 }
