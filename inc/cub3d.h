@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:59:54 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/10/11 19:22:26 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:34:17 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,7 +213,7 @@ int			ft_mlx_set_hooks(t_cub *cub);
 /** @file 310_mlx_hooks.c */
 int			ft_hook_quit(t_cub *cub);
 int			ft_hook_kb(int keycode, t_cub *cub);
-int			ft_hook_loop(t_cub *cub);
+int			ft_loop_hook(t_cub *cub);
 
 /** @file 400_renderer.c */
 void		ft_render(t_cub *cub);

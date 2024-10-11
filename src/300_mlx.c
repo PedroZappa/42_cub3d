@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:27:22 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/09/25 16:31:02 by gfragoso         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:34:37 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_mlx_set_hooks(t_cub *cub)
 	mlx_hook(cub->mlx->wdw, X11_EVENT_CLIENT_MSG,
 		X11_EVENT_MASK_CLOSE, ft_hook_quit, cub);
 	cub->start_time = ft_timestamp();
-	mlx_loop_hook(cub->mlx->ptr, ft_hook_loop, cub);
+	mlx_loop_hook(cub->mlx->ptr, ft_loop_hook, cub);
 	return (SUCCESS);
 }
 
