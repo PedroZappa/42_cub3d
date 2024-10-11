@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:38:51 by passunca          #+#    #+#             */
-/*   Updated: 2024/10/11 19:18:10 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:26:32 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	ft_raycast_init(t_cub *cub)
 	cub->raycast->map->y = cub->map->start_pos->y;
 	cub->raycast->pos->x = cub->raycast->map->x;
 	cub->raycast->pos->y = cub->raycast->map->y;
-	cub->raycast->vec_dir->x = 0; 
-	cub->raycast->vec_dir->y = 0; 
+	cub->raycast->vec_dir->x = 0;
+	cub->raycast->vec_dir->y = 0;
 	if (cub->map->start_direction == EAST)
 		cub->raycast->vec_dir->x = 1;
 	else if (cub->map->start_direction == SOUTH)
@@ -35,6 +35,10 @@ int	ft_raycast_init(t_cub *cub)
 		cub->raycast->vec_dir->y = -1;
 	cub->raycast->delta_dist->x = 0;
 	cub->raycast->delta_dist->y = 0;
+	cub->raycast->small_delta_dist->x = 0;
+	cub->raycast->small_delta_dist->y = 0;
+	cub->raycast->step->x = 0;
+	cub->raycast->step->y = 0;
 	ft_camera_init(cub);
 	return (SUCCESS);
 }
