@@ -6,14 +6,14 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:59:54 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/10/12 10:46:35 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/12 11:18:35 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <math.h>
+# include <math.h>	// sqrt, fabs
 # include <stdio.h> // printf, perror
 # include <fcntl.h> // read
 # include <unistd.h> // write
@@ -22,6 +22,7 @@
 # include <sys/time.h> // gettimeofday
 # include <X11/X.h> // MLX library for Event codes
 # include <X11/keysym.h> // Keysym for event handling
+# include <stdbool.h> // true false
 // # include <float.h> // DBL_MAX
 
 # include "../lib/mlx/mlx.h"
@@ -71,6 +72,12 @@ has separated sections"
 # define DBL_MAX 1.7976931348623158e+308
 
 // Enums
+
+typedef enum e_coord
+{
+	X = 0,
+	Y
+}	t_coord;
 
 typedef enum e_exit
 {
@@ -131,6 +138,13 @@ typedef struct s_img
 	int		endian;
 }			t_img;
 
+typedef struct s_tex
+{
+	t_img	*img;
+	int		width;
+	int		height;
+}			t_tex;
+
 typedef struct s_mlx
 {
 	void	*ptr;
@@ -172,6 +186,7 @@ typedef struct s_map
 {
 	char		**paths;
 	void		**imgs;
+	t_tex		tex[4];
 
 	t_rgb		floor_color;
 	t_rgb		ceiling_color;
