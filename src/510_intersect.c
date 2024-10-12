@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:44:27 by passunca          #+#    #+#             */
-/*   Updated: 2024/10/12 11:30:51 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/12 11:50:47 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	ft_check_wall_dir(int step, t_target *target, t_coord side)
 
 static void	ft_get_wall_height(t_ray *ray, t_target *target)
 {
-	if (target->wall_dir == NORTH || target->wall_dir == SOUTH)
+	if ((target->wall_dir == NORTH) || (target->wall_dir == SOUTH))
 		target->dist = ray->small_delta->y - ray->delta_dist->y;
 	else
 		target->dist = ray->small_delta->x - ray->delta_dist->x;
@@ -78,13 +78,21 @@ static void	ft_get_wall_height(t_ray *ray, t_target *target)
 
 static void	ft_get_tile_offset(t_ray ray, t_target *target, t_tex tex)
 {
-	(void)ray;
-	(void)target;
-	(void)tex;
+	if ((target->wall_dir == NORTH) || (target->wall_dir == SOUTH))
+		target->hitpoint = ray.pos->y + target->dist * ray.ray_dir->y;
+	else
+		target->hitpoint = ray.pos->x + target->dist * ray.ray_dir->x;
+	target->tile_offset = target->hitpoint - floor(target->hitpoint);
+	target->tex = (target->tile_offset * (double)tex.width);
+	if (((target->wall_dir == NORTH) || (target->wall_dir == SOUTH) \
+			&& (ray.ray_dir->y < 0)) || ((target->wall_dir == WEST) \
+		|| (target->wall_dir == EAST) && (target->wall_dir > 0)))
+		target->tex_x = (tex.width - target->tex - 1);
 }
 
 static bool	ft_gottahit(t_point *point, t_cub *cub)
 {
-	(void)point;
-	(void)cub;
+	if (cub->map->map[point->y][point->x] == '1')
+		return (true);
+	return (false);
 }

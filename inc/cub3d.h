@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:59:54 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/10/12 11:18:35 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/12 11:41:21 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,13 +156,14 @@ typedef struct s_target
 {
 	t_point	*pos;
 	double	dist;
-	double	x_hitpoint;
+	double	hitpoint;
 	double	tile_offset;
-	double	x_texture;
+	double	tex;
 	t_dir	wall_dir;
 	int		wall_height;
 	int		wall_bottom;
 	int		wall_top;
+	int		tex_x;
 }			t_target;
 
 typedef struct s_ray
