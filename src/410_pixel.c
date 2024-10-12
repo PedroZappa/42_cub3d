@@ -34,7 +34,8 @@ void	ft_pixel_put(t_img *img, int x, int y, int color)
 {
 	int		offset;
 
-	if (img == NULL)
+	if (img == NULL || x < 0 || y < 0
+		|| x >= WINDOW_W || y >= WINDOW_H)
 		return ;
 	offset = (y * img->line_len) + (x * (img->bpp / 8));
 	*(int *)(img->pix + offset) = color;

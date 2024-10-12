@@ -32,7 +32,7 @@ static int	ft_render_image(t_cub *cub)
 	// TODO: Execute movement
 	ft_draw_image(cub);
 	mlx_put_image_to_window(cub->mlx->ptr, cub->mlx->wdw,
-		cub->mlx->frame, 0, 0);
+		cub->mlx->frame->img, 0, 0);
 	return (SUCCESS);
 }
 
