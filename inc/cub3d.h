@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:59:54 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/10/12 08:19:17 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/12 09:05:21 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,20 +121,20 @@ typedef struct s_vec
 {
 	double	x;
 	double	y;
-}	t_vec;
+}			t_vec;
 
 typedef struct s_point
 {
 	int		x;
 	int		y;
-}	t_point;
+}			t_point;
 
 typedef struct s_rgb
 {
 	int		r;
 	int		g;
 	int		b;
-}	t_rgb;
+}			t_rgb;
 
 typedef struct s_img
 {
@@ -143,14 +143,14 @@ typedef struct s_img
 	int		bpp;
 	int		line_len;
 	int		endian;
-}				t_img;
+}			t_img;
 
 typedef struct s_mlx
 {
 	void	*ptr;
 	void	*wdw;
 	t_img	*img;
-}	t_mlx;
+}			t_mlx;
 
 typedef struct s_target
 {
@@ -161,9 +161,9 @@ typedef struct s_target
 	double	x_texture;
 	t_dir	wall_dir;
 	int		wall_height;
-	int		wall_min_height;
-	int		wall_max_height;
-} t_target;
+	int		wall_bottom;
+	int		wall_top;
+}			t_target;
 
 typedef struct s_raycast
 {
@@ -177,7 +177,9 @@ typedef struct s_raycast
 	t_point		*step;
 
 	t_vec		*camera;
-}	t_raycast;
+	t_vec		*camera_offset;
+	double		center_raylen;
+}				t_raycast;
 
 // paths/imgs : NO, SO, WE, EA
 typedef struct s_map
@@ -193,7 +195,7 @@ typedef struct s_map
 	t_dir		start_direction;
 	size_t		width;
 	size_t		height;
-}	t_map;
+}				t_map;
 
 typedef struct s_cub
 {
@@ -205,7 +207,7 @@ typedef struct s_cub
 	t_vec		*orientation;
 
 	long		start_time;
-}	t_cub;
+}				t_cub;
 
 // Functions
 
@@ -257,6 +259,12 @@ int			ft_loop_hook(t_cub *cub);
 
 /** @file 400_renderer.c */
 void		ft_render(t_cub *cub);
+
+/** @file 410_pixel.c */
+void		ft_pixel_put(t_img img, int x, int y, int color);
+
+/** @file 420_ui.c */
+void		ft_render_fps(t_cub *cub);
 
 /** @file 700_misc.c */
 long		ft_timestamp(void);
