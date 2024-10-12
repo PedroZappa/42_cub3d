@@ -161,11 +161,11 @@ typedef struct s_target
 	double	hitpoint;
 	double	tile_offset;
 	double	tex;
-	t_dir	wall_dir;
+	int		tex_x;
 	int		wall_height;
 	int		wall_bottom;
 	int		wall_top;
-	int		tex_x;
+	t_dir	wall_dir;
 }			t_target;
 
 /**
