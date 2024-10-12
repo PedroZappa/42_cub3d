@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:44:27 by passunca          #+#    #+#             */
-/*   Updated: 2024/10/12 11:22:41 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/12 11:30:51 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,20 @@ static void	ft_check_wall_dir(int step, t_target *target, t_coord side)
 
 static void	ft_get_wall_height(t_ray *ray, t_target *target)
 {
-	(void)ray;
-	(void)target;
+	if (target->wall_dir == NORTH || target->wall_dir == SOUTH)
+		target->dist = ray->small_delta->y - ray->delta_dist->y;
+	else
+		target->dist = ray->small_delta->x - ray->delta_dist->x;
+	if (target->dist == 0)
+		target->wall_height = WINDOW_H;
+	else
+		target->wall_height = (WINDOW_H / target->dist);
+	target->wall_top = (target->wall_height / 2) + (WINDOW_H / 2);
+	if (target->wall_height >= WINDOW_H)
+		target->wall_height = (WINDOW_H - 1);
+	target->wall_bottom = ((-target->wall_height / 2) + (WINDOW_H / 2));
+	if (target->wall_bottom < 0)
+		target->wall_bottom = 0;
 }
 
 static void	ft_get_tile_offset(t_ray ray, t_target *target, t_tex tex)
