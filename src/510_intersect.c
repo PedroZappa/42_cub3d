@@ -60,9 +60,7 @@ static void	ft_check_wall_dir(int step, t_target *target, t_coord side)
 
 static bool	ft_gottahit(t_point *point, t_cub *cub)
 {
-	if (cub->map->map[point->y][point->x] == '1')
-		return (true);
-	return (false);
+	return (ft_map_at(cub->map, point) == '1');
 }
 
 static void	ft_get_wall_height(t_ray *ray, t_target *target)
