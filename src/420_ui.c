@@ -25,6 +25,7 @@ void	ft_render_fps(t_cub *cub)
 	if ((curr_time - last_fps_update) >= 1000)
 	{
 		fps = (frame_count * 1000.0) / (curr_time - last_fps_update);
+		cub->frame_time = (curr_time - last_fps_update) / 1000.0;
 		frame_count = 0;
 		last_fps_update = curr_time;
 	}

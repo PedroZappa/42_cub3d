@@ -210,6 +210,7 @@ typedef struct s_cub
 	t_vec		*orientation;
 
 	long		start_time;
+	double		frame_time;
 }				t_cub;
 
 // Functions
