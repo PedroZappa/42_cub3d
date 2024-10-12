@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:29:38 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/10/12 09:12:33 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/12 09:16:47 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static t_target ft_raycast(t_cub *cub, int x)
 {
 	t_target	ray_hitpoint;
 	
-	// TODO: ft_compute_ray(cub, x)
-	// TODO: ft_get_intersdection(cub, &ray_hitpoint)
+	ft_compute_ray(cub, x)
+	ft_get_intersection(cub, &ray_hitpoint)
 	return (ray_hitpoint);
 }

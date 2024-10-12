@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:59:54 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/10/12 09:05:21 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/12 09:18:25 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,6 +265,10 @@ void		ft_pixel_put(t_img img, int x, int y, int color);
 
 /** @file 420_ui.c */
 void		ft_render_fps(t_cub *cub);
+
+/** @file 500_raycaster.c */
+void		ft_compute_ray(t_cub *cub, int x);
+void		ft_get_intersection(t_cub *cub, t_target *target);
 
 /** @file 700_misc.c */
 long		ft_timestamp(void);
