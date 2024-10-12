@@ -6,16 +6,16 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 10:44:27 by passunca          #+#    #+#             */
-/*   Updated: 2024/10/12 11:50:47 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/12 11:52:16 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
 static void	ft_check_wall_dir(int step, t_target *target, t_coord side);
+static bool	ft_gottahit(t_point *point, t_cub *cub);
 static void	ft_get_wall_height(t_ray *ray, t_target *target);
 static void	ft_get_tile_offset(t_ray ray, t_target *target, t_tex tex);
-static bool	ft_gottahit(t_point *point, t_cub *cub);
 
 void	ft_get_intersection(t_cub *cub, t_target *target)
 {
@@ -58,6 +58,13 @@ static void	ft_check_wall_dir(int step, t_target *target, t_coord side)
 	}
 }
 
+static bool	ft_gottahit(t_point *point, t_cub *cub)
+{
+	if (cub->map->map[point->y][point->x] == '1')
+		return (true);
+	return (false);
+}
+
 static void	ft_get_wall_height(t_ray *ray, t_target *target)
 {
 	if ((target->wall_dir == NORTH) || (target->wall_dir == SOUTH))
@@ -88,11 +95,4 @@ static void	ft_get_tile_offset(t_ray ray, t_target *target, t_tex tex)
 			&& (ray.ray_dir->y < 0)) || ((target->wall_dir == WEST) \
 		|| (target->wall_dir == EAST) && (target->wall_dir > 0)))
 		target->tex_x = (tex.width - target->tex - 1);
-}
-
-static bool	ft_gottahit(t_point *point, t_cub *cub)
-{
-	if (cub->map->map[point->y][point->x] == '1')
-		return (true);
-	return (false);
 }
