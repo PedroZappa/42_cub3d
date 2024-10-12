@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (ft_err(ARG_ERR));
-	cub = (t_cub){NULL, NULL, NULL, NULL, NULL, 0};
+	cub = (t_cub){NULL, NULL, NULL, NULL, NULL, 0, 0.0};
 	if (ft_parse_map(&cub, argv[1]))
 		return (FAILURE);
 	cub.ray = ft_ray_init(cub.map->start_pos,
