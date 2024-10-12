@@ -216,9 +216,6 @@ typedef struct s_cub
 /** @file 000_main.c */
 void		ft_cub_free(t_cub *cub);
 
-/** @file 010_init.c */
-int			ft_raycast_init(t_cub *cub);
-
 /** @file 100_map.c */
 t_map		*ft_map_init(void);
 void		ft_map_free(t_map *map);
@@ -287,10 +284,11 @@ t_point		*ft_point_copy(t_point *point);
 t_vec		*ft_vec_new(double x, double y);
 t_vec		*ft_vec_copy(t_vec *point);
 t_vec		*ft_vec_dir(t_dir dir);
-void		ft_norm_vector(t_vec *vec);
+void		ft_vec_norm(t_vec *vec);
 
-/** @file 720_rgb.c */
-int			ft_parse_rgb(char *line, t_rgb *rgb);
+/** @file 730_raycast.c */
+t_ray		*ft_ray_init(t_point *start_pos, t_dir start_dir);
+void		ft_ray_free(t_ray *ray);
 
 /** @file 800_errors.c */
 int			ft_err(char	*msg);

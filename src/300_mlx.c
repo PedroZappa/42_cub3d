@@ -49,9 +49,8 @@ void	ft_mlx_free(t_mlx *mlx)
 		return ;
 	if (mlx->wdw != NULL)
 		mlx_destroy_window(mlx->ptr, mlx->wdw);
-	mlx->wdw = NULL;
 	mlx_destroy_display(mlx->ptr);
 	ft_vfree(mlx->ptr);
-	mlx->ptr = NULL;
+	ft_bzero(mlx, sizeof(t_mlx));
 	free(mlx);
 }

@@ -13,6 +13,7 @@
 #include "../inc/cub3d.h"
 
 static int	ft_check_rgb(char *line, t_rgb *rgb, char *field);
+static int	ft_parse_rgb(char *line, t_rgb *rgb);
 
 int	ft_parsing_rgb(char *line, t_map *map)
 {
@@ -27,7 +28,7 @@ int	ft_parsing_rgb(char *line, t_map *map)
 	return (SUCCESS);
 }
 
-int	ft_parse_rgb(char *line, t_rgb *rgb)
+static int	ft_parse_rgb(char *line, t_rgb *rgb)
 {
 	while (!ft_isdigit(*line))
 		++line;

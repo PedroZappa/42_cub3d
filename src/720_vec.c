@@ -44,7 +44,7 @@ t_vec	*ft_vec_dir(t_dir dir)
 	return (NULL);
 }
 
-void	ft_norm_vector(t_vec *vec)
+void	ft_vec_norm(t_vec *vec)
 {
 	double	len;
 
