@@ -33,8 +33,7 @@ int	ft_texture_dupl_err(const char *dir)
 
 /**
  * @brief Print an error message for duplicate color definitions
- * @param type The type of color (e.g., "floor" or "ceiling") that's
- * duplicated, or NULL for unspecified
+ * @param type Type of color (e.g., "floor" or "ceiling") that's duplicated
  * @return FAILURE(Always returns FAILURE to indicate an error occurred)
  * @details
  * This function prints an error message when a duplicate color definition is
