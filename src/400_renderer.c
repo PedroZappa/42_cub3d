@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:29:38 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/10/11 21:23:43 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/12 08:10:06 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int	ft_render_image(t_cub *cub);
 static void	ft_render_fps(t_cub *cub);
+static void	ft_draw_image(t_cub *cub);
 
 void	ft_render(t_cub *cub)
 {
@@ -29,6 +30,7 @@ static int	ft_render_image(t_cub *cub)
 		return (FAILURE);
 	// TODO: Execute movement
 	// TODO: Draw image
+	ft_draw_image(cub);
 	mlx_put_image_to_window(cub->mlx->ptr, cub->mlx->wdw, cub->mlx->img, 0, 0);
 	return (SUCCESS);
 }

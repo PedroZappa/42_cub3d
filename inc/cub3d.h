@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:59:54 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/10/11 21:32:15 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/12 08:19:17 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,19 @@ typedef struct s_mlx
 	void	*wdw;
 	t_img	*img;
 }	t_mlx;
+
+typedef struct s_target
+{
+	t_point	*pos;
+	double	dist;
+	double	x_hitpoint;
+	double	tile_offset;
+	double	x_texture;
+	t_dir	wall_dir;
+	int		wall_height;
+	int		wall_min_height;
+	int		wall_max_height;
+} t_target;
 
 typedef struct s_raycast
 {
