@@ -6,16 +6,16 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:29:38 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/10/12 09:16:47 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/12 09:20:11 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static int	ft_render_image(t_cub *cub);
-static void	ft_draw_image(t_cub *cub);
+static int		ft_render_image(t_cub *cub);
+static void		ft_draw_image(t_cub *cub);
 static t_target	*ft_find_obstacle(t_cub *cub);
-static t_target ft_raycast(t_cub *cub, int x);
+static t_target	ft_raycast(t_cub *cub, int x);
 
 void	ft_render(t_cub *cub)
 {
@@ -63,7 +63,7 @@ static t_target	*ft_find_obstacle(t_cub *cub)
 {
 	t_target	*target;
 	int			x;
-	
+
 	target = ft_calloc(WINDOW_W, sizeof(t_target));
 	if (target == NULL)
 		return (ft_cub_free(cub), NULL);
@@ -74,11 +74,11 @@ static t_target	*ft_find_obstacle(t_cub *cub)
 	return (target);
 }
 
-static t_target ft_raycast(t_cub *cub, int x)
+static t_target	ft_raycast(t_cub *cub, int x)
 {
 	t_target	ray_hitpoint;
-	
-	ft_compute_ray(cub, x)
-	ft_get_intersection(cub, &ray_hitpoint)
+
+	ft_compute_ray(cub, x);
+	ft_get_intersection(cub, &ray_hitpoint);
 	return (ray_hitpoint);
 }

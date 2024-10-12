@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:30:19 by passunca          #+#    #+#             */
-/*   Updated: 2024/10/12 08:27:07 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/12 09:20:23 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,3 @@ void	ft_pixel_put(t_img img, int x, int y, int color)
 	offset = (y * img.line_len) + (x * (img.bpp / 8));
 	*(unsigned *)(img.pix + offset) = color;
 }
-
