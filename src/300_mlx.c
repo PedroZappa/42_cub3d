@@ -16,7 +16,7 @@ static t_img	*ft_init_frame(void *mlx_ptr);
 
 /**
  * @brief Initialize the MLX structure
- * @return Pointer to the initialized MLX structure, or NULL if initialization fails
+ * @return Pointer to the initialized MLX structure, or NULL if init fails
  */
 t_mlx	*ft_mlx_init(void)
 {
@@ -35,7 +35,7 @@ t_mlx	*ft_mlx_init(void)
 /**
  * @brief Initialize a frame image
  * @param mlx_ptr Pointer to the MLX instance
- * @return Pointer to the initialized image structure, or NULL if initialization fails
+ * @return Pointer to the initialized image structure, or NULL if init fails
  */
 static t_img	*ft_init_frame(void *mlx_ptr)
 {

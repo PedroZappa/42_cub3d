@@ -49,7 +49,7 @@ int	ft_file_err(char *file)
  * @return FAILURE(Always returns FAILURE to indicate an error occurred)
  * @details
  * This function prints an error message specific to map parsing issues.
- * It provides context by mentioning that the error occurred during map parsing.
+ * It provides context by mentioning that the error occurred during map parsing
  */
 int	ft_parse_err(char *msg)
 {
@@ -59,7 +59,7 @@ int	ft_parse_err(char *msg)
 
 /**
  * @brief Print a map size error message
- * @param width Boolean indicating whether the error is related to width or height
+ * @param width Bool indicating whether the error is related to width or height
  * @param expected The expected size
  * @param got The actual size encountered
  * @return FAILURE(Always returns FAILURE to indicate an error occurred)

@@ -40,8 +40,8 @@ t_point	*ft_point_new(int x, int y)
  * @return SUCCESS(Pointer to the newly created copy of the t_point structure)
  * @return FAILURE(NULL if allocation fails)
  * @details
- * This function creates a new t_point structure with the same x and y coordinates
- * as the input point.
+ * This function creates a new t_point structure with the same x and y
+ * coordinates as the input point.
  */
 t_point	*ft_point_copy(t_point *point)
 {

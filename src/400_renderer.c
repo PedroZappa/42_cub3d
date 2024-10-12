@@ -96,7 +96,7 @@ static t_target	*ft_find_obstacle(t_cub *cub)
 }
 
 /**
- * @brief Computes the ray
+ * @brief Computes the ray using DDA
  * @param cub a pointer to a t_cub struct
  * @param x the x position of the ray
  * @return void

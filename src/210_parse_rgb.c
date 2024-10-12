@@ -38,7 +38,8 @@ int	ft_parsing_rgb(char *line, t_map *map)
  * @brief Check and parse RGB color values for a specific field
  * @param line The input line containing RGB color information
  * @param rgb Pointer to the RGB structure to store the parsed values
- * @param field String indicating which field is being parsed (e.g., "floor" or "ceiling")
+ * @param field String indicating which field is being parsed (e.g., "floor" 
+ * or "ceiling")
  * @return SUCCESS if parsing is successful, FAILURE otherwise
  */
 static int	ft_check_rgb(char *line, t_rgb *rgb, char *field)

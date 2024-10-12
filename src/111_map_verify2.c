@@ -17,7 +17,8 @@ static int	ft_flood_fill(t_map *map, t_map *aux_map, int x, int y);
 /**
  * @brief Verify the borders of the map using the flood fill algorithm
  * @param map Pointer to the map structure
- * @return SUCCESS if the map borders are valid, FAILURE if invalid or an error occurs
+ * @return SUCCESS if the map borders are valid, FAILURE if invalid or an 
+ * error occurs
  */
 int	ft_verify_borders(t_map *map)
 {
@@ -50,7 +51,8 @@ int	ft_verify_borders(t_map *map)
  * @param aux_map Pointer to an auxiliary map structure used for flood fill
  * @param x Starting x-coordinate for flood fill
  * @param y Starting y-coordinate for flood fill
- * @return SUCCESS if flood fill completes successfully, FAILURE if an error occurs
+ * @return SUCCESS(if flood fill completes successfully)
+ * @return FAILURE(if an error occurs)
  */
 static int	ft_flood_fill(t_map *map, t_map *aux_map, int x, int y)
 {

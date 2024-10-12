@@ -21,9 +21,9 @@ static int	ft_image_create(t_tex *tex, void *mlx_ptr, char *fname);
  * @return SUCCESS(0 if all images are loaded successfully)
  * @return FAILURE(Non-zero if any image fails to load)
  * @details
- * This function loads texture images for each direction (NORTH, SOUTH, WEST, EAST)
- * using the paths stored in the map structure. It uses the MLX library to create
- * image structures from XPM files.
+ * This function loads texture images for each direction (NORTH, SOUTH, WEST, 
+ * EAST) using the paths stored in the map structure. It uses the MLX library
+ * to create image structures from XPM files.
  */
 int	ft_load_images(t_mlx *mlx, t_map *map)
 {
@@ -53,7 +53,7 @@ int	ft_load_images(t_mlx *mlx, t_map *map)
  * @details
  * This function creates an MLX image structure from an XPM file. It allocates
  * memory for the image structure, loads the XPM file, and retrieves the image
- * data address. The resulting image is stored in the provided texture structure.
+ * data address. The resulting image is stored in the provided texture struct.
  */
 static int	ft_image_create(t_tex *tex, void *mlx_ptr, char *fname)
 {
