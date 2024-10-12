@@ -37,13 +37,15 @@ int	ft_raycast_init(t_cub *cub)
 
 static int	ft_alloc_ray(t_ray *ray)
 {
-	if (ft_alloc((void **)&ray->map, sizeof(t_coord)) == FAILURE
-		|| ft_alloc((void **)&ray->pos, sizeof(t_coord)) == FAILURE
-		|| ft_alloc((void **)&ray->vec_dir, sizeof(t_coord)) == FAILURE
-		|| ft_alloc((void **)&ray->delta_dist, sizeof(t_coord)) == FAILURE
-		|| ft_alloc((void **)&ray->small_delta, sizeof(t_coord)) == FAILURE
-		|| ft_alloc((void **)&ray->step, sizeof(t_coord)) == FAILURE
-		|| ft_alloc((void **)&ray->camera, sizeof(t_coord)) == FAILURE)
+	if (ft_alloc((void **)&ray->map, sizeof(t_point)) == FAILURE
+		|| ft_alloc((void **)&ray->pos, sizeof(t_vec)) == FAILURE
+		|| ft_alloc((void **)&ray->vec_dir, sizeof(t_vec)) == FAILURE
+		|| ft_alloc((void **)&ray->ray_dir, sizeof(t_vec)) == FAILURE
+		|| ft_alloc((void **)&ray->delta_dist, sizeof(t_vec)) == FAILURE
+		|| ft_alloc((void **)&ray->small_delta, sizeof(t_vec)) == FAILURE
+		|| ft_alloc((void **)&ray->step, sizeof(t_point)) == FAILURE
+		|| ft_alloc((void **)&ray->camera, sizeof(t_vec)) == FAILURE
+		|| ft_alloc((void **)&ray->camera_offset, sizeof(t_vec)) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }
