@@ -13,22 +13,27 @@
 #include "../inc/cub3d.h"
 #include <X11/X.h>
 
-t_mlx	*ft_mlx_init(int w, int h, char *title)
+t_mlx	*ft_mlx_init(void)
 {
 	t_mlx	*ret;
 
-	if (title == NULL)
-		return (NULL);
-	ret = malloc(sizeof(t_mlx));
+	ret = ft_calloc(1, sizeof(t_mlx));
 	if (ret == NULL)
 		return (NULL);
 	ret->ptr = mlx_init();
 	if (ret->ptr == NULL)
 		return (ft_vfree(ret), NULL);
-	ret->wdw = mlx_new_window(ret->ptr, w, h, title);
-	if (ret->wdw == NULL)
-		return (ft_vfree(ret->ptr), ft_vfree(ret), NULL);
 	return (ret);
+}
+
+int	ft_mlx_new_window(t_cub *cub, int w, int h, char *title)
+{
+	if (title == NULL || cub == NULL || cub->mlx == NULL)
+		return (FAILURE);
+	cub->mlx->wdw = mlx_new_window(cub->mlx->ptr, w, h, title);
+	if (cub->mlx->wdw == NULL)
+		return (FAILURE);
+	return (ft_mlx_set_hooks(cub));
 }
 
 int	ft_mlx_set_hooks(t_cub *cub)

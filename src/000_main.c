@@ -23,16 +23,17 @@ int	main(int argc, char **argv)
 	cub = (t_cub){NULL, NULL, NULL, NULL, NULL, 0};
 	if (ft_parse_map(&cub, argv[1]))
 		return (FAILURE);
-	if (ft_load_images(cub.mlx, cub.map))
-		return (ft_cub_free(&cub), ft_err(LOAD_ERR));
 	cub.ray = ft_ray_init(cub.map->start_pos,
 			cub.map->start_direction);
 	if (cub.ray == NULL)
 		return (ft_cub_free(&cub), ft_err(RAYCAST_ERR));
-	cub.mlx = ft_mlx_init(WINDOW_W, WINDOW_H, WINDOW_TITLE);
+	cub.mlx = ft_mlx_init();
 	if (cub.mlx == NULL)
 		return (ft_cub_free(&cub), ft_err(MLX_ERR));
-	if (ft_mlx_set_hooks(&cub))
+	if (ft_load_images(cub.mlx, cub.map))
+		return (ft_cub_free(&cub), ft_err(LOAD_ERR));
+	if (ft_mlx_new_window(&cub, WINDOW_W,
+			WINDOW_H, WINDOW_TITLE))
 		return (ft_cub_free(&cub), ft_err(MLX_ERR));
 	mlx_loop(cub.mlx->ptr);
 	ft_cub_free(&cub);

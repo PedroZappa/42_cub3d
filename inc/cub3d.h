@@ -42,7 +42,8 @@ Usage: ./cub3D <path to map file .cub>"
 # define MLX_HOOK_ERR 	"Couldn't set mlx's hooks"
 # define MEM_ERR		"Couldn't allocate memory"
 # define RAYCAST_ERR	"Couldn't initilaize raycaster"
-# define LOAD_ERR		"Couldn't load the textures"
+# define LOAD_ERR		"Couldn't load the textures\n\
+Note that MLX only supports files in xpm format"
 
 # define PARSE_COLORS	"Invalid colors for ceiling and/or floor"
 # define PARSE_DIR		"Invalid starting point and direction"
@@ -233,9 +234,6 @@ t_map		*ft_map_verify(t_map *map);
 /** @file 111_map_verify.c */
 int			ft_verify_borders(t_map *map);
 
-/** @file 120_map_img_loader.c */
-int			ft_load_images(t_mlx *mlx, t_map *map);
-
 /** @file 200_parser.c */
 int			ft_parse_map(t_cub *cub, char *file);
 
@@ -250,9 +248,10 @@ t_bool		ft_is_map_line(char *line);
 int			ft_parse_headers(char *line, t_map *map);
 
 /** @file 300_mlx.c */
-t_mlx		*ft_mlx_init(int w, int h, char *title);
+t_mlx		*ft_mlx_init(void);
 void		ft_mlx_free(t_mlx *mlx);
 int			ft_mlx_set_hooks(t_cub *cub);
+int			ft_mlx_new_window(t_cub *cub, int w, int h, char *title);
 
 /** @file 310_mlx_hooks.c */
 int			ft_hook_quit(t_cub *cub);
@@ -292,6 +291,10 @@ void		ft_vec_norm(t_vec *vec);
 /** @file 730_raycast.c */
 t_ray		*ft_ray_init(t_point *start_pos, t_dir start_dir);
 void		ft_ray_free(t_ray *ray);
+
+/** @file 740_image.c */
+int			ft_load_images(t_mlx *mlx, t_map *map);
+void		ft_image_destroy(t_img *img, void *mlx_ptr);
 
 /** @file 800_errors.c */
 int			ft_err(char	*msg);
