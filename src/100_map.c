@@ -24,10 +24,8 @@ t_map	*ft_map_init(void)
 	ret->paths = ft_calloc(5, sizeof(char *));
 	if (ret->paths == NULL)
 		return (ft_vfree(ret), NULL);
-	ret->paths[0] = NULL;
-	ret->imgs = ft_calloc(5, sizeof(void *));
-	if (ret->imgs == NULL)
-		return (ft_vfree(ret->paths), ft_vfree(ret), NULL);
+	ft_bzero(ret->paths, 5);
+	ft_bzero(ret->tex, 4);
 	ret->map = NULL;
 	ret->start_pos = NULL;
 	ret->start_direction = INVALID;
@@ -45,10 +43,10 @@ void	ft_map_destroy_imgs(t_map *map, t_mlx *mlx)
 	i = NORTH;
 	while (i <= EAST)
 	{
-		if (map->imgs[i])
+		if (map->tex[i].img)
 		{
-			mlx_destroy_image(mlx->ptr, map->imgs[i]);
-			map->imgs[i] = NULL;
+			mlx_destroy_image(mlx->ptr, map->tex[i].img);
+			map->tex[i].img = NULL;
 		}
 		++i;
 	}
@@ -60,7 +58,6 @@ void	ft_map_free(t_map *map)
 		return ;
 	ft_free_arr(map->map);
 	ft_free_arr(map->paths);
-	ft_vfree_arr(map->imgs);
 	ft_vfree(map->start_pos);
 	ft_bzero(map, sizeof(t_map));
 	free(map);

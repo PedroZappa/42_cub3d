@@ -23,6 +23,8 @@ int	main(int argc, char **argv)
 	cub = (t_cub){NULL, NULL, NULL, NULL, NULL, 0};
 	if (ft_parse_map(&cub, argv[1]))
 		return (FAILURE);
+	if (ft_load_images(cub.mlx, cub.map))
+		return (ft_cub_free(&cub), ft_err(LOAD_ERR));
 	cub.ray = ft_ray_init(cub.map->start_pos,
 			cub.map->start_direction);
 	if (cub.ray == NULL)
@@ -44,6 +46,7 @@ void	ft_cub_free(t_cub *cub)
 	ft_vfree(cub->current_pos);
 	ft_vfree(cub->orientation);
 	ft_ray_free(cub->ray);
+	ft_map_destroy_imgs(cub->map, cub->mlx);
 	ft_map_free(cub->map);
 	ft_mlx_free(cub->mlx);
 	ft_bzero(cub, sizeof(cub));

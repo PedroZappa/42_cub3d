@@ -42,6 +42,7 @@ Usage: ./cub3D <path to map file .cub>"
 # define MLX_HOOK_ERR 	"Couldn't set mlx's hooks"
 # define MEM_ERR		"Couldn't allocate memory"
 # define RAYCAST_ERR	"Couldn't initilaize raycaster"
+# define LOAD_ERR		"Couldn't load the textures"
 
 # define PARSE_COLORS	"Invalid colors for ceiling and/or floor"
 # define PARSE_DIR		"Invalid starting point and direction"
@@ -186,7 +187,6 @@ typedef struct s_ray
 typedef struct s_map
 {
 	char		**paths;
-	void		**imgs;
 	t_tex		tex[4];
 
 	t_rgb		floor_color;
@@ -232,6 +232,9 @@ t_map		*ft_map_verify(t_map *map);
 
 /** @file 111_map_verify.c */
 int			ft_verify_borders(t_map *map);
+
+/** @file 120_map_img_loader.c */
+int			ft_load_images(t_mlx *mlx, t_map *map);
 
 /** @file 200_parser.c */
 int			ft_parse_map(t_cub *cub, char *file);
