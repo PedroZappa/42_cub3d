@@ -70,7 +70,7 @@ static t_target	*ft_find_obstacle(t_cub *cub)
 	x = -1;
 	while (++x < WINDOW_W)
 		target[x] = ft_raycast(cub, x);
-	cub->raycast->center_raylen = target[WINDOW_W / 2].dist;
+	cub->ray->center_raylen = target[WINDOW_W / 2].dist;
 	return (target);
 }
 

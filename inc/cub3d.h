@@ -20,6 +20,9 @@
 # include <stdlib.h> // exit, free, malloc
 # include <string.h> // strerror
 # include <sys/time.h> // gettimeofday
+# include <X11/X.h> // MLX library for Event codes
+# include <X11/keysym.h> // Keysym for event handling
+// # include <float.h> // DBL_MAX
 
 # include "../lib/mlx/mlx.h"
 
@@ -83,6 +86,10 @@ has separated sections"
 // Camera Settings
 
 # define FOV			60.0
+
+// Constants (aka, Them Magick Numberz)
+
+# define DBL_MAX 1.7976931348623158e+308
 
 // Enums
 
@@ -165,7 +172,7 @@ typedef struct s_target
 	int		wall_top;
 }			t_target;
 
-typedef struct s_raycast
+typedef struct s_ray
 {
 	t_point		*map;
 	t_vec		*pos;
@@ -173,13 +180,13 @@ typedef struct s_raycast
 	t_vec		*ray_dir;
 
 	t_vec		*delta_dist;
-	t_vec		*small_delta_dist;
+	t_vec		*small_delta;
 	t_point		*step;
 
 	t_vec		*camera;
 	t_vec		*camera_offset;
 	double		center_raylen;
-}				t_raycast;
+}				t_ray;
 
 // paths/imgs : NO, SO, WE, EA
 typedef struct s_map
@@ -202,7 +209,7 @@ typedef struct s_cub
 	t_mlx		*mlx;
 
 	t_map		*map;
-	t_raycast	*raycast;
+	t_ray		*ray;
 	t_vec		*current_pos;
 	t_vec		*orientation;
 

@@ -16,38 +16,38 @@ void	ft_camera_init(t_cub *cub);
 
 int	ft_raycast_init(t_cub *cub)
 {
-	cub->raycast = ft_calloc(1, sizeof(t_raycast));
-	if (cub->raycast == NULL)
+	cub->ray = ft_calloc(1, sizeof(t_ray));
+	if (cub->ray == NULL)
 		return (FAILURE);
-	cub->raycast->map->x = cub->map->start_pos->x;
-	cub->raycast->map->y = cub->map->start_pos->y;
-	cub->raycast->pos->x = cub->raycast->map->x;
-	cub->raycast->pos->y = cub->raycast->map->y;
-	cub->raycast->vec_dir->x = 0;
-	cub->raycast->vec_dir->y = 0;
+	cub->ray->map->x = cub->map->start_pos->x;
+	cub->ray->map->y = cub->map->start_pos->y;
+	cub->ray->pos->x = cub->ray->map->x;
+	cub->ray->pos->y = cub->ray->map->y;
+	cub->ray->vec_dir->x = 0;
+	cub->ray->vec_dir->y = 0;
 	if (cub->map->start_direction == EAST)
-		cub->raycast->vec_dir->x = 1;
+		cub->ray->vec_dir->x = 1;
 	else if (cub->map->start_direction == SOUTH)
-		cub->raycast->vec_dir->y = 1;
+		cub->ray->vec_dir->y = 1;
 	else if (cub->map->start_direction == WEST)
-		cub->raycast->vec_dir->x = -1;
+		cub->ray->vec_dir->x = -1;
 	if (cub->map->start_direction == NORTH)
-		cub->raycast->vec_dir->y = -1;
-	cub->raycast->delta_dist->x = 0;
-	cub->raycast->delta_dist->y = 0;
-	cub->raycast->small_delta_dist->x = 0;
-	cub->raycast->small_delta_dist->y = 0;
-	cub->raycast->step->x = 0;
-	cub->raycast->step->y = 0;
+		cub->ray->vec_dir->y = -1;
+	cub->ray->delta_dist->x = 0;
+	cub->ray->delta_dist->y = 0;
+	cub->ray->small_delta = 0;
+	cub->ray->small_delta = 0;
+	cub->ray->step->x = 0;
+	cub->ray->step->y = 0;
 	ft_camera_init(cub);
 	return (SUCCESS);
 }
 
 void	ft_camera_init(t_cub *cub)
 {
-	cub->raycast->camera->x = -cub->raycast->vec_dir->y;
-	cub->raycast->camera->y = cub->raycast->vec_dir->x;
-	ft_norm_vector(cub->raycast->camera);
-	cub->raycast->camera->x *= FOV;
-	cub->raycast->camera->y *= FOV;
+	cub->ray->camera->x = -cub->ray->vec_dir->y;
+	cub->ray->camera->y = cub->ray->vec_dir->x;
+	ft_norm_vector(cub->ray->camera);
+	cub->ray->camera->x *= FOV;
+	cub->ray->camera->y *= FOV;
 }
