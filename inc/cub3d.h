@@ -160,7 +160,6 @@ typedef struct s_target
 	double	dist;
 	double	hitpoint;
 	double	tile_offset;
-	double	tex;
 	int		tex_x;
 	int		wall_height;
 	int		wall_bottom;
