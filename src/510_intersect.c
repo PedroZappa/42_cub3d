@@ -13,7 +13,6 @@
 #include "../inc/cub3d.h"
 
 static void	ft_check_wall_dir(int step, t_target *target, t_coord side);
-static bool	ft_gottahit(t_point *point, t_cub *cub);
 static void	ft_get_wall_height(t_ray *ray, t_target *target);
 static void	ft_get_tile_offset(t_ray ray, t_target *target, t_tex tex);
 
@@ -33,7 +32,7 @@ void	ft_get_intersection(t_cub *cub, t_target *target)
 			cub->ray->map->y += cub->ray->step->y;
 			ft_check_wall_dir(cub->ray->step->y, target, Y);
 		}
-		if (ft_gottahit(cub->ray->map, cub))
+		if (ft_map_at(cub->map, cub->ray->map) != '0')
 			break ;
 	}
 	ft_get_wall_height(cub->ray, target);
@@ -56,11 +55,6 @@ static void	ft_check_wall_dir(int step, t_target *target, t_coord side)
 		else if (step == -1)
 			target->wall_dir = SOUTH;
 	}
-}
-
-static bool	ft_gottahit(t_point *point, t_cub *cub)
-{
-	return (ft_map_at(cub->map, point) == '1');
 }
 
 static void	ft_get_wall_height(t_ray *ray, t_target *target)

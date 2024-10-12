@@ -32,8 +32,7 @@ int	main(int argc, char **argv)
 		return (ft_cub_free(&cub), ft_err(MLX_ERR));
 	if (ft_load_images(cub.mlx, cub.map))
 		return (ft_cub_free(&cub), ft_err(LOAD_ERR));
-	if (ft_mlx_new_window(&cub, WINDOW_W,
-			WINDOW_H, WINDOW_TITLE))
+	if (ft_mlx_new_window(&cub))
 		return (ft_cub_free(&cub), ft_err(MLX_ERR));
 	mlx_loop(cub.mlx->ptr);
 	ft_cub_free(&cub);

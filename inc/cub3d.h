@@ -151,7 +151,7 @@ typedef struct s_mlx
 {
 	void	*ptr;
 	void	*wdw;
-	t_img	*img;
+	t_img	*frame;
 }			t_mlx;
 
 typedef struct s_target
@@ -251,7 +251,7 @@ int			ft_parse_headers(char *line, t_map *map);
 t_mlx		*ft_mlx_init(void);
 void		ft_mlx_free(t_mlx *mlx);
 int			ft_mlx_set_hooks(t_cub *cub);
-int			ft_mlx_new_window(t_cub *cub, int w, int h, char *title);
+int			ft_mlx_new_window(t_cub *cub);
 
 /** @file 310_mlx_hooks.c */
 int			ft_hook_quit(t_cub *cub);
@@ -262,7 +262,7 @@ int			ft_loop_hook(t_cub *cub);
 void		ft_render(t_cub *cub);
 
 /** @file 410_pixel.c */
-void		ft_pixel_put(t_img img, int x, int y, int color);
+void		ft_pixel_put(t_img *img, int x, int y, int color);
 
 /** @file 420_ui.c */
 void		ft_render_fps(t_cub *cub);

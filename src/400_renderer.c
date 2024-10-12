@@ -31,7 +31,8 @@ static int	ft_render_image(t_cub *cub)
 		return (FAILURE);
 	// TODO: Execute movement
 	ft_draw_image(cub);
-	mlx_put_image_to_window(cub->mlx->ptr, cub->mlx->wdw, cub->mlx->img, 0, 0);
+	mlx_put_image_to_window(cub->mlx->ptr, cub->mlx->wdw,
+		cub->mlx->frame, 0, 0);
 	return (SUCCESS);
 }
 
@@ -47,12 +48,12 @@ static void	ft_draw_image(t_cub *cub)
 	{
 		height = WINDOW_H;
 		while (height > target[x].wall_top)
-			ft_pixel_put(*cub->mlx->img, x, height--, \
+			ft_pixel_put(cub->mlx->frame, x, height--, \
 				ft_rgb_to_int(cub->map->floor_color));
 		// TODO : Draw Wall Texture
 		height = target[x].wall_bottom;
 		while (height > 0)
-			ft_pixel_put(*cub->mlx->img, x, height--, \
+			ft_pixel_put(cub->mlx->frame, x, height--, \
 				ft_rgb_to_int(cub->map->ceiling_color));
 		++x;
 	}

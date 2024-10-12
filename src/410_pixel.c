@@ -30,10 +30,12 @@
  *		Note: This formula assumes that the image data is stored in a linear
  *		block of memory, row by row, without any compression or interlacing.
  *	*/
-void	ft_pixel_put(t_img img, int x, int y, int color)
+void	ft_pixel_put(t_img *img, int x, int y, int color)
 {
 	int		offset;
 
-	offset = (y * img.line_len) + (x * (img.bpp / 8));
-	*(unsigned *)(img.pix + offset) = color;
+	if (img == NULL)
+		return ;
+	offset = (y * img->line_len) + (x * (img->bpp / 8));
+	*(int *)(img->pix + offset) = color;
 }
