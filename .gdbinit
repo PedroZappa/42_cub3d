@@ -137,7 +137,7 @@ end
 
 # main
 break ft_parse_map
-run ./maps/invalid/path-missing.cub
+run ./maps/subject.cub
 fs cmd
 rfr
 
