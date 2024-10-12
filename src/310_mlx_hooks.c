@@ -14,7 +14,7 @@
 
 int	ft_hook_kb(int keycode, t_cub *cub)
 {
-	if (keycode == X11_ESC || keycode == 'q')
+	if (keycode == XK_Escape || keycode == 'q')
 	{
 		ft_cub_free(cub);
 		exit(SUCCESS);

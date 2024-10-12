@@ -31,26 +31,6 @@
 # include "../lib/libft/ft_fprintf/ft_fprintf.h"
 # include "../lib/libft/ft_printf/ft_printf.h"
 
-// X11 Defines
-
-# define X11_EVENT_CLIENT_MSG	33
-# define X11_EVENT_MASK_CLOSE 	131072L // == (1L << 17)
-
-# define X11_ESC				0xff1b
-# define X11_UP					0xff52
-# define X11_DOWN				0xff54
-# define X11_LEFT				0xff51
-# define X11_RIGHT				0xff53
-
-// Keys for minilibx
-# define KEY_ESC			65307
-# define KEY_W				119
-# define KEY_A				97
-# define KEY_S				115
-# define KEY_D				100
-# define KEY_LEFT_ARROW		65361
-# define KEY_RIGHT_ARROW	65363
-# define ESCAPE				65307
 
 // Errors
 

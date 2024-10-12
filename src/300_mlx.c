@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+#include <X11/X.h>
 
 t_mlx	*ft_mlx_init(int w, int h, char *title)
 {
@@ -35,8 +36,8 @@ int	ft_mlx_set_hooks(t_cub *cub)
 	if (cub == NULL || cub->mlx == NULL)
 		return (FAILURE);
 	mlx_key_hook(cub->mlx->wdw, ft_hook_kb, cub);
-	mlx_hook(cub->mlx->wdw, X11_EVENT_CLIENT_MSG,
-		X11_EVENT_MASK_CLOSE, ft_hook_quit, cub);
+	mlx_hook(cub->mlx->wdw, ClientMessage,
+		StructureNotifyMask, ft_hook_quit, cub);
 	cub->start_time = ft_timestamp();
 	mlx_loop_hook(cub->mlx->ptr, ft_loop_hook, cub);
 	return (SUCCESS);
