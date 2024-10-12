@@ -133,10 +133,36 @@ define check_header
 	display map->ceiling_color
 end
 
+# 500_raycaster.c
+define computer_ray
+  display cub
+  display *cub->ray
+end
+
+define get_small_delta
+  display cub
+  display *cub->ray
+end
+
+define get_small_delta
+  display cub
+  display *cub->ray
+end
+
+define get_delta
+  display cub
+  display *cub->ray
+end
+
 ### Go GDB Go! I Choose YOU! 
 
 # main
-break ft_parse_map
+# break main
+# run ./maps/subject.cub
+# fs cmd
+# rfr
+
+break ft_get_small_delta
 run ./maps/subject.cub
 fs cmd
 rfr

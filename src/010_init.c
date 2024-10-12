@@ -27,8 +27,8 @@ int	ft_raycast_init(t_cub *cub)
 	ft_init_ray_pos_dir(cub->ray, cub->map);
 	cub->ray->delta_dist->x = 0;
 	cub->ray->delta_dist->y = 0;
-	cub->ray->small_delta = 0;
-	cub->ray->small_delta = 0;
+	cub->ray->small_delta->x = 0;
+	cub->ray->small_delta->y = 0;
 	cub->ray->step->x = 0;
 	cub->ray->step->y = 0;
 	ft_camera_init(cub);
