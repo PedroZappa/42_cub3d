@@ -17,6 +17,11 @@ static void		ft_draw_image(t_cub *cub);
 static t_target	*ft_find_obstacle(t_cub *cub);
 static t_target	ft_raycast(t_cub *cub, int x);
 
+/**
+ * @brief Render the image
+ * @param cub a pointer to a t_cub struct
+ * @return void
+*/
 void	ft_render(t_cub *cub)
 {
 	if (cub == NULL || cub->mlx == NULL)
@@ -25,6 +30,10 @@ void	ft_render(t_cub *cub)
 	ft_render_fps(cub);
 }
 
+/**
+ * @brief Draw the image & put it on the window
+ * @param cub a pointer to a t_cub struct
+*/
 static int	ft_render_image(t_cub *cub)
 {
 	if (cub == NULL || cub->mlx == NULL)
@@ -36,6 +45,10 @@ static int	ft_render_image(t_cub *cub)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Find the obstacle and draw the image accordingly
+ * @param cub a pointer to a t_cub struct
+*/
 static void	ft_draw_image(t_cub *cub)
 {
 	t_target	*target;
@@ -60,6 +73,13 @@ static void	ft_draw_image(t_cub *cub)
 	free(target);
 }
 
+/**
+ * @brief Detect the nearest obstacle
+ * @param cub pointer to a t_cub struct
+ * @malloc targets along the x-axis
+ * @return SUCCESS(a pointer to a t_target struct)
+ * @return FAILURE(NULL)
+*/
 static t_target	*ft_find_obstacle(t_cub *cub)
 {
 	t_target	*target;
@@ -75,11 +95,17 @@ static t_target	*ft_find_obstacle(t_cub *cub)
 	return (target);
 }
 
+/**
+ * @brief Computes the ray
+ * @param cub a pointer to a t_cub struct
+ * @param x the x position of the ray
+ * @return void
+*/
 static t_target	ft_raycast(t_cub *cub, int x)
 {
 	t_target	ray_hitpoint;
 
-	ft_compute_ray(cub, x);
+	ft_get_ray(cub, x);
 	ft_get_intersection(cub, &ray_hitpoint);
 	return (ray_hitpoint);
 }

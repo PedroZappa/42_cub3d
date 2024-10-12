@@ -17,6 +17,13 @@ static t_map	*ft_measure_map(int fd, t_map *map);
 static t_map	*ft_parse_loop(int fd, t_map *map);
 static int		ft_parse_line(char *line, t_map *map, int *mode);
 
+/**
+ * @brief Parse the map file and initialize Cub3d data structure
+ * @param cub Pointer to a t_cub struct
+ * @param file Path to the map file
+ * @return SUCCESS(if parsing was successful)
+ * @return FAILURE(otherwise)
+ */
 int	ft_parse_map(t_cub *cub, char *file)
 {
 	t_map	*map;
@@ -41,6 +48,13 @@ int	ft_parse_map(t_cub *cub, char *file)
 	return (close(fd), SUCCESS);
 }
 
+/**
+ * @brief Initialize the map parsing process
+ * @param fd Pointer to the file descriptor
+ * @param file Path to the map file
+ * @return SUCCES(Pointer to the initialized t_map struct)
+ * @return FAILURE(NULL)
+ */
 static t_map	*ft_parse_init(int *fd, char *file)
 {
 	t_map	*map;
@@ -59,6 +73,13 @@ static t_map	*ft_parse_init(int *fd, char *file)
 	return (map);
 }
 
+/**
+ * @brief Main loop for parsing the map file
+ * @param fd File descriptor of the opened map file
+ * @param map Pointer to the t_map structure
+ * @return SUCCESS(Updated map structure)
+ * @return FAILURE(NULL)
+ */
 static t_map	*ft_parse_loop(int fd, t_map *map)
 {
 	char		*line;
@@ -82,6 +103,14 @@ static t_map	*ft_parse_loop(int fd, t_map *map)
 	return (ft_free(line), map);
 }
 
+/**
+ * @brief Parse a single line from the map file
+ * @param line The line to be parsed
+ * @param map Pointer to the map structure
+ * @param mode Pointer to the parsing mode (0 for headers, 1 for map)
+ * @return SUCCESS(0, if parsing was successful)
+ * @return FAILURE(1)
+ */
 static int	ft_parse_line(char *line, t_map *map, int *mode)
 {
 	if (mode == NULL)
@@ -97,6 +126,13 @@ static int	ft_parse_line(char *line, t_map *map, int *mode)
 	return (ft_parse_headers(line, map));
 }
 
+/**
+ * @brief Measure the width and height of the map
+ * @param fd File descriptor of the opened map file
+ * @param map Pointer to the t_map structure
+ * @return SUCCESS(Updated map structure)
+ * @return FAILURE(NULL)
+ */
 static t_map	*ft_measure_map(int fd, t_map *map)
 {
 	char	*line;

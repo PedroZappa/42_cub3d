@@ -30,6 +30,13 @@
  *		Note: This formula assumes that the image data is stored in a linear
  *		block of memory, row by row, without any compression or interlacing.
  *	*/
+/**
+ * @brief Puts a pixel to the display
+ * @param img a pointer to a t_img struct
+ * @param x the x coordinate of the pixel
+ * @param y the y coordinate of the pixel
+ * @param color the color of the pixel
+*/
 void	ft_pixel_put(t_img *img, int x, int y, int color)
 {
 	int		offset;

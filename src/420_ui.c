@@ -12,6 +12,11 @@
 
 #include "../inc/cub3d.h"
 
+/**
+ * @brief Calculate and draw the FPS counter
+ * @param cub a pointer to a t_cub struct
+ * @details
+*/
 void	ft_render_fps(t_cub *cub)
 {
 	long			curr_time;

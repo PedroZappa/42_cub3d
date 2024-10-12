@@ -12,6 +12,16 @@
 
 #include "../inc/cub3d.h"
 
+/**
+ * @brief Create a new t_vec structure
+ * @param x The x-component of the vector
+ * @param y The y-component of the vector
+ * @return SUCCESS(Pointer to the newly created t_vec structure)
+ * @return FAILURE(NULL if allocation fails)
+ * @details
+ * This function allocates memory for a new t_vec structure and initializes
+ * it with the given x and y components.
+ */
 t_vec	*ft_vec_new(double x, double y)
 {
 	t_vec	*ret;
@@ -24,6 +34,15 @@ t_vec	*ft_vec_new(double x, double y)
 	return (ret);
 }
 
+/**
+ * @brief Create a copy of a t_vec structure
+ * @param point Pointer to the t_vec structure to be copied
+ * @return SUCCESS(Pointer to the newly created copy of the t_vec structure)
+ * @return FAILURE(NULL if allocation fails)
+ * @details
+ * This function creates a new t_vec structure with the same x and y 
+ * components as the input vector.
+ */
 t_vec	*ft_vec_copy(t_vec *point)
 {
 	if (point == NULL)
@@ -31,6 +50,16 @@ t_vec	*ft_vec_copy(t_vec *point)
 	return (ft_vec_new(point->x, point->y));
 }
 
+/**
+ * @brief Create a unit vector based on a given direction
+ * @param dir The direction enum value (NORTH, SOUTH, WEST, or EAST)
+ * @return SUCCESS(Pointer to a new t_vec structure representing the unit 
+ * vector in the given direction)
+ * @retuirn FAILURE(NULL for invalid input)
+ * @details
+ * This function creates a unit vector pointing in the specified
+ * cardinal direction.
+ */
 t_vec	*ft_vec_dir(t_dir dir)
 {
 	if (dir == NORTH)
@@ -44,6 +73,13 @@ t_vec	*ft_vec_dir(t_dir dir)
 	return (NULL);
 }
 
+/**
+ * @brief Normalize a vector to unit length
+ * @param vec Pointer to the t_vec structure to be normalized
+ * @details
+ * Modifies the input vec to have a length of 1 while preserving its direction.
+ * If the vector has 0 length, no changes are made to avoid division by zero.
+ */
 void	ft_vec_norm(t_vec *vec)
 {
 	double	len;

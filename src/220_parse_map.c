@@ -15,6 +15,12 @@
 static void	ft_norm_line(t_map *map, char *line, int line_n);
 static void	ft_parse_player(t_map *map, int line_n);
 
+/**
+ * @brief Parse a line of the map
+ * @param line The input line to parse
+ * @param map Pointer to the map structure
+ * @return SUCCESS if parsing is successful, FAILURE otherwise
+ */
 int	ft_parsing_map(char *line, t_map *map)
 {
 	static int	line_n = 0;
@@ -29,6 +35,12 @@ int	ft_parsing_map(char *line, t_map *map)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Normalize a line of the map by padding it to the correct width
+ * @param map Pointer to the map structure
+ * @param line The input line to normalize
+ * @param line_n The line number in the map
+ */
 static void	ft_norm_line(t_map *map, char *line, int line_n)
 {
 	char		*padded_line;
@@ -55,6 +67,11 @@ static void	ft_norm_line(t_map *map, char *line, int line_n)
 		return ;
 }
 
+/**
+ * @brief Parse the player's starting position and direction from the map
+ * @param map Pointer to the map structure
+ * @param line_n The current line number being parsed
+ */
 static void	ft_parse_player(t_map *map, int line_n)
 {
 	const char	*g_dirs[] = {"NO", "SO", "WE", "EA"};
@@ -82,6 +99,11 @@ static void	ft_parse_player(t_map *map, int line_n)
 	}
 }
 
+/**
+ * @brief Check if a line is part of the map (contains '0' or '1')
+ * @param line The input line to check
+ * @return TRUE if the line is part of the map, FALSE otherwise
+ */
 t_bool	ft_is_map_line(char *line)
 {
 	int	i;

@@ -11,10 +11,13 @@
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-#include <X11/X.h>
 
 static t_img	*ft_init_frame(void *mlx_ptr);
 
+/**
+ * @brief Initialize the MLX structure
+ * @return Pointer to the initialized MLX structure, or NULL if initialization fails
+ */
 t_mlx	*ft_mlx_init(void)
 {
 	t_mlx	*ret;
@@ -29,6 +32,11 @@ t_mlx	*ft_mlx_init(void)
 	return (ret);
 }
 
+/**
+ * @brief Initialize a frame image
+ * @param mlx_ptr Pointer to the MLX instance
+ * @return Pointer to the initialized image structure, or NULL if initialization fails
+ */
 static t_img	*ft_init_frame(void *mlx_ptr)
 {
 	t_img	*ret;
@@ -47,6 +55,11 @@ static t_img	*ft_init_frame(void *mlx_ptr)
 	return (ret);
 }
 
+/**
+ * @brief Create a new MLX window
+ * @param cub Pointer to the main game structure
+ * @return SUCCESS if window creation is successful, FAILURE otherwise
+ */
 int	ft_mlx_new_window(t_cub *cub)
 {
 	if (cub == NULL || cub->mlx == NULL)
@@ -58,6 +71,11 @@ int	ft_mlx_new_window(t_cub *cub)
 	return (ft_mlx_set_hooks(cub));
 }
 
+/**
+ * @brief Set up MLX hooks for keyboard, window closing, and game loop
+ * @param cub Pointer to the main game structure
+ * @return SUCCESS if hooks are set successfully, FAILURE otherwise
+ */
 int	ft_mlx_set_hooks(t_cub *cub)
 {
 	if (cub == NULL || cub->mlx == NULL)
@@ -70,6 +88,10 @@ int	ft_mlx_set_hooks(t_cub *cub)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Free all resources associated with the MLX structure
+ * @param mlx Pointer to the MLX structure to be freed
+ */
 void	ft_mlx_free(t_mlx *mlx)
 {
 	if (mlx == NULL)

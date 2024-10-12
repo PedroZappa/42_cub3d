@@ -12,6 +12,11 @@
 
 #include "../inc/cub3d.h"
 
+/**
+ * @brief Initialize the t_map struct
+ * @malloc Memory for the t_map struct
+ * @return a pointer to a initialized t_map struct
+*/
 t_map	*ft_map_init(void)
 {
 	t_map	*ret;
@@ -34,6 +39,12 @@ t_map	*ft_map_init(void)
 	return (ret);
 }
 
+/**
+ * @brief Deallocate all rendered images
+ * @param map a pointer to a t_map struct
+ * @param mlx a pointer to a t_mlx struct
+ * @return void
+*/
 void	ft_map_destroy_imgs(t_map *map, t_mlx *mlx)
 {
 	int	i;
@@ -50,6 +61,10 @@ void	ft_map_destroy_imgs(t_map *map, t_mlx *mlx)
 	}
 }
 
+/**
+ * @brief Deallocate and erase t_map struct
+ * @param map a pointer to a t_map struct
+*/
 void	ft_map_free(t_map *map)
 {
 	if (map == NULL)

@@ -15,7 +15,16 @@
 static void	ft_get_small_delta(t_cub *cub);
 static void	ft_get_delta(t_cub *cub);
 
-void	ft_compute_ray(t_cub *cub, int x)
+/**
+ * @brief Setup the direction of a ray
+ * @param cub a point to a t_cub struct
+ * @param x the x coordinate of thw image
+ * @details 
+ * - Normalize curr ray to range of -1 to 1
+ * - Compute ray direction based on current ray
+ * - DDA (Digital Differential Analyzer) algorithm calculations
+**/
+void	ft_get_ray(t_cub *cub, int x)
 {
 	double	curr_ray;
 
@@ -28,6 +37,10 @@ void	ft_compute_ray(t_cub *cub, int x)
 	ft_get_delta(cub);
 }
 
+/**
+ * @brief Computes the step & distance to next grid boundary
+ * @param cub a point to a t_cub struct
+ **/
 static void	ft_get_small_delta(t_cub *cub)
 {
 	if (cub->ray->ray_dir->x >= 0)
@@ -56,6 +69,11 @@ static void	ft_get_small_delta(t_cub *cub)
 	}
 }
 
+/**
+ * @brief Computes the distance to next grid boundary
+ * (avoiding division by 0)
+ * @param cub a point to a t_cub struct
+ **/
 static void	ft_get_delta(t_cub *cub)
 {
 	if (cub->ray->ray_dir->x == 0)

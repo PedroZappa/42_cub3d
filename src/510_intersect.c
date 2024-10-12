@@ -16,6 +16,15 @@ static void	ft_check_wall_dir(int step, t_target *target, t_coord side);
 static void	ft_get_wall_height(t_ray *ray, t_target *target);
 static void	ft_get_tile_offset(t_ray ray, t_target *target, t_tex tex);
 
+/**
+ * @brief DDA (Digital Differential Analyzer)
+ * @param cub a pointer to a t_cub struct
+ * @param target Current camera target
+ * @details
+ * - Compute the intersection between the ray and the map
+ * - Compute the wall height
+ * - Compute the tile offset
+**/
 void	ft_get_intersection(t_cub *cub, t_target *target)
 {
 	while (true)
@@ -39,6 +48,12 @@ void	ft_get_intersection(t_cub *cub, t_target *target)
 	ft_get_tile_offset(*cub->ray, target, cub->map->tex[target->wall_dir]);
 }
 
+/**
+ * @brief Set whioh side of a wall the ray has hit
+ * @param step From 1 or -1
+ * @param target Current camera target
+ * @param side X or Y
+**/
 static void	ft_check_wall_dir(int step, t_target *target, t_coord side)
 {
 	if (side == X)
@@ -57,6 +72,15 @@ static void	ft_check_wall_dir(int step, t_target *target, t_coord side)
 	}
 }
 
+/**
+ * @brief Computes the wall height
+ * @param ray A pointer to a t_ray struct
+ * @param target Current camera target
+ * @details
+ * - Get perpendicular distance to wall
+ * - Compute the wall height
+ * - Get top and bottom coordinates of the wall
+**/
 static void	ft_get_wall_height(t_ray *ray, t_target *target)
 {
 	if ((target->wall_dir == NORTH) || (target->wall_dir == SOUTH))
@@ -75,6 +99,16 @@ static void	ft_get_wall_height(t_ray *ray, t_target *target)
 		target->wall_bottom = 0;
 }
 
+/**
+ * @brief Compute the horizxontal offset for texture mapping
+ * @param ray A pointer to a t_ray struct
+ * @param target Current camera target
+ * @param tex The texture to be mapped
+ * @details
+ * - Get ray hitpoint on the wall
+ * - Compute the offset within the wall tile for texture mapping
+ * - Adjust the texture's x coordinate for correct texture orientation
+**/
 static void	ft_get_tile_offset(t_ray ray, t_target *target, t_tex tex)
 {
 	if ((target->wall_dir == NORTH) || (target->wall_dir == SOUTH))

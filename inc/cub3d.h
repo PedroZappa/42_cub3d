@@ -168,6 +168,18 @@ typedef struct s_target
 	int		tex_x;
 }			t_target;
 
+/**
+ * @param map Ray coordinates in the map
+ * @param pos Camera's position in the map
+ * @param vec_dir Camera's directional vector
+ * @param ray_dir Ray's directional vector
+ * @param delta_dist Distance to the next grid boundary
+ * @param small_delta Initial distance to the first grid boundary
+ * @param step Direction to step in the grid (-1 or 1)
+ * @param camera Camera's plane (used to calculate ray directions)
+ * @param camera_offset Camera's offset
+ * @param center_raylen Length of the ray from the center of the screen
+ **/
 typedef struct s_ray
 {
 	t_point		*map;
@@ -269,7 +281,7 @@ void		ft_pixel_put(t_img *img, int x, int y, int color);
 void		ft_render_fps(t_cub *cub);
 
 /** @file 500_raycaster.c */
-void		ft_compute_ray(t_cub *cub, int x);
+void		ft_get_ray(t_cub *cub, int x);
 
 /** @file 510_itersect.c */
 void		ft_get_intersection(t_cub *cub, t_target *target);

@@ -14,6 +14,12 @@
 
 static int	ft_try_parse_texture(char **line, t_map *map, t_dir dir);
 
+/**
+ * @brief Parse the headers of the map
+ * @param line The input line to parse
+ * @param map Pointer to the map structure
+ * @return SUCCESS if parsing is successful, FAILURE otherwise
+ */
 int	ft_parse_headers(char *line, t_map *map)
 {
 	const char	*g_dirs[] = {"NO ", "SO ", "WE ", "EA "};
@@ -36,6 +42,13 @@ int	ft_parse_headers(char *line, t_map *map)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Parse a texture path from the input line
+ * @param line Pointer to the pointer of the input line (will be modified)
+ * @param map Pointer to the map structure
+ * @param dir The direction (NO, SO, WE, EA) of the texture being parsed
+ * @return SUCCESS if parsing is successful, FAILURE otherwise
+ */
 static int	ft_try_parse_texture(char **line, t_map *map, t_dir dir)
 {
 	const char	*g_dirs[] = {"NO", "SO", "WE", "EA"};

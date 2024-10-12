@@ -17,6 +17,12 @@ static int	ft_verify_size(t_map *map);
 static int	ft_verify_color(t_rgb rgb);
 static int	ft_verify_content(t_map *map);
 
+/**
+ * @brief Verify if the map is valid
+ * @param map a pointer to a t_map struct
+ * @return a pointer to a valid t_map struct
+ * @return NULL if the map is not valid
+*/
 t_map	*ft_map_verify(t_map *map)
 {
 	if (map == NULL)
@@ -37,6 +43,12 @@ t_map	*ft_map_verify(t_map *map)
 	return (map);
 }
 
+/**
+ * @brief Verify if the color is valid
+ * @param rgb a pointer to a t_rgb struct
+ * @return SUCCESS(if the colors are valid)
+ * @return FAILURE(if the colors are not valid)
+*/
 static int	ft_verify_color(t_rgb rgb)
 {
 	return (rgb.b < 0 || rgb.b > 255
@@ -44,6 +56,12 @@ static int	ft_verify_color(t_rgb rgb)
 		|| rgb.r < 0 || rgb.r > 255);
 }
 
+/**
+ * @brief Verify if the image paths are valid
+ * @param map a pointer to a t_map struct
+ * @return SUCCESS(if the map is valid)
+ * @return FAILURE(if the map is not valid)
+*/
 static int	ft_verify_paths(t_map *map)
 {
 	int	i;
@@ -65,6 +83,11 @@ static int	ft_verify_paths(t_map *map)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Verify the size consistency of the map
+ * @param map Pointer to the map structure
+ * @return SUCCESS if the map size is consistent, FAILURE otherwise
+ */
 static int	ft_verify_size(t_map *map)
 {
 	size_t	i;
@@ -87,6 +110,11 @@ static int	ft_verify_size(t_map *map)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Verify the content of the map
+ * @param map Pointer to the map structure
+ * @return SUCCESS if the map content is valid, FAILURE otherwise
+ */
 static int	ft_verify_content(t_map *map)
 {
 	size_t	i;
