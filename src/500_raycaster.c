@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 09:14:31 by passunca          #+#    #+#             */
-/*   Updated: 2024/10/12 09:49:13 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/12 10:44:33 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,4 @@ static void	ft_get_delta(t_cub *cub)
 		cub->ray->delta_dist->y = DBL_MAX;
 	else
 		cub->ray->delta_dist->y = fabs(1 / cub->ray->ray_dir->y);
-}
-
-void	ft_get_intersection(t_cub *cub, t_target *target)
-{
-	(void)cub;
-	(void)target;
 }

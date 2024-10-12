@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:59:54 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/10/12 09:18:25 by passunca         ###   ########.fr       */
+/*   Updated: 2024/10/12 10:46:35 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 # include "../lib/libft/get_next_line/get_next_line.h"
 # include "../lib/libft/ft_fprintf/ft_fprintf.h"
 # include "../lib/libft/ft_printf/ft_printf.h"
-
 
 // Errors
 
@@ -255,6 +254,8 @@ void		ft_render_fps(t_cub *cub);
 
 /** @file 500_raycaster.c */
 void		ft_compute_ray(t_cub *cub, int x);
+
+/** @file 510_itersect.c */
 void		ft_get_intersection(t_cub *cub, t_target *target);
 
 /** @file 700_misc.c */
