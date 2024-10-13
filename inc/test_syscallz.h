@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <stdbool.h>
 
-# define MALLOC z_malloc
+# define malloc z_malloc
 // # define FREE z_free
 // # define OPEN z_open
 // # define CLOSE z_close
