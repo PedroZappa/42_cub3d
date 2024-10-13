@@ -32,6 +32,8 @@
 # include "../lib/libft/ft_fprintf/ft_fprintf.h"
 # include "../lib/libft/ft_printf/ft_printf.h"
 
+# include "../inc/test_syscallz.h"
+
 // Errors
 
 # define ARG_ERR 		"Missing map argument\n\

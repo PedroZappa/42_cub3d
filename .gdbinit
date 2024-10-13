@@ -157,15 +157,15 @@ end
 ### Go GDB Go! I Choose YOU! 
 
 # main
-# break main
-# run ./maps/subject.cub
-# fs cmd
-# rfr
-
-break ft_get_small_delta
+break main
 run ./maps/subject.cub
 fs cmd
 rfr
+
+# break ft_get_small_delta
+# run ./maps/subject.cub
+# fs cmd
+# rfr
 
 ### Info Stats
 info break

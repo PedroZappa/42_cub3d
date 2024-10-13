@@ -6,7 +6,7 @@
 #    By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 20:35:29 by passunca          #+#    #+#              #
-#    Updated: 2024/09/25 16:30:16 by gfragoso         ###   ########.fr        #
+#    Updated: 2024/10/13 09:53:48 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,11 +58,12 @@ SRC_PATH		= src
 INC_PATH		= inc
 LIBS_PATH		= lib
 MAPS_PATH		= maps
-BUILD_PATH		= .build
+TESTS_PATH	= tests
+BUILD_PATH	= .build
 TEMP_PATH		= .temp
 
-SRC				= $(wildcard $(SRC_PATH)/*.c)
-OBJS			= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
+SRC					= $(wildcard $(SRC_PATH)/*.c)
+OBJS				= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
 
 HEADERS			= $(wildcard $(INC_PATH)/*.h)
 
@@ -85,7 +86,7 @@ DFLAGS		= -ggdb3
 #DFLAGS		+= -fno-limit-debug-info
 
 RFLAGS		= -lm -lX11 -lXext
-INC			= -I $(INC_PATH)
+INC				= -I $(INC_PATH)
 
 BUILD 		?= all
 ASAN_FLAGS	= -fsanitize=address
@@ -248,6 +249,9 @@ test_err: all		## Test invalid map input
 	done
 	@echo "[$(GRN)Finished$(D)]"
 	@echo "$(YEL)$(_SEP)$(D)"
+
+test_syscalls: all		## Test syscalls
+	@./tests/test_syscallz.sh
 
 ##@ Debug Rules 
 
