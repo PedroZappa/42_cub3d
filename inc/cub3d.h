@@ -32,7 +32,9 @@
 # include "../lib/libft/ft_fprintf/ft_fprintf.h"
 # include "../lib/libft/ft_printf/ft_printf.h"
 
-# include "../inc/test_syscallz.h"
+# ifdef SYSFAIL
+#  include "../tests/test_syscallz.h"
+# endif
 
 // Errors
 

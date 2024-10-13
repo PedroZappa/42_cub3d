@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/test_syscallz.h"
+#include "../tests/test_syscallz.h"
 
 int	g_malloc_call_ctr = 0;
 int	g_free_call_ctr = 0;

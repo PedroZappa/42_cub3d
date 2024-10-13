@@ -59,9 +59,9 @@ static void	ft_check_wall_dir(int step, t_target *target, t_coord side)
 	if (side == X)
 	{
 		if (step == 1)
-			target->wall_dir = EAST;
-		else if (step == -1)
 			target->wall_dir = WEST;
+		else if (step == -1)
+			target->wall_dir = EAST;
 	}
 	else if (side == Y)
 	{

@@ -62,16 +62,23 @@ TESTS_PATH	= tests
 BUILD_PATH	= .build
 TEMP_PATH		= .temp
 
-SRC					= $(wildcard $(SRC_PATH)/*.c)
-OBJS				= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
-
-HEADERS			= $(wildcard $(INC_PATH)/*.h)
+SRC						= $(wildcard $(SRC_PATH)/*.c)
+ifeq ($(SYSFAIL),1)
+TEST_SRC			= $(wildcard $(TESTS_PATH)/*.c)
+TEST_OBJS			= $(TEST_SRC:$(TESTS_PATH)/%.c=$(BUILD_PATH)/%.o)
+OBJS = $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o) $(TEST_OBJS)
+HEADERS				= $(wildcard $(INC_PATH)/*.h)
+HEADERS				+= $(wildcard $(TESTS_PATH)/*.h)
+else
+OBJS					= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
+HEADERS				= $(wildcard $(INC_PATH)/*.h)
+endif
 
 LIBFT_PATH		= $(LIBS_PATH)/libft
-LIBFT_ARC		= $(LIBFT_PATH)/libft.a
+LIBFT_ARC			= $(LIBFT_PATH)/libft.a
 
-MLX_PATH		= $(LIBS_PATH)/mlx
-MLX_ARC			= $(MLX_PATH)/libmlx_Linux.a
+MLX_PATH			= $(LIBS_PATH)/mlx
+MLX_ARC				= $(MLX_PATH)/libmlx_Linux.a
 
 INVALID_MAPS	= $(shell ls -al $(MAPS_PATH)/invalid/*.cub | awk '{print $$9}')
 
@@ -79,17 +86,22 @@ INVALID_MAPS	= $(shell ls -al $(MAPS_PATH)/invalid/*.cub | awk '{print $$9}')
 #                              COMPILER & FLAGS                                #
 #==============================================================================#
 
-CC			= cc
+CC						= cc
 
-CFLAGS		= -Wall -Wextra -Werror
-DFLAGS		= -ggdb3
-#DFLAGS		+= -fno-limit-debug-info
+CFLAGS				= -Wall -Wextra -Werror
+ifeq ($(SYSFAIL),1)
+CFLAGS				+= -DSYSFAIL
+endif
 
-RFLAGS		= -lm -lX11 -lXext
-INC				= -I $(INC_PATH)
+DFLAGS				= -ggdb3
+#DFLAGS				+= -fno-limit-debug-info
+         
+RFLAGS				= -lm -lX11 -lXext
+INC						= -I $(INC_PATH)
+SYSFAIL				?= 0
 
-BUILD 		?= all
-ASAN_FLAGS	= -fsanitize=address
+BUILD					?= all
+ASAN_FLAGS		= -fsanitize=address
 
 #==============================================================================#
 #                                COMMANDS                                      #
@@ -110,9 +122,12 @@ VGDB_ARGS	= --vgdb-error=0 $(VAL_LEAK) $(VAL_SUP) $(VAL_FD)
 #                                  RULES                                       #
 #==============================================================================#
 
-##@ minishell Compilation Rules 🏗
+##@ Cub3d Compilation Rules 🏗
 
 all: deps $(BUILD_PATH) $(NAME)	## Compile
+
+sysfail: ## Compile with syscall failure tests
+	make SYSFAIL=1
 
 $(NAME): $(BUILD_PATH) $(LIBFT_ARC) $(MLX_ARC) $(OBJS)			## Compile
 	@echo "$(YEL)Compiling $(MAG)$(NAME)$(YEL) mandatory version$(D)"
@@ -142,6 +157,10 @@ skip_verify: re
 -include $(BUILD_PATH)/%.d
 
 $(BUILD_PATH)/%.o: $(SRC_PATH)/%.c $(HEADERS)
+	@echo -n "$(MAG)█$(D)"
+	$(CC) $(CFLAGS) $(DFLAGS) -MMD -MP -c $< -o $@
+
+$(BUILD_PATH)/%.o: $(TESTS_PATH)/%.c $(HEADERS)
 	@echo -n "$(MAG)█$(D)"
 	$(CC) $(CFLAGS) $(DFLAGS) -MMD -MP -c $< -o $@
 
