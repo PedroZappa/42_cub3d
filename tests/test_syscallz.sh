@@ -23,7 +23,7 @@ clear_sys_env_list() {
     unset "SYS_CALL"
 }
 
-# Count malloc occurrences in SRC/ folder 
+# Count malloc occurrences in src/ folder 
 # Array to store malloc locations
 declare -a malloc_locations
 
@@ -39,6 +39,10 @@ for file in src/*.c; do
             ((malloc_count++))
             malloc_locations+=("$file:$line_number")
         fi
+        # if [[ $line == *"ft_calloc("* ]]; then
+        #     ((malloc_count++))
+        #     malloc_locations+=("$file:$line_number")
+        # fi
     done < "$file"
 done
 
@@ -67,7 +71,8 @@ for ((i=0; i < malloc_count; i++)); do
     location=${malloc_locations[$i]}
     file=$(echo $location | cut -d':' -f1)
     line=$(echo $location | cut -d':' -f2)
-    
+    export SYS_CALL=$call_number
+
     echo "${B}Testing ${YEL}MALLOC_FAIL${D} for call number ${GRN}$call_number${D}"
     echo "On file ${GRN}$file${D} at line ${GRN}$line${D}"
     

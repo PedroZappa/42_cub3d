@@ -28,6 +28,7 @@ bool	fail_check(const char *fail_env, int call_counter)
 
 void	*z_malloc(size_t size)
 {
+	printf("malloc()\n");
 	++g_malloc_call_ctr;
 	if (fail_check("MALLOC_FAIL", g_malloc_call_ctr))
 		return (NULL);
