@@ -58,6 +58,6 @@ int	z_close(int fd)
 }
 
 #define malloc z_malloc
-#define FREE z_free
-#define OPEN z_open
-#define CLOSE z_close
+#define free z_free
+#define open z_open
+#define close z_close
