@@ -12,8 +12,8 @@
 
 #include "../inc/cub3d.h"
 
-static void	ft_get_small_delta(t_cub *cub);
 static void	ft_get_delta(t_cub *cub);
+static void	ft_get_small_delta(t_cub *cub);
 
 /**
  * @brief Setup the direction of a ray
@@ -33,8 +33,25 @@ void	ft_get_ray(t_cub *cub, int x)
 		+ cub->ray->camera->x * curr_ray;
 	cub->ray->ray_dir->y = cub->ray->vec_dir->y \
 		+ cub->ray->camera->y * curr_ray;
-	ft_get_small_delta(cub);
 	ft_get_delta(cub);
+	ft_get_small_delta(cub);
+}
+
+/**
+ * @brief Computes the distance to next grid boundary
+ * (avoiding division by 0)
+ * @param cub a point to a t_cub struct
+ **/
+static void	ft_get_delta(t_cub *cub)
+{
+	if (cub->ray->ray_dir->x == 0)
+		cub->ray->delta_dist->x = DBL_MAX;
+	else
+		cub->ray->delta_dist->x = fabs(1 / cub->ray->ray_dir->x);
+	if (cub->ray->ray_dir->y == 0)
+		cub->ray->delta_dist->y = DBL_MAX;
+	else
+		cub->ray->delta_dist->y = fabs(1 / cub->ray->ray_dir->y);
 }
 
 /**
@@ -67,21 +84,4 @@ static void	ft_get_small_delta(t_cub *cub)
 			* cub->ray->delta_dist->y);
 		cub->ray->step->y = -1;
 	}
-}
-
-/**
- * @brief Computes the distance to next grid boundary
- * (avoiding division by 0)
- * @param cub a point to a t_cub struct
- **/
-static void	ft_get_delta(t_cub *cub)
-{
-	if (cub->ray->ray_dir->x == 0)
-		cub->ray->delta_dist->x = DBL_MAX;
-	else
-		cub->ray->delta_dist->x = fabs(1 / cub->ray->ray_dir->x);
-	if (cub->ray->ray_dir->y == 0)
-		cub->ray->delta_dist->y = DBL_MAX;
-	else
-		cub->ray->delta_dist->y = fabs(1 / cub->ray->ray_dir->y);
 }

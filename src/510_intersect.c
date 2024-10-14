@@ -14,7 +14,7 @@
 
 static void	ft_check_wall_dir(int step, t_target *target, t_coord side);
 static void	ft_get_wall_height(t_ray *ray, t_target *target);
-static void	ft_get_tile_offset(t_ray ray, t_target *target, t_tex tex);
+// static void	ft_get_tile_offset(t_ray ray, t_target *target, t_tex tex);
 
 /**
  * @brief DDA (Digital Differential Analyzer)
@@ -45,7 +45,7 @@ void	ft_get_intersection(t_cub *cub, t_target *target)
 			break ;
 	}
 	ft_get_wall_height(cub->ray, target);
-	ft_get_tile_offset(*cub->ray, target, cub->map->tex[target->wall_dir]);
+	// ft_get_tile_offset(*cub->ray, target, cub->map->tex[target->wall_dir]);
 }
 
 /**
@@ -109,16 +109,16 @@ static void	ft_get_wall_height(t_ray *ray, t_target *target)
  * - Compute the offset within the wall tile for texture mapping
  * - Adjust the texture's x coordinate for correct texture orientation
 **/
-static void	ft_get_tile_offset(t_ray ray, t_target *target, t_tex tex)
-{
-	if ((target->wall_dir == NORTH) || (target->wall_dir == SOUTH))
-		target->hitpoint = ray.pos->y + target->dist * ray.ray_dir->y;
-	else
-		target->hitpoint = ray.pos->x + target->dist * ray.ray_dir->x;
-	target->tile_offset = target->hitpoint - floor(target->hitpoint);
-	target->tex_x = (target->tile_offset * (double)tex.width);
-	if (((target->wall_dir == NORTH) || ((target->wall_dir == SOUTH) \
-			&& (ray.ray_dir->y < 0))) || ((target->wall_dir == WEST) \
-		|| ((target->wall_dir == EAST) && (target->wall_dir > 0))))
-		target->tex_x = (tex.width - target->tex_x - 1);
-}
+// static void	ft_get_tile_offset(t_ray ray, t_target *target, t_tex tex)
+// {
+// 	if ((target->wall_dir == NORTH) || (target->wall_dir == SOUTH))
+// 		target->hitpoint = ray.pos->y + target->dist * ray.ray_dir->y;
+// 	else
+// 		target->hitpoint = ray.pos->x + target->dist * ray.ray_dir->x;
+// 	target->tile_offset = target->hitpoint - floor(target->hitpoint);
+// 	target->tex_x = (target->tile_offset * (double)tex.width);
+// 	if (((target->wall_dir == NORTH) || ((target->wall_dir == SOUTH) \
+// 			&& (ray.ray_dir->y < 0))) || ((target->wall_dir == WEST) \
+// 		|| ((target->wall_dir == EAST) && (target->wall_dir > 0))))
+// 		target->tex_x = (tex.width - target->tex_x - 1);
+// }

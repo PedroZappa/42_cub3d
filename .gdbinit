@@ -142,6 +142,8 @@ end
 define get_small_delta
   display cub
   display *cub->ray
+  display *cub->ray->get_small_delta
+  display *cub->ray->step
 end
 
 define get_small_delta
@@ -157,15 +159,15 @@ end
 ### Go GDB Go! I Choose YOU! 
 
 # main
-break main
-run ./maps/subject.cub
-fs cmd
-rfr
-
-# break ft_get_small_delta
+# break main
 # run ./maps/subject.cub
 # fs cmd
 # rfr
+
+break ft_get_small_delta
+run ./maps/subject.cub
+fs cmd
+rfr
 
 ### Info Stats
 info break
