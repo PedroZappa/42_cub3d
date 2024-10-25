@@ -62,7 +62,7 @@ static void	ft_get_small_delta(t_cub *cub)
 {
 	if (cub->ray->ray_dir->x >= 0)
 	{
-		cub->ray->small_delta->x = ((cub->ray->map->x + 1 - cub->ray->pos->x) \
+		cub->ray->small_delta->x = ((cub->ray->map->x + 1. - cub->ray->pos->x) \
 			* cub->ray->delta_dist->x);
 		cub->ray->step->x = 1;
 	}
@@ -74,7 +74,7 @@ static void	ft_get_small_delta(t_cub *cub)
 	}
 	if (cub->ray->ray_dir->y >= 0)
 	{
-		cub->ray->small_delta->y = ((cub->ray->map->y + 1 - cub->ray->pos->y) \
+		cub->ray->small_delta->y = ((cub->ray->map->y + 1. - cub->ray->pos->y) \
 			* cub->ray->delta_dist->y);
 		cub->ray->step->y = 1;
 	}

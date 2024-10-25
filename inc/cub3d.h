@@ -185,15 +185,15 @@ typedef struct s_ray
 	t_vec		*camera_offset;
 	double		center_raylen;
 
-	t_point	*target_pos;
-	double	dist;
-	double	hitpoint;
-	double	tile_offset;
-	int		tex_x;
-	int		wall_height;
-	int		wall_bottom;
-	int		wall_top;
-	t_dir	wall_dir;
+	t_point		*target_pos;
+	double		dist;
+	double 		hitpoint;
+	double 		tile_offset;
+	int	   		tex_x;
+	int	   		wall_height;
+	int	   		wall_bottom;
+	int	   		wall_top;
+	t_dir  		wall_dir;
 
 }				t_ray;
 
