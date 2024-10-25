@@ -53,7 +53,6 @@ static void	ft_draw_image(t_cub *cub)
 	int			height;
 	int			x;
 
-	// target = ft_find_obstacle(cub);
 	x = 0;
 	while (x < WINDOW_W)
 	{

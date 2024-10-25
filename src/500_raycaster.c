@@ -28,7 +28,7 @@ void	ft_get_ray(t_cub *cub, int x)
 {
 	double	curr_ray;
 
-	curr_ray = (x / ((double)WINDOW_W - 1));
+	curr_ray = (2 * x / ((double)WINDOW_W - 1));
 	cub->ray->ray_dir->x = cub->ray->vec_dir->x \
 		+ cub->ray->camera->x * curr_ray;
 	cub->ray->ray_dir->y = cub->ray->vec_dir->y \
