@@ -24,8 +24,8 @@ define main
 	display cub
   display *cub->map->paths@4
   display *cub->map->imgs@4
-  display cub->map->floor_color
   display cub->map->ceiling_color
+  display cub->map->floor_color
   display *cub->map->map@cub->map->height
   display cub->map->start_pos
   display cub->map->start_direction
@@ -159,15 +159,15 @@ end
 ### Go GDB Go! I Choose YOU! 
 
 # main
-# break main
-# run ./maps/subject.cub
-# fs cmd
-# rfr
-
-break ft_get_small_delta
+break main
 run ./maps/subject.cub
 fs cmd
 rfr
+
+# break ft_get_small_delta
+# run ./maps/subject.cub
+# fs cmd
+# rfr
 
 ### Info Stats
 info break

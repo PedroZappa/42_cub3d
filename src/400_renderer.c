@@ -14,8 +14,7 @@
 
 static int		ft_render_image(t_cub *cub);
 static void		ft_draw_image(t_cub *cub);
-static t_target	*ft_find_obstacle(t_cub *cub);
-static t_target	ft_raycast(t_cub *cub, int x);
+static void		ft_raycast(t_cub *cub, int x);
 
 /**
  * @brief Render the image
@@ -51,48 +50,25 @@ static int	ft_render_image(t_cub *cub)
 */
 static void	ft_draw_image(t_cub *cub)
 {
-	t_target	*target;
 	int			height;
 	int			x;
 
-	target = ft_find_obstacle(cub);
+	// target = ft_find_obstacle(cub);
 	x = 0;
 	while (x < WINDOW_W)
 	{
+		ft_raycast(cub, x);
 		height = WINDOW_H;
-		while (height > target[x].wall_top)
+		while (height > cub->ray->wall_top)
 			ft_pixel_put(cub->mlx->frame, x, height--, \
 				ft_rgb_to_int(cub->map->floor_color));
 		// TODO : Draw Wall Texture
-		height = target[x].wall_bottom;
+		height = cub->ray->wall_bottom;
 		while (height > 0)
 			ft_pixel_put(cub->mlx->frame, x, height--, \
 				ft_rgb_to_int(cub->map->ceiling_color));
 		++x;
 	}
-	free(target);
-}
-
-/**
- * @brief Detect the nearest obstacle
- * @param cub pointer to a t_cub struct
- * @malloc targets along the x-axis
- * @return SUCCESS(a pointer to a t_target struct)
- * @return FAILURE(NULL)
-*/
-static t_target	*ft_find_obstacle(t_cub *cub)
-{
-	t_target	*target;
-	int			x;
-
-	target = ft_calloc(WINDOW_W, sizeof(t_target));
-	if (target == NULL)
-		return (ft_cub_free(cub), NULL);
-	x = -1;
-	while (++x < WINDOW_W)
-		target[x] = ft_raycast(cub, x);
-	cub->ray->center_raylen = target[WINDOW_W / 2].dist;
-	return (target);
 }
 
 /**
@@ -101,11 +77,8 @@ static t_target	*ft_find_obstacle(t_cub *cub)
  * @param x the x position of the ray
  * @return void
 */
-static t_target	ft_raycast(t_cub *cub, int x)
+static void	ft_raycast(t_cub *cub, int x)
 {
-	t_target	ray_hitpoint;
-
 	ft_get_ray(cub, x);
-	ft_get_intersection(cub, &ray_hitpoint);
-	return (ray_hitpoint);
+	ft_get_intersection(cub);
 }

@@ -158,19 +158,6 @@ typedef struct s_mlx
 	t_img	*frame;
 }			t_mlx;
 
-typedef struct s_target
-{
-	t_point	*pos;
-	double	dist;
-	double	hitpoint;
-	double	tile_offset;
-	int		tex_x;
-	int		wall_height;
-	int		wall_bottom;
-	int		wall_top;
-	t_dir	wall_dir;
-}			t_target;
-
 /**
  * @param map Ray coordinates in the map
  * @param pos Camera's position in the map
@@ -197,6 +184,17 @@ typedef struct s_ray
 	t_vec		*camera;
 	t_vec		*camera_offset;
 	double		center_raylen;
+
+	t_point	*target_pos;
+	double	dist;
+	double	hitpoint;
+	double	tile_offset;
+	int		tex_x;
+	int		wall_height;
+	int		wall_bottom;
+	int		wall_top;
+	t_dir	wall_dir;
+
 }				t_ray;
 
 // paths/imgs : NO, SO, WE, EA
@@ -287,7 +285,7 @@ void		ft_render_fps(t_cub *cub);
 void		ft_get_ray(t_cub *cub, int x);
 
 /** @file 510_itersect.c */
-void		ft_get_intersection(t_cub *cub, t_target *target);
+void		ft_get_intersection(t_cub *cub);
 
 /** @file 700_misc.c */
 long		ft_timestamp(void);

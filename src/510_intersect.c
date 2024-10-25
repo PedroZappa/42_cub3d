@@ -12,8 +12,8 @@
 
 #include "../inc/cub3d.h"
 
-static void	ft_check_wall_dir(int step, t_target *target, t_coord side);
-static void	ft_get_wall_height(t_ray *ray, t_target *target);
+static void	ft_check_wall_dir(int step, t_ray *target, t_coord side);
+static void	ft_get_wall_height(t_ray *ray);
 // static void	ft_get_tile_offset(t_ray ray, t_target *target, t_tex tex);
 
 /**
@@ -25,7 +25,7 @@ static void	ft_get_wall_height(t_ray *ray, t_target *target);
  * - Compute the wall height
  * - Compute the tile offset
 **/
-void	ft_get_intersection(t_cub *cub, t_target *target)
+void	ft_get_intersection(t_cub *cub)
 {
 	while (true)
 	{
@@ -33,18 +33,18 @@ void	ft_get_intersection(t_cub *cub, t_target *target)
 		{
 			cub->ray->small_delta->x += cub->ray->delta_dist->x;
 			cub->ray->map->x += cub->ray->step->x;
-			ft_check_wall_dir(cub->ray->step->x, target, X);
+			ft_check_wall_dir(cub->ray->step->x, cub->ray, X);
 		}
 		else
 		{
 			cub->ray->small_delta->y += cub->ray->delta_dist->y;
 			cub->ray->map->y += cub->ray->step->y;
-			ft_check_wall_dir(cub->ray->step->y, target, Y);
+			ft_check_wall_dir(cub->ray->step->y, cub->ray, Y);
 		}
 		if (ft_map_at(cub->map, cub->ray->map) != '0')
 			break ;
 	}
-	ft_get_wall_height(cub->ray, target);
+	ft_get_wall_height(cub->ray);
 	// ft_get_tile_offset(*cub->ray, target, cub->map->tex[target->wall_dir]);
 }
 
@@ -54,7 +54,7 @@ void	ft_get_intersection(t_cub *cub, t_target *target)
  * @param target Current camera target
  * @param side X or Y
 **/
-static void	ft_check_wall_dir(int step, t_target *target, t_coord side)
+static void	ft_check_wall_dir(int step, t_ray *target, t_coord side)
 {
 	if (side == X)
 	{
@@ -81,22 +81,22 @@ static void	ft_check_wall_dir(int step, t_target *target, t_coord side)
  * - Compute the wall height
  * - Get top and bottom coordinates of the wall
 **/
-static void	ft_get_wall_height(t_ray *ray, t_target *target)
+static void	ft_get_wall_height(t_ray *ray)
 {
-	if ((target->wall_dir == NORTH) || (target->wall_dir == SOUTH))
-		target->dist = ray->small_delta->y - ray->delta_dist->y;
+	if ((ray->wall_dir == NORTH) || (ray->wall_dir == SOUTH))
+		ray->dist = ray->small_delta->y - ray->delta_dist->y;
 	else
-		target->dist = ray->small_delta->x - ray->delta_dist->x;
-	if (target->dist == 0)
-		target->wall_height = WINDOW_H;
+		ray->dist = ray->small_delta->x - ray->delta_dist->x;
+	if (ray->dist == 0)
+		ray->wall_height = WINDOW_H;
 	else
-		target->wall_height = (WINDOW_H / target->dist);
-	target->wall_top = (target->wall_height / 2) + (WINDOW_H / 2);
-	if (target->wall_height >= WINDOW_H)
-		target->wall_height = (WINDOW_H - 1);
-	target->wall_bottom = ((-target->wall_height / 2) + (WINDOW_H / 2));
-	if (target->wall_bottom < 0)
-		target->wall_bottom = 0;
+		ray->wall_height = (WINDOW_H / ray->dist);
+	ray->wall_top = (ray->wall_height / 2) + (WINDOW_H / 2);
+	if (ray->wall_height >= WINDOW_H)
+		ray->wall_height = (WINDOW_H - 1);
+	ray->wall_bottom = ((-ray->wall_height / 2) + (WINDOW_H / 2));
+	if (ray->wall_bottom < 0)
+		ray->wall_bottom = 0;
 }
 
 /**
