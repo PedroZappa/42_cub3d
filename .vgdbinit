@@ -1,4 +1,4 @@
-break ft_parse_map
+break ft_draw_image
 fs cmd
 info thread
 info break

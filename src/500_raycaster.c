@@ -28,11 +28,13 @@ void	ft_get_ray(t_cub *cub, int x)
 {
 	double	curr_ray;
 
-	curr_ray = (2 * x / ((double)WINDOW_W - 1));
+	curr_ray = (2 * x / (double)WINDOW_W - 1);
+	ft_printf("Init Ray: %f\n", curr_ray);
 	cub->ray->ray_dir->x = cub->ray->vec_dir->x \
 		+ cub->ray->camera->x * curr_ray;
 	cub->ray->ray_dir->y = cub->ray->vec_dir->y \
 		+ cub->ray->camera->y * curr_ray;
+	ft_printf("Ray Dir: x=>%f y=>%f\n", cub->ray->ray_dir->x, cub->ray->ray_dir->y);
 	ft_get_delta(cub);
 	ft_get_small_delta(cub);
 }

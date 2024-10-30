@@ -133,6 +133,13 @@ define check_header
 	display map->ceiling_color
 end
 
+# 400_renderer.c
+define draw_image
+	display cub
+	display height
+	display x
+end
+
 # 500_raycaster.c
 define computer_ray
   display cub

@@ -54,20 +54,24 @@ static void	ft_draw_image(t_cub *cub)
 	int			x;
 
 	x = 0;
-	while (x < WINDOW_W)
-	{
-		ft_raycast(cub, x);
-		height = WINDOW_H;
-		while (height > cub->ray->wall_top)
-			ft_pixel_put(cub->mlx->frame, x, height--, \
-				ft_rgb_to_int(cub->map->floor_color));
-		// TODO : Draw Wall Texture
-		height = cub->ray->wall_bottom;
-		while (height > 0)
-			ft_pixel_put(cub->mlx->frame, x, height--, \
-				ft_rgb_to_int(cub->map->ceiling_color));
-		++x;
-	}
+	(void)height;
+	ft_raycast(cub, 0);
+	ft_raycast(cub, WINDOW_W / 2);
+	ft_raycast(cub, WINDOW_W);
+	// while (x < WINDOW_W)
+	// {
+	// 	ft_raycast(cub, x);
+	// 	height = WINDOW_H;
+	// 	while (height > cub->ray->wall_top)
+	// 		ft_pixel_put(cub->mlx->frame, x, height--, \
+	// 			ft_rgb_to_int(cub->map->floor_color));
+	// 	// TODO : Draw Wall Texture
+	// 	height = cub->ray->wall_bottom;
+	// 	while (height > 0)
+	// 		ft_pixel_put(cub->mlx->frame, x, height--, \
+	// 			ft_rgb_to_int(cub->map->ceiling_color));
+	// 	++x;
+	// }
 }
 
 /**
