@@ -41,7 +41,23 @@ void	ft_get_intersection(t_cub *cub)
 			cub->ray->map->y += cub->ray->step->y;
 			ft_check_wall_dir(cub->ray->step->y, cub->ray, Y);
 		}
-		if (ft_map_at(cub->map, cub->ray->map) != '0')
+		/*printf(
+			"Char: '%d' '%c' Point: (%i, %i)\n"
+			"Small delta: (%f, %f)\n"
+			"Delta dist: (%f, %f)\n"
+			"Step: (%d, %d)\n\n",
+			c,
+			c,
+			cub->ray->map->x,
+			cub->ray->map->y,
+			cub->ray->small_delta->x,
+			cub->ray->small_delta->y,
+			cub->ray->delta_dist->x,
+			cub->ray->delta_dist->y,
+			cub->ray->step->x,
+			cub->ray->step->y
+			);*/
+		if (ft_map_at(cub->map, cub->ray->map) == '1')
 			break ;
 	}
 	ft_get_wall_height(cub->ray);
@@ -92,8 +108,8 @@ static void	ft_get_wall_height(t_ray *ray)
 	else
 		ray->wall_height = (WINDOW_H / ray->dist);
 	ray->wall_top = (ray->wall_height / 2) + (WINDOW_H / 2);
-	if (ray->wall_height >= WINDOW_H)
-		ray->wall_height = (WINDOW_H - 1);
+	if (ray->wall_top >= WINDOW_H)
+		ray->wall_top = (WINDOW_H - 1);
 	ray->wall_bottom = ((-ray->wall_height / 2) + (WINDOW_H / 2));
 	if (ray->wall_bottom < 0)
 		ray->wall_bottom = 0;

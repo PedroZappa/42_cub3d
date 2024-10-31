@@ -71,7 +71,7 @@ has separated sections"
 
 // Camera Settings
 
-# define FOV			60.0
+# define FOV			0.60
 
 // Constants (aka, Them Magick Numberz)
 
@@ -181,8 +181,6 @@ typedef struct s_ray
 	t_vec		*small_delta;
 	t_point		*step;
 
-	t_vec		*camera;
-	t_vec		*camera_offset;
 	double		center_raylen;
 
 	t_point		*target_pos;
@@ -221,6 +219,7 @@ typedef struct s_cub
 	t_ray		*ray;
 	t_vec		*current_pos;
 	t_vec		*orientation;
+	t_vec		*plane;
 
 	long		start_time;
 	double		frame_time;
@@ -299,11 +298,11 @@ t_point		*ft_point_copy(t_point *point);
 /** @file 720_vec.c */
 t_vec		*ft_vec_new(double x, double y);
 t_vec		*ft_vec_copy(t_vec *point);
-t_vec		*ft_vec_dir(t_dir dir);
+void		ft_vec_dir(t_cub *cub, t_dir dir);
 void		ft_vec_norm(t_vec *vec);
 
 /** @file 730_raycast.c */
-t_ray		*ft_ray_init(t_point *start_pos, t_dir start_dir);
+t_ray		*ft_ray_init(t_point *start_pos, t_vec *orient);
 void		ft_ray_free(t_ray *ray);
 
 /** @file 740_image.c */

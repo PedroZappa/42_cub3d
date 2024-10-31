@@ -28,13 +28,9 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (ft_err(ARG_ERR));
-	cub = (t_cub){NULL, NULL, NULL, NULL, NULL, 0, 0.0};
+	cub = (t_cub){NULL, NULL, NULL, NULL, NULL, NULL, 0, 0.0};
 	if (ft_parse_map(&cub, argv[1]))
 		return (EXIT_FAILURE);
-	cub.ray = ft_ray_init(cub.map->start_pos,
-			cub.map->start_direction);
-	if (cub.ray == NULL)
-		return (ft_cub_free(&cub), ft_err(RAYCAST_ERR));
 	cub.mlx = ft_mlx_init();
 	if (cub.mlx == NULL)
 		return (ft_cub_free(&cub), ft_err(MLX_ERR));
@@ -56,7 +52,6 @@ void	ft_cub_free(t_cub *cub)
 		return ;
 	ft_vfree(cub->current_pos);
 	ft_vfree(cub->orientation);
-	ft_ray_free(cub->ray);
 	ft_map_destroy_imgs(cub->map, cub->mlx);
 	ft_map_free(cub->map);
 	ft_mlx_free(cub->mlx);

@@ -60,17 +60,28 @@ t_vec	*ft_vec_copy(t_vec *point)
  * This function creates a unit vector pointing in the specified
  * cardinal direction.
  */
-t_vec	*ft_vec_dir(t_dir dir)
+void ft_vec_dir(t_cub *cub, t_dir dir)
 {
 	if (dir == NORTH)
-		return (ft_vec_new(0, -1));
+	{
+		cub->orientation = ft_vec_new(0, -1);
+		cub->plane = ft_vec_new(0, FOV);
+	}
 	if (dir == SOUTH)
-		return (ft_vec_new(0, 1));
+	{
+		cub->orientation = ft_vec_new(0, 1);
+		cub->plane = ft_vec_new(0, -FOV);
+	}
 	if (dir == WEST)
-		return (ft_vec_new(-1, 0));
+	{
+		cub->orientation = ft_vec_new(-1, 0);
+		cub->plane = ft_vec_new(-FOV, 0);
+	}
 	if (dir == EAST)
-		return (ft_vec_new(1, 0));
-	return (NULL);
+	{
+		cub->orientation = ft_vec_new(1, 0);
+		cub->plane = ft_vec_new(FOV, 0);
+	}
 }
 
 /**
