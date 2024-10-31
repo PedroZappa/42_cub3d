@@ -23,7 +23,7 @@
 # include <X11/X.h> // MLX library for Event codes
 # include <X11/keysym.h> // Keysym for event handling
 # include <stdbool.h> // true false
-// # include <float.h> // DBL_MAX
+# include <limits.h> // DBL_MAX
 
 # include "../lib/mlx/mlx.h"
 
@@ -71,11 +71,7 @@ has separated sections"
 
 // Camera Settings
 
-# define FOV			0.60
-
-// Constants (aka, Them Magick Numberz)
-
-# define DBL_MAX 1.7976931348623158e+308
+# define FOV			60
 
 // Enums
 

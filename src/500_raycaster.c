@@ -29,9 +29,9 @@ void	ft_get_ray(t_cub *cub, int x)
 	double	curr_ray;
 
 	curr_ray = (2 * x / (double)WINDOW_W - 1);
-	cub->ray->ray_dir->x = cub->ray->vec_dir->x \
+	cub->ray->ray_dir->x = cub->orientation->x \
 		+ cub->plane->x * curr_ray;
-	cub->ray->ray_dir->y = cub->ray->vec_dir->y \
+	cub->ray->ray_dir->y = cub->orientation->y \
 		+ cub->plane->y * curr_ray;
 	ft_get_delta(cub);
 	ft_get_small_delta(cub);
@@ -45,11 +45,11 @@ void	ft_get_ray(t_cub *cub, int x)
 static void	ft_get_delta(t_cub *cub)
 {
 	if (cub->ray->ray_dir->x == 0)
-		cub->ray->delta_dist->x = DBL_MAX;
+		cub->ray->delta_dist->x = __DBL_MAX__;
 	else
 		cub->ray->delta_dist->x = fabs(1 / cub->ray->ray_dir->x);
 	if (cub->ray->ray_dir->y == 0)
-		cub->ray->delta_dist->y = DBL_MAX;
+		cub->ray->delta_dist->y = __DBL_MAX__;
 	else
 		cub->ray->delta_dist->y = fabs(1 / cub->ray->ray_dir->y);
 }
