@@ -60,7 +60,7 @@ t_vec	*ft_vec_copy(t_vec *point)
  * This function creates a unit vector pointing in the specified
  * cardinal direction.
  */
-void ft_vec_dir(t_cub *cub, t_dir dir)
+void	ft_vec_dir(t_cub *cub, t_dir dir)
 {
 	if (dir == NORTH)
 	{

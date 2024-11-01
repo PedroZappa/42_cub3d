@@ -124,38 +124,38 @@ typedef struct s_vec
 
 typedef struct s_point
 {
-	int		x;
-	int		y;
+	int			x;
+	int			y;
 }			t_point;
 
 typedef struct s_rgb
 {
-	int		r;
-	int		g;
-	int		b;
+	int			r;
+	int			g;
+	int			b;
 }			t_rgb;
 
 typedef struct s_img
 {
-	void	*img;
-	char	*pix;
-	int		bpp;
-	int		line_len;
-	int		endian;
+	void		*img;
+	char		*pix;
+	int			bpp;
+	int			line_len;
+	int			endian;
 }			t_img;
 
 typedef struct s_tex
 {
-	t_img	*img;
-	int		width;
-	int		height;
+	t_img		*img;
+	int			width;
+	int			height;
 }			t_tex;
 
 typedef struct s_mlx
 {
-	void	*ptr;
-	void	*wdw;
-	t_img	*frame;
+	void		*ptr;
+	void		*wdw;
+	t_img		*frame;
 }			t_mlx;
 
 /**
@@ -172,57 +172,57 @@ typedef struct s_mlx
  **/
 typedef struct s_ray
 {
-	t_point		*map;
-	t_vec		*pos;
-	t_vec		*vec_dir;
-	t_vec		*ray_dir;
+	t_point	*map;
+	t_vec	*pos;
+	t_vec	*vec_dir;
+	t_vec	*ray_dir;
 
-	t_vec		*delta_dist;
-	t_vec		*small_delta;
-	t_point		*step;
+	t_vec	*delta_dist;
+	t_vec	*small_delta;
+	t_point	*step;
 
-	double		center_raylen;
+	double	center_raylen;
 
-	t_point		*target_pos;
-	double		dist;
-	double 		hitpoint;
-	double 		tile_offset;
-	int	   		tex_x;
-	int	   		wall_height;
-	int	   		wall_bottom;
-	int	   		wall_top;
-	t_dir  		wall_dir;
+	t_point	*target_pos;
+	double	dist;
+	double	hitpoint;
+	double	tile_offset;
+	int		tex_x;
+	int		wall_height;
+	int		wall_bottom;
+	int		wall_top;
+	t_dir	wall_dir;
 
 }				t_ray;
 
 // paths/imgs : NO, SO, WE, EA
 typedef struct s_map
 {
-	char		**paths;
-	t_tex		tex[4];
+	char			**paths;
+	t_tex			tex[4];
 
-	t_rgb		floor_color;
-	t_rgb		ceiling_color;
+	t_rgb			floor_color;
+	t_rgb			ceiling_color;
 
-	char		**map;
-	t_point		*start_pos;
-	t_dir		start_direction;
-	size_t		width;
-	size_t		height;
+	char			**map;
+	t_point			*start_pos;
+	t_dir			start_direction;
+	size_t			width;
+	size_t			height;
 }				t_map;
 
 typedef struct s_cub
 {
-	t_mlx		*mlx;
+	t_mlx			*mlx;
 
-	t_map		*map;
-	t_ray		*ray;
-	t_vec		*current_pos;
-	t_vec		*orientation;
-	t_vec		*plane;
+	t_map			*map;
+	t_ray			*ray;
+	t_vec			*current_pos;
+	t_vec			*orientation;
+	t_vec			*plane;
 
-	long		start_time;
-	double		frame_time;
+	long			start_time;
+	double			frame_time;
 }				t_cub;
 
 // Functions

@@ -80,8 +80,8 @@ static void	ft_draw_image(t_cub *cub)
 static void	ft_raycast(t_cub *cub, int x)
 {
 	cub->ray = ft_ray_init(
-		ft_point_new(cub->current_pos->x, cub->current_pos->y),
-		cub->orientation);
+			ft_point_new(cub->current_pos->x, cub->current_pos->y),
+			cub->orientation);
 	ft_get_ray(cub, x);
 	ft_get_intersection(cub);
 }
