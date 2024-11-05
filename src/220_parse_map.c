@@ -89,8 +89,8 @@ static void	ft_parse_player(t_map *map, int line_n)
 			{
 				map->map[line_n][col] = '0';
 				map->start_direction = dir;
-				map->start_pos->x = (int)col;
-				map->start_pos->y = line_n;
+				map->start_pos->x = line_n;
+				map->start_pos->y = (int)col;
 				return ;
 			}
 		}

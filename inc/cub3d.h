@@ -65,13 +65,14 @@ has separated sections"
 
 // Window settings
 
-# define WINDOW_W 		1280
-# define WINDOW_H	 	720
+# define WINDOW_W 		1500 	// 1280
+# define WINDOW_H	 	1000	// 720
 # define WINDOW_TITLE 	"Cub3D"
 
 // Camera Settings
 
 # define FOV			60
+# define PLANE			0.66
 
 // Enums
 
@@ -169,7 +170,6 @@ typedef struct s_mlx
 typedef struct s_ray
 {
 	t_point	*map;
-	t_vec	*pos;
 	t_vec	*vec_dir;
 	t_vec	*ray_dir;
 

@@ -35,7 +35,6 @@ t_ray	*ft_ray_init(t_point *start_pos, t_vec *orient)
 	if (ret == NULL)
 		return (NULL);
 	ret->map = start_pos;
-	ret->pos = ft_vec_new(start_pos->x, start_pos->y);
 	ret->vec_dir = orient;
 	ret->ray_dir = ft_vec_new(0, 0);
 	ret->delta_dist = ft_vec_new(0, 0);
@@ -57,7 +56,7 @@ t_ray	*ft_ray_init(t_point *start_pos, t_vec *orient)
 static t_ray	*ft_ray_alloc_check(t_ray *ray)
 {
 	if (ray == NULL || ray->map == NULL
-		|| ray->pos == NULL || ray->vec_dir == NULL
+		|| ray->vec_dir == NULL
 		|| ray->vec_dir == NULL || ray->ray_dir == NULL
 		|| ray->delta_dist == NULL || ray->small_delta == NULL
 		|| ray->step == NULL)
@@ -78,7 +77,6 @@ void	ft_ray_free(t_ray *ray)
 {
 	if (ray == NULL)
 		return ;
-	ft_vfree(ray->pos);
 	ft_vfree(ray->vec_dir);
 	ft_vfree(ray->ray_dir);
 	ft_vfree(ray->delta_dist);

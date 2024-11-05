@@ -133,8 +133,8 @@ static void	ft_get_wall_height(t_ray *ray)
 // 		target->hitpoint = ray.pos->x + target->dist * ray.ray_dir->x;
 // 	target->tile_offset = target->hitpoint - floor(target->hitpoint);
 // 	target->tex_x = (target->tile_offset * (double)tex.width);
-// 	if (((target->wall_dir == NORTH) || ((target->wall_dir == SOUTH) \
-// 			&& (ray.ray_dir->y < 0))) || ((target->wall_dir == WEST) \
+// 	if (((target->wall_dir == NORTH) || ((target->wall_dir == SOUTH) 
+// 			&& (ray.ray_dir->y < 0))) || ((target->wall_dir == WEST)
 // 		|| ((target->wall_dir == EAST) && (target->wall_dir > 0))))
 // 		target->tex_x = (tex.width - target->tex_x - 1);
 // }
