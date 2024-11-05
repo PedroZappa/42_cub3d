@@ -65,8 +65,8 @@ has separated sections"
 
 // Window settings
 
-# define WINDOW_W 		1500 	// 1280
-# define WINDOW_H	 	1000	// 720
+# define WINDOW_W 		1280
+# define WINDOW_H	 	720
 # define WINDOW_TITLE 	"Cub3D"
 
 // Camera Settings
