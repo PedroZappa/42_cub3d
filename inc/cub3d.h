@@ -206,8 +206,8 @@ typedef struct s_cub
 
 	t_map			*map;
 	t_ray			*ray;
-	t_vec			*current_pos;
-	t_vec			*orientation;
+	t_vec			*pos;
+	t_vec			*dir;
 	t_vec			*plane;
 
 	long			start_time;
@@ -291,7 +291,7 @@ void		ft_vec_dir(t_cub *cub, t_dir dir);
 void		ft_vec_norm(t_vec *vec);
 
 /** @file 730_raycast.c */
-t_ray		*ft_ray_init(t_point *start_pos);
+t_ray		*ft_ray_init(int map_x, int map_y);
 void		ft_ray_free(t_ray *ray);
 
 /** @file 740_image.c */

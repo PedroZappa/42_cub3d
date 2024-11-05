@@ -29,9 +29,9 @@ void	ft_get_ray(t_cub *cub, int x)
 	double	curr_ray;
 
 	curr_ray = (2 * x / (double)WINDOW_W - 1);
-	cub->ray->ray_dir->x = cub->orientation->x \
+	cub->ray->ray_dir->x = cub->dir->x \
 		+ cub->plane->x * curr_ray;
-	cub->ray->ray_dir->y = cub->orientation->y \
+	cub->ray->ray_dir->y = cub->dir->y \
 		+ cub->plane->y * curr_ray;
 	ft_get_delta(cub);
 	ft_get_small_delta(cub);
@@ -62,25 +62,25 @@ static void	ft_get_small_delta(t_cub *cub)
 {
 	if (cub->ray->ray_dir->x >= 0)
 	{
-		cub->ray->small_delta->x = ((cub->ray->map->x + 1. - cub->current_pos->x) \
+		cub->ray->small_delta->x = ((cub->ray->map->x + 1. - cub->pos->x) \
 			* cub->ray->delta_dist->x);
 		cub->ray->step->x = 1;
 	}
 	else
 	{
-		cub->ray->small_delta->x = ((cub->current_pos->x - cub->ray->map->x) \
+		cub->ray->small_delta->x = ((cub->pos->x - cub->ray->map->x) \
 			* cub->ray->delta_dist->x);
 		cub->ray->step->x = -1;
 	}
 	if (cub->ray->ray_dir->y >= 0)
 	{
-		cub->ray->small_delta->y = ((cub->ray->map->y + 1. - cub->current_pos->y) \
+		cub->ray->small_delta->y = ((cub->ray->map->y + 1. - cub->pos->y) \
 			* cub->ray->delta_dist->y);
 		cub->ray->step->y = 1;
 	}
 	else
 	{
-		cub->ray->small_delta->y = ((cub->current_pos->y - cub->ray->map->y) \
+		cub->ray->small_delta->y = ((cub->pos->y - cub->ray->map->y) \
 			* cub->ray->delta_dist->y);
 		cub->ray->step->y = -1;
 	}

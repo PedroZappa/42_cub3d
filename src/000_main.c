@@ -50,8 +50,9 @@ void	ft_cub_free(t_cub *cub)
 {
 	if (cub == NULL)
 		return ;
-	ft_vfree(cub->current_pos);
-	ft_vfree(cub->orientation);
+	ft_vfree(cub->pos);
+	ft_vfree(cub->dir);
+	ft_vfree(cub->plane);
 	ft_map_destroy_imgs(cub->map, cub->mlx);
 	ft_map_free(cub->map);
 	ft_mlx_free(cub->mlx);

@@ -16,8 +16,8 @@ static t_ray	*ft_ray_alloc_check(t_ray *ray);
 
 /**
  * @brief Initialize a new ray structure
- * @param start_pos The starting position of the ray
- * @param start_dir The starting direction of the ray
+ * @param map_x Current X coordinate of the player within the map
+ * @param map_y Current Y coordinate of the player within the map
  * @return SUCCESS(Pointer to the newly created t_ray structure)
  * @return FAILURE(NULL if allocation fails or start_pos is NULL)
  * @details
@@ -25,16 +25,14 @@ static t_ray	*ft_ray_alloc_check(t_ray *ray);
  * starting position and direction. It sets up all necessary components for
  * raycasting, including map position, direction vectors, and camera parameters.
  */
-t_ray	*ft_ray_init(t_point *pos)
+t_ray	*ft_ray_init(int map_x, int map_y)
 {
 	t_ray	*ret;
 
-	if (pos == NULL)
-		return (NULL);
 	ret = ft_calloc(1, sizeof(t_ray));
 	if (ret == NULL)
 		return (NULL);
-	ret->map = pos;
+	ret->map = ft_point_new(map_x, map_y);
 	ret->ray_dir = ft_vec_new(0, 0);
 	ret->delta_dist = ft_vec_new(0, 0);
 	ret->small_delta = ft_vec_new(0, 0);
@@ -78,6 +76,7 @@ void	ft_ray_free(t_ray *ray)
 	ft_vfree(ray->delta_dist);
 	ft_vfree(ray->small_delta);
 	ft_vfree(ray->step);
+	ft_vfree(ray->map);
 	ft_bzero(ray, sizeof(t_ray));
 	free(ray);
 }

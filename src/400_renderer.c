@@ -37,7 +37,6 @@ static int	ft_render_image(t_cub *cub)
 {
 	if (cub == NULL || cub->mlx == NULL)
 		return (FAILURE);
-	// TODO: Execute movement
 	ft_draw_image(cub);
 	mlx_put_image_to_window(cub->mlx->ptr, cub->mlx->wdw,
 		cub->mlx->frame->img, 0, 0);
@@ -61,11 +60,11 @@ static void	ft_draw_image(t_cub *cub)
 		while (height > cub->ray->wall_top)
 			ft_pixel_put(cub->mlx->frame, x, height--, \
 				ft_rgb_to_int(cub->map->floor_color));
-		// TODO : Draw Wall Texture
 		height = cub->ray->wall_bottom;
 		while (height >= 0)
 			ft_pixel_put(cub->mlx->frame, x, height--, \
 				ft_rgb_to_int(cub->map->ceiling_color));
+		ft_ray_free(cub->ray);
 		++x;
 	}
 }
@@ -78,11 +77,7 @@ static void	ft_draw_image(t_cub *cub)
 */
 static void	ft_raycast(t_cub *cub, int x)
 {
-	t_point	*pos;
-
-	pos = ft_point_new(cub->current_pos->x, cub->current_pos->y);
-	ft_ray_free(cub->ray);
-	cub->ray = ft_ray_init(pos);
+	cub->ray = ft_ray_init(cub->pos->x, cub->pos->y);
 	ft_get_ray(cub, x);
 	ft_get_intersection(cub);
 }
