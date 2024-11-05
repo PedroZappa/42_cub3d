@@ -58,25 +58,6 @@ static void	ft_draw_image(t_cub *cub)
 	{
 		ft_raycast(cub, x);
 		height = WINDOW_H - 1;
-		/*printf("r_pos (%f, %f)\nr_map (%d, %d)\nr_dist (%f, %f)\ndir (%f, %f)\nplane (%f, %f)\npos (%f, %f)\nd %f h %d, (%d, %d)\n",
-			cub->current_pos->x,
-			cub->current_pos->y,
-			cub->ray->map->x,
-			cub->ray->map->y,
-			cub->ray->small_delta->x,
-			cub->ray->small_delta->y,
-			cub->orientation->x,
-			cub->orientation->y,
-			cub->plane->x,
-			cub->plane->y,
-			cub->current_pos->x,
-			cub->current_pos->y,
-			cub->ray->dist,
-			cub->ray->wall_height,
-			cub->ray->wall_bottom,
-			cub->ray->wall_top
-		);
-		exit(0);*/
 		while (height > cub->ray->wall_top)
 			ft_pixel_put(cub->mlx->frame, x, height--, \
 				ft_rgb_to_int(cub->map->floor_color));
@@ -97,9 +78,11 @@ static void	ft_draw_image(t_cub *cub)
 */
 static void	ft_raycast(t_cub *cub, int x)
 {
-	cub->ray = ft_ray_init(
-			ft_point_new(cub->current_pos->x, cub->current_pos->y),
-			cub->orientation);
+	t_point	*pos;
+
+	pos = ft_point_new(cub->current_pos->x, cub->current_pos->y);
+	ft_ray_free(cub->ray);
+	cub->ray = ft_ray_init(pos);
 	ft_get_ray(cub, x);
 	ft_get_intersection(cub);
 }

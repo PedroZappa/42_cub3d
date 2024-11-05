@@ -25,17 +25,16 @@ static t_ray	*ft_ray_alloc_check(t_ray *ray);
  * starting position and direction. It sets up all necessary components for
  * raycasting, including map position, direction vectors, and camera parameters.
  */
-t_ray	*ft_ray_init(t_point *start_pos, t_vec *orient)
+t_ray	*ft_ray_init(t_point *pos)
 {
 	t_ray	*ret;
 
-	if (start_pos == NULL)
+	if (pos == NULL)
 		return (NULL);
 	ret = ft_calloc(1, sizeof(t_ray));
 	if (ret == NULL)
 		return (NULL);
-	ret->map = start_pos;
-	ret->vec_dir = orient;
+	ret->map = pos;
 	ret->ray_dir = ft_vec_new(0, 0);
 	ret->delta_dist = ft_vec_new(0, 0);
 	ret->small_delta = ft_vec_new(0, 0);
@@ -56,10 +55,8 @@ t_ray	*ft_ray_init(t_point *start_pos, t_vec *orient)
 static t_ray	*ft_ray_alloc_check(t_ray *ray)
 {
 	if (ray == NULL || ray->map == NULL
-		|| ray->vec_dir == NULL
-		|| ray->vec_dir == NULL || ray->ray_dir == NULL
-		|| ray->delta_dist == NULL || ray->small_delta == NULL
-		|| ray->step == NULL)
+		|| ray->ray_dir == NULL || ray->delta_dist == NULL
+		|| ray->small_delta == NULL || ray->step == NULL)
 		return (ft_ray_free(ray), NULL);
 	return (ray);
 }
@@ -77,7 +74,6 @@ void	ft_ray_free(t_ray *ray)
 {
 	if (ray == NULL)
 		return ;
-	ft_vfree(ray->vec_dir);
 	ft_vfree(ray->ray_dir);
 	ft_vfree(ray->delta_dist);
 	ft_vfree(ray->small_delta);

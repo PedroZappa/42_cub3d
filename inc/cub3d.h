@@ -170,20 +170,13 @@ typedef struct s_mlx
 typedef struct s_ray
 {
 	t_point	*map;
-	t_vec	*vec_dir;
 	t_vec	*ray_dir;
 
 	t_vec	*delta_dist;
 	t_vec	*small_delta;
 	t_point	*step;
 
-	double	center_raylen;
-
-	t_point	*target_pos;
 	double	dist;
-	double	hitpoint;
-	double	tile_offset;
-	int		tex_x;
 	int		wall_height;
 	int		wall_bottom;
 	int		wall_top;
@@ -298,7 +291,7 @@ void		ft_vec_dir(t_cub *cub, t_dir dir);
 void		ft_vec_norm(t_vec *vec);
 
 /** @file 730_raycast.c */
-t_ray		*ft_ray_init(t_point *start_pos, t_vec *orient);
+t_ray		*ft_ray_init(t_point *start_pos);
 void		ft_ray_free(t_ray *ray);
 
 /** @file 740_image.c */
