@@ -71,8 +71,7 @@ has separated sections"
 
 // Camera Settings
 
-# define FOV			60
-# define PLANE			0.66
+# define PLANE			1.5
 # define MOV_SPEED		0.20
 # define ROT_SPEED		0.20
 

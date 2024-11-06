@@ -1,7 +1,7 @@
-NO ./img/Born2bePickle.xpm
-SO ./img/tools-man.xpm
-WE ./img/Born2bePickle.xpm
-EA ./img/tools-man.xpm
+NO ./img/one64.xpm
+SO ./img/p64.xpm
+WE ./img/coin64.xpm
+EA ./img/zero64.xpm
 
 F 220,100,0
 C 225,30,0
