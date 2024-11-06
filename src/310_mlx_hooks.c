@@ -28,6 +28,7 @@ int	ft_hook_kb(int keycode, t_cub *cub)
 		ft_cub_free(cub);
 		exit(SUCCESS);
 	}
+	ft_hook_kb_move(keycode, cub);
 	return (SUCCESS);
 }
 

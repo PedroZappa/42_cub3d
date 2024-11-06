@@ -60,7 +60,9 @@ static void	ft_draw_image(t_cub *cub)
 		while (height > cub->ray->wall_top)
 			ft_pixel_put(cub->mlx->frame, x, height--, \
 				ft_rgb_to_int(cub->map->floor_color));
-		height = cub->ray->wall_bottom;
+		while (height > cub->ray->wall_bottom)
+			ft_pixel_put(cub->mlx->frame, x, height--, \
+				0xFFFFFF);
 		while (height >= 0)
 			ft_pixel_put(cub->mlx->frame, x, height--, \
 				ft_rgb_to_int(cub->map->ceiling_color));

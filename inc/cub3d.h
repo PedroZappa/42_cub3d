@@ -73,6 +73,8 @@ has separated sections"
 
 # define FOV			60
 # define PLANE			0.66
+# define MOV_SPEED		0.20
+# define ROT_SPEED		0.20
 
 // Enums
 
@@ -259,6 +261,9 @@ int			ft_mlx_new_window(t_cub *cub);
 int			ft_hook_quit(t_cub *cub);
 int			ft_hook_kb(int keycode, t_cub *cub);
 int			ft_loop_hook(t_cub *cub);
+
+/** @file 320_mlx_hooks_move.c */
+void		ft_hook_kb_move(int keycode, t_cub *cub);
 
 /** @file 400_renderer.c */
 void		ft_render(t_cub *cub);
