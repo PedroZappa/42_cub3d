@@ -46,9 +46,9 @@ static int	ft_render_image(t_cub *cub)
 static int	ft_color_at(t_img *img, int tex_y, int tex_x)
 {
 	int	color;
-	
+
 	color = *(int *)(img->pix + tex_y * img->line_len
-		+ tex_x * (img->bpp / 8));
+			+ tex_x * (img->bpp / 8));
 	return (color);
 }
 
@@ -82,8 +82,9 @@ static void	ft_draw_texture(t_cub *cub, int x)
 	t_tex	*tex;
 
 	tex = cub->map->tex + cub->ray->wall_dir;
-	step = 1.0 *  tex->height / cub->ray->wall_height;
-	tex_pos = (cub->ray->wall_bottom - WINDOW_H / 2 + cub->ray->wall_height / 2) * step;
+	step = 1.0 * tex->height / cub->ray->wall_height;
+	tex_pos = (cub->ray->wall_bottom - WINDOW_H / 2
+			+ cub->ray->wall_height / 2) * step;
 	height = cub->ray->wall_bottom;
 	while (height <= cub->ray->wall_top)
 	{

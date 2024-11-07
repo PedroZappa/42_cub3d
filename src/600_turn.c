@@ -24,17 +24,22 @@
  * y' = x * sin(θ) + y * cos(θ)
  * Where θ is the rotation angle (here, rotate_speed).
 **/
-void ft_turn(t_cub *cub, bool dir)
+void	ft_turn(t_cub *cub, bool dir)
 {
-	double prev_dir_x;
-	double prev_plane_x;
-	double rot_speed;
+	double	prev_dir_x;
+	double	prev_plane_x;
+	double	angle;
 
-	rot_speed = ((-1 * dir) * ROT_SPEED * (1 + (1 / pow(cub->ray->dist, 2))));
+	angle = (-1 * dir + (dir == 0)) * ROT_SPEED
+		/** (1 + (1 / pow(cub->ray->dist, 2)))*/;
 	prev_dir_x = cub->dir->x;
 	prev_plane_x = cub->plane->x;
-	cub->dir->x = prev_dir_x * cos(rot_speed) - cub->dir->y * sin(rot_speed);
-	cub->dir->y = prev_dir_x * sin(rot_speed) + cub->dir->y * cos(rot_speed);
-	cub->plane->x = prev_plane_x * cos(rot_speed) + cub->plane->y * sin(rot_speed);
-	cub->plane->y = prev_plane_x * sin(rot_speed) + cub->plane->y * cos(rot_speed);
+	cub->dir->x = prev_dir_x * cos(angle)
+		- cub->dir->y * sin(angle);
+	cub->dir->y = prev_dir_x * sin(angle)
+		+ cub->dir->y * cos(angle);
+	cub->plane->x = prev_plane_x * cos(angle)
+		- cub->plane->y * sin(angle);
+	cub->plane->y = prev_plane_x * sin(angle)
+		+ cub->plane->y * cos(angle);
 }

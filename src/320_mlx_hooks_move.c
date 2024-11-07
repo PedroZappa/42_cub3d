@@ -49,7 +49,7 @@ void	ft_hook_kb_move(int keycode, t_cub *cub)
 	if (keycode == 'd')
 		ft_kb_move_right(cub);
 	if (keycode == XK_Left)
-		ft_turn(cub, true);
-	if (keycode == XK_Right)
 		ft_turn(cub, false);
+	if (keycode == XK_Right)
+		ft_turn(cub, true);
 }
