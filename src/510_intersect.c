@@ -12,7 +12,7 @@
 
 #include "../inc/cub3d.h"
 
-static void	ft_check_wall_dir(int step, t_ray *target, t_coord side);
+static void	ft_check_wall_dir(t_ray *target, t_coord side);
 static void	ft_get_wall_height(t_ray *ray);
 
 /**
@@ -32,15 +32,16 @@ void	ft_get_intersection(t_cub *cub)
 		{
 			cub->ray->small_delta->x += cub->ray->delta_dist->x;
 			cub->ray->map->x += cub->ray->step->x;
-			ft_check_wall_dir(cub->ray->step->x, cub->ray, X);
+			ft_check_wall_dir(cub->ray, X);
 		}
 		else
 		{
 			cub->ray->small_delta->y += cub->ray->delta_dist->y;
 			cub->ray->map->y += cub->ray->step->y;
-			ft_check_wall_dir(cub->ray->step->y, cub->ray, Y);
+			ft_check_wall_dir(cub->ray, Y);
 		}
-		if (ft_map_at(cub->map, cub->ray->map) == '1')
+		if (ft_map_at(cub->map, cub->ray->map) == '1' ||
+			ft_map_at(cub->map, cub->ray->map) == -1)
 			break ;
 	}
 	ft_get_wall_height(cub->ray);
@@ -52,20 +53,20 @@ void	ft_get_intersection(t_cub *cub)
  * @param target Current camera target
  * @param side X or Y
 **/
-static void	ft_check_wall_dir(int step, t_ray *target, t_coord side)
+static void	ft_check_wall_dir(t_ray *target, t_coord side)
 {
-	if (side == X)
+	if (side == Y)
 	{
-		if (step == 1)
+		if (target->ray_dir->y > 0)
 			target->wall_dir = WEST;
-		else if (step == -1)
+		else
 			target->wall_dir = EAST;
 	}
-	else if (side == Y)
+	else if (side == X)
 	{
-		if (step == 1)
+		if (target->ray_dir->x > 0)
 			target->wall_dir = NORTH;
-		else if (step == -1)
+		else
 			target->wall_dir = SOUTH;
 	}
 }
@@ -81,7 +82,7 @@ static void	ft_check_wall_dir(int step, t_ray *target, t_coord side)
 **/
 static void	ft_get_wall_height(t_ray *ray)
 {
-	if ((ray->wall_dir == NORTH) || (ray->wall_dir == SOUTH))
+	if (ray->wall_dir > SOUTH)
 		ray->dist = ray->small_delta->y - ray->delta_dist->y;
 	else
 		ray->dist = ray->small_delta->x - ray->delta_dist->x;

@@ -48,7 +48,7 @@ static int	ft_color_at(t_img *img, int tex_y, int tex_x)
 	int	color;
 	
 	color = *(int *)(img->pix + tex_y * img->line_len
-		+ tex_x * img->bpp / 8);
+		+ tex_x * (img->bpp / 8));
 	return (color);
 }
 
@@ -57,7 +57,7 @@ static int	ft_find_color(t_cub *cub, t_tex *tex, int tex_y)
 	double	wall_x;
 	int		tex_x;
 
-	if (cub->ray->wall_dir % 2)
+	if (cub->ray->wall_dir <= SOUTH)
 		wall_x = cub->pos->y + cub->ray->dist \
 			* cub->ray->ray_dir->y;
 	else
@@ -65,10 +65,10 @@ static int	ft_find_color(t_cub *cub, t_tex *tex, int tex_y)
 			* cub->ray->ray_dir->x;
 	wall_x -= floor(wall_x);
 	tex_x = wall_x * (double)tex->width;
-	if (cub->ray->wall_dir % 2 && cub->ray->ray_dir->x > 0)
-		tex_x = 64 - tex_x - 1;
-	if (cub->ray->wall_dir % 2 == 0 && cub->ray->ray_dir->y < 0)
-		tex_x = 64 - tex_x - 1;
+	if (cub->ray->wall_dir <= SOUTH && cub->ray->ray_dir->x > 0)
+		tex_x = tex->width - tex_x - 1;
+	if (cub->ray->wall_dir > SOUTH && cub->ray->ray_dir->y < 0)
+		tex_x = tex->width - tex_x - 1;
 	return (ft_color_at(tex->img, tex_y, tex_x));
 }
 
@@ -85,7 +85,7 @@ static void	ft_draw_texture(t_cub *cub, int x)
 	step = 1.0 *  tex->height / cub->ray->wall_height;
 	tex_pos = (cub->ray->wall_bottom - WINDOW_H / 2 + cub->ray->wall_height / 2) * step;
 	height = cub->ray->wall_top;
-	while (height > cub->ray->wall_bottom)
+	while (height >= cub->ray->wall_bottom)
 	{
 		tex_y = (int)tex_pos & (tex->height - 1);
 		tex_pos += step;
