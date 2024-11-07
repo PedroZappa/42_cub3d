@@ -84,14 +84,14 @@ static void	ft_draw_texture(t_cub *cub, int x)
 	tex = cub->map->tex + cub->ray->wall_dir;
 	step = 1.0 *  tex->height / cub->ray->wall_height;
 	tex_pos = (cub->ray->wall_bottom - WINDOW_H / 2 + cub->ray->wall_height / 2) * step;
-	height = cub->ray->wall_top;
-	while (height >= cub->ray->wall_bottom)
+	height = cub->ray->wall_bottom;
+	while (height <= cub->ray->wall_top)
 	{
 		tex_y = (int)tex_pos & (tex->height - 1);
 		tex_pos += step;
 		color = ft_find_color(cub, tex, tex_y);
 		ft_pixel_put(cub->mlx->frame, x, height, color);
-		height--;
+		height++;
 	}
 }
 
