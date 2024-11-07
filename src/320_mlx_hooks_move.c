@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 23:52:17 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/11/07 15:25:01 by passunca         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:27:07 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,8 @@ void	ft_hook_kb_move(int keycode, t_cub *cub)
 		ft_kb_move_left(cub);
 	if (keycode == 'd')
 		ft_kb_move_right(cub);
-<<<<<<< HEAD
 	if (keycode == XK_Left)
 		ft_turn(cub, true);
 	if (keycode == XK_Right)
 		ft_turn(cub, false);
-	
-=======
-	printf("pos (%f, %f)\n",
-		cub->pos->x, cub->pos->y);
->>>>>>> refs/remotes/origin/main
 }
