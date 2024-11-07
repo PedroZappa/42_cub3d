@@ -40,8 +40,8 @@ void	ft_get_intersection(t_cub *cub)
 			cub->ray->map->y += cub->ray->step->y;
 			ft_check_wall_dir(cub->ray, Y);
 		}
-		if (ft_map_at_i(cub->map, cub->ray->map->y, cub->ray->map->x) == '1' ||
-			ft_map_at_i(cub->map, cub->ray->map->y, cub->ray->map->x) == -1)
+		if (ft_map_at_i(cub->map, cub->ray->map->y, cub->ray->map->x) == '1'
+			|| ft_map_at_i(cub->map, cub->ray->map->y, cub->ray->map->x) == -1)
 			break ;
 	}
 	ft_get_wall_height(cub->ray);
