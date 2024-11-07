@@ -14,72 +14,26 @@
 
 static void	ft_kb_move_up(t_cub *cub)
 {
-	t_vec	vec;
-
-	vec = (t_vec){cub->pos->x + cub->dir->x * MOV_SPEED,
-		cub->pos->y + cub->dir->y * MOV_SPEED};
-	printf("new vec (%f, %f)\n", vec.x, vec.y);
-	if (ft_map_at_i(cub->map, vec.x, cub->pos->y) == '0')
-		cub->pos->x = vec.x;
-	if (ft_map_at_i(cub->map, cub->pos->x, vec.y) == '0')
-		cub->pos->y = vec.y;
-	if (ft_map_at_i(cub->map, vec.x, vec.y) == '0')
-	{
-		cub->pos->x = vec.x;
-		cub->pos->y = vec.y;
-	}
+	cub->pos->x = cub->pos->x + cub->dir->x * MOV_SPEED;
+	cub->pos->y = cub->pos->y + cub->dir->y * MOV_SPEED;
 }
 
 static void	ft_kb_move_down(t_cub *cub)
 {
-	t_vec	vec;
-
-	vec = (t_vec){cub->pos->x - cub->dir->x * MOV_SPEED,
-		cub->pos->y - cub->dir->y * MOV_SPEED};
-	printf("new vec (%f, %f)\n", vec.x, vec.y);
-	if (ft_map_at_i(cub->map, vec.x, cub->pos->y) == '0')
-		cub->pos->x = vec.x;
-	if (ft_map_at_i(cub->map, cub->pos->x, vec.y) == '0')
-		cub->pos->y = vec.y;
-	if (ft_map_at_i(cub->map, vec.x, vec.y) == '0')
-	{
-		cub->pos->x = vec.x;
-		cub->pos->y = vec.y;
-	}
+	cub->pos->x = cub->pos->x - cub->dir->x * MOV_SPEED;
+	cub->pos->y = cub->pos->y - cub->dir->y * MOV_SPEED;
 }
 
 static void	ft_kb_move_left(t_cub *cub)
 {
-	t_vec	vec;
-
-	vec = (t_vec){cub->pos->x - cub->dir->y * MOV_SPEED,
-		cub->pos->y + cub->dir->x * MOV_SPEED};
-	if (ft_map_at_i(cub->map, vec.x, cub->pos->y) == '0')
-		cub->pos->x = vec.x;
-	if (ft_map_at_i(cub->map, cub->pos->x, vec.y) == '0')
-		cub->pos->y = vec.y;
-	if (ft_map_at_i(cub->map, vec.x, vec.y) == '0')
-	{
-		cub->pos->x = vec.x;
-		cub->pos->y = vec.y;
-	}
+	cub->pos->x = cub->pos->x - cub->dir->y * MOV_SPEED;
+	cub->pos->y = cub->pos->y + cub->dir->x * MOV_SPEED;
 }
 
 static void	ft_kb_move_right(t_cub *cub)
 {
-	t_vec	vec;
-
-	vec = (t_vec){cub->pos->x + cub->dir->y * MOV_SPEED,
-		cub->pos->y - cub->dir->x * MOV_SPEED};
-	if (ft_map_at_i(cub->map, vec.x, cub->pos->y) == '0')
-		cub->pos->x = vec.x;
-	if (ft_map_at_i(cub->map, cub->pos->x, vec.y) == '0')
-		cub->pos->y = vec.y;
-	if (ft_map_at_i(cub->map, vec.x, vec.y) == '0')
-	{
-		cub->pos->x = vec.x;
-		cub->pos->y = vec.y;
-	}
+	cub->pos->x = cub->pos->x + cub->dir->y * MOV_SPEED;
+	cub->pos->y = cub->pos->y - cub->dir->x * MOV_SPEED;
 }
 
 void	ft_hook_kb_move(int keycode, t_cub *cub)
@@ -94,9 +48,14 @@ void	ft_hook_kb_move(int keycode, t_cub *cub)
 		ft_kb_move_left(cub);
 	if (keycode == 'd')
 		ft_kb_move_right(cub);
+<<<<<<< HEAD
 	if (keycode == XK_Left)
 		ft_turn(cub, true);
 	if (keycode == XK_Right)
 		ft_turn(cub, false);
 	
+=======
+	printf("pos (%f, %f)\n",
+		cub->pos->x, cub->pos->y);
+>>>>>>> refs/remotes/origin/main
 }
