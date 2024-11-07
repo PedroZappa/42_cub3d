@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 23:52:17 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/11/07 14:45:34 by passunca         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:25:01 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ void	ft_hook_kb_move(int keycode, t_cub *cub)
 	if (keycode == 'd')
 		ft_kb_move_right(cub);
 	if (keycode == XK_Left)
-		ft_turn_left(cub);
+		ft_turn(cub, true);
 	if (keycode == XK_Right)
-		ft_turn_right(cub);
+		ft_turn(cub, false);
 	
 }

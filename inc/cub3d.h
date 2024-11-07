@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:59:54 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/11/07 14:50:33 by passunca         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:23:20 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -280,8 +280,7 @@ void		ft_get_ray(t_cub *cub, int x);
 void		ft_get_intersection(t_cub *cub);
 
 /** @file 600_turn.c */
-void		ft_turn_left(t_cub *cub);
-void		ft_turn_right(t_cub *cub);
+void		ft_turn(t_cub *cub, bool dir);
 
 /** @file 700_misc.c */
 long		ft_timestamp(void);
