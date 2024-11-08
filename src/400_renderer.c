@@ -43,13 +43,12 @@ static int	ft_render_image(t_cub *cub)
 	return (SUCCESS);
 }
 
-static void	ft_draw_texture(t_cub *cub, int x)
+static void	ft_draw_texture(t_cub *cub, int x, int height)
 {
 	double	tex_pos;
 	double	step;
 	int		color;
 	int		tex_y;
-	double	height;
 	t_tex	*tex;
 
 	tex = cub->map->tex + cub->ray->wall_dir;
@@ -88,7 +87,7 @@ static void	ft_draw_image(t_cub *cub)
 		while (height >= 0)
 			ft_pixel_put(cub->mlx->frame, x, height--, \
 				ft_rgb_to_int(cub->map->ceiling_color));
-		ft_draw_texture(cub, x);
+		ft_draw_texture(cub, x, height);
 		ft_ray_free(cub->ray);
 		++x;
 	}
