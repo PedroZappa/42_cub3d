@@ -6,7 +6,7 @@
 /*   By: gfragoso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:29:38 by gfragoso          #+#    #+#             */
-/*   Updated: 2024/10/12 09:20:11 by passunca         ###   ########.fr       */
+/*   Updated: 2024/11/08 11:32:59 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,35 +41,6 @@ static int	ft_render_image(t_cub *cub)
 	mlx_put_image_to_window(cub->mlx->ptr, cub->mlx->wdw,
 		cub->mlx->frame->img, 0, 0);
 	return (SUCCESS);
-}
-
-static int	ft_color_at(t_img *img, int tex_y, int tex_x)
-{
-	int	color;
-
-	color = *(int *)(img->pix + tex_y * img->line_len
-			+ tex_x * (img->bpp / 8));
-	return (color);
-}
-
-static int	ft_find_color(t_cub *cub, t_tex *tex, int tex_y)
-{
-	double	wall_x;
-	int		tex_x;
-
-	if (cub->ray->wall_dir <= SOUTH)
-		wall_x = cub->pos->y + cub->ray->dist \
-			* cub->ray->ray_dir->y;
-	else
-		wall_x = cub->pos->x + cub->ray->dist \
-			* cub->ray->ray_dir->x;
-	wall_x -= floor(wall_x);
-	tex_x = wall_x * (double)tex->width;
-	if (cub->ray->wall_dir <= SOUTH && cub->ray->ray_dir->x > 0)
-		tex_x = tex->width - tex_x - 1;
-	if (cub->ray->wall_dir > SOUTH && cub->ray->ray_dir->y < 0)
-		tex_x = tex->width - tex_x - 1;
-	return (ft_color_at(tex->img, tex_y, tex_x));
 }
 
 static void	ft_draw_texture(t_cub *cub, int x)
