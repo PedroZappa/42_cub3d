@@ -30,8 +30,7 @@ void	ft_turn(t_cub *cub, bool dir)
 	double	prev_plane_x;
 	double	angle;
 
-	angle = (-1 * dir + (dir == 0)) * ROT_SPEED
-		/** (1 + (1 / pow(cub->ray->dist, 2)))*/;
+	angle = (-1 * dir + (dir == 0)) * ROT_SPEED;
 	prev_dir_x = cub->dir->x;
 	prev_plane_x = cub->plane->x;
 	cub->dir->x = prev_dir_x * cos(angle)
