@@ -80,7 +80,7 @@ int	ft_mlx_set_hooks(t_cub *cub)
 {
 	if (cub == NULL || cub->mlx == NULL)
 		return (FAILURE);
-	mlx_key_hook(cub->mlx->wdw, ft_hook_kb, cub);
+	mlx_hook(cub->mlx->wdw, KeyPress, KeyPressMask, ft_hook_kb, cub);
 	mlx_hook(cub->mlx->wdw, ClientMessage,
 		StructureNotifyMask, ft_hook_quit, cub);
 	cub->start_time = ft_timestamp();
