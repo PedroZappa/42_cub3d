@@ -26,14 +26,14 @@ static void	ft_kb_move_down(t_cub *cub)
 
 static void	ft_kb_move_left(t_cub *cub)
 {
-	cub->pos->x = cub->pos->x - cub->dir->y * MOV_SPEED;
-	cub->pos->y = cub->pos->y + cub->dir->x * MOV_SPEED;
+	cub->pos->x = cub->pos->x + cub->dir->y * MOV_SPEED;
+	cub->pos->y = cub->pos->y - cub->dir->x * MOV_SPEED;
 }
 
 static void	ft_kb_move_right(t_cub *cub)
 {
-	cub->pos->x = cub->pos->x + cub->dir->y * MOV_SPEED;
-	cub->pos->y = cub->pos->y - cub->dir->x * MOV_SPEED;
+	cub->pos->x = cub->pos->x - cub->dir->y * MOV_SPEED;
+	cub->pos->y = cub->pos->y + cub->dir->x * MOV_SPEED;
 }
 
 void	ft_hook_kb_move(int keycode, t_cub *cub)
@@ -49,7 +49,7 @@ void	ft_hook_kb_move(int keycode, t_cub *cub)
 	if (keycode == 'd')
 		ft_kb_move_right(cub);
 	if (keycode == XK_Left)
-		ft_turn(cub, false);
-	if (keycode == XK_Right)
 		ft_turn(cub, true);
+	if (keycode == XK_Right)
+		ft_turn(cub, false);
 }

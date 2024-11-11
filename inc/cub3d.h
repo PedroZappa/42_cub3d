@@ -71,9 +71,9 @@ has separated sections"
 
 // Camera Settings
 
-# define PLANE			1.5
+# define PLANE			0.9
 # define MOV_SPEED		0.20
-# define ROT_SPEED		0.0122718463	// M_PI / 256
+# define ROT_SPEED		0.15
 
 // Enums
 

@@ -12,31 +12,31 @@
 
 #include "../inc/cub3d.h"
 
-int	ft_color_at(t_img *img, int tex_y, int tex_x)
+int	ft_color_at(t_img *img, int x, int y)
 {
 	int	color;
 
-	color = *(int *)(img->pix + tex_y * img->line_len
-			+ tex_x * (img->bpp / 8));
+	color = *(int *)(img->pix + y * img->line_len
+			+ x * (img->bpp / 8));
 	return (color);
 }
 
-int	ft_find_color(t_cub *cub, t_tex *tex, int tex_y)
+int	ft_find_color(t_cub *cub, t_tex *tex, int y)
 {
-	double	wall_x;
-	int		tex_x;
+	double	wall;
+	int		x;
 
-	if (cub->ray->wall_dir <= SOUTH)
-		wall_x = cub->pos->y + cub->ray->dist \
+	if (cub->ray->wall_dir > SOUTH)
+		wall = cub->pos->y + cub->ray->dist \
 			* cub->ray->ray_dir->y;
 	else
-		wall_x = cub->pos->x + cub->ray->dist \
+		wall = cub->pos->x + cub->ray->dist \
 			* cub->ray->ray_dir->x;
-	wall_x -= floor(wall_x);
-	tex_x = wall_x * (double)tex->width;
-	if (cub->ray->wall_dir <= SOUTH && cub->ray->ray_dir->x > 0)
-		tex_x = tex->width - tex_x - 1;
-	if (cub->ray->wall_dir > SOUTH && cub->ray->ray_dir->y < 0)
-		tex_x = tex->width - tex_x - 1;
-	return (ft_color_at(tex->img, tex_y, tex_x));
+	wall -= floor(wall);
+	x = wall * (double)tex->width;
+	if (cub->ray->wall_dir > SOUTH && cub->ray->ray_dir->x > 0)
+		x = tex->width - x - 1;
+	if (cub->ray->wall_dir <= SOUTH && cub->ray->ray_dir->y < 0)
+		x = tex->width - x - 1;
+	return (ft_color_at(tex->img, x, y));
 }

@@ -64,23 +64,23 @@ void	ft_vec_dir(t_cub *cub, t_dir dir)
 {
 	if (dir == NORTH)
 	{
-		cub->dir = ft_vec_new(-1, 0);
-		cub->plane = ft_vec_new(0, PLANE);
+		cub->dir = ft_vec_new(0, -1);
+		cub->plane = ft_vec_new(PLANE, 0);
 	}
 	if (dir == SOUTH)
 	{
-		cub->dir = ft_vec_new(1, 0);
-		cub->plane = ft_vec_new(0, -PLANE);
+		cub->dir = ft_vec_new(0, 1);
+		cub->plane = ft_vec_new(-PLANE, 0);
 	}
 	if (dir == WEST)
 	{
-		cub->dir = ft_vec_new(0, -1);
-		cub->plane = ft_vec_new(-PLANE, 0);
+		cub->dir = ft_vec_new(-1, 0);
+		cub->plane = ft_vec_new(0, -PLANE);
 	}
 	if (dir == EAST)
 	{
-		cub->dir = ft_vec_new(0, 1);
-		cub->plane = ft_vec_new(PLANE, 0);
+		cub->dir = ft_vec_new(1, 0);
+		cub->plane = ft_vec_new(0, PLANE);
 	}
 }
 
