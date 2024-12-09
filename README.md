@@ -6,7 +6,7 @@
 > 
 
 <p>
-    <img src="https://img.shields.io/badge/score-%20%2F%2099-success?style=for-the-badge" />
+    <img src="https://img.shields.io/badge/score-%20%2F%2100-success?style=for-the-badge" />
     <img src="https://img.shields.io/github/repo-size/PedroZappa/42_cub3d?style=for-the-badge&logo=github">
     <img src="https://img.shields.io/github/languages/count/PedroZappa/42_cub3d?style=for-the-badge&logo=" />
     <img src="https://img.shields.io/github/languages/top/PedroZappa/42_cub3d?style=for-the-badge" />
