@@ -62,17 +62,37 @@ TESTS_PATH	= tests
 BUILD_PATH	= .build
 TEMP_PATH		= .temp
 
-SRC						= $(wildcard $(SRC_PATH)/*.c)
-ifeq ($(SYSFAIL),1)
-TEST_SRC			= $(wildcard $(TESTS_PATH)/*.c)
-TEST_OBJS			= $(TEST_SRC:$(TESTS_PATH)/%.c=$(BUILD_PATH)/%.o)
-OBJS = $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o) $(TEST_OBJS)
-HEADERS				= $(wildcard $(INC_PATH)/*.h)
-HEADERS				+= $(wildcard $(TESTS_PATH)/*.h)
-else
+FILES	= 000_main.c
+FILES	+= 100_map.c
+FILES	+= 101_map_at.c
+FILES += 110_map_verify.c
+FILES += 111_map_verify2.c
+FILES += 200_parser.c
+FILES += 210_parse_rgb.c
+FILES += 220_parse_map.c
+FILES += 230_parse_headers.c
+FILES += 300_mlx.c
+FILES += 310_mlx_hooks.c
+FILES += 320_mlx_hooks_move.c
+FILES += 400_renderer.c
+FILES += 410_pixel.c
+FILES += 420_ui.c
+FILES += 430_color.c
+FILES += 500_raycaster.c
+FILES += 510_intersect.c
+FILES += 600_turn.c
+FILES += 700_misc.c
+FILES += 710_point.c
+FILES += 720_vec.c
+FILES += 730_ray.c
+FILES += 740_image.c
+FILES += 800_errors.c
+FILES += 801_errors2.c
+FILES += 900_free.c
+
+SRC						= $(addprefix $(SRC_PATH)/, $(FILES))
 OBJS					= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
-HEADERS				= $(wildcard $(INC_PATH)/*.h)
-endif
+HEADERS				= $(INC_PATH)/cub3d.h
 
 LIBFT_PATH		= $(LIBS_PATH)/libft
 LIBFT_ARC			= $(LIBFT_PATH)/libft.a
